@@ -2,32 +2,63 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>每日热榜</h1>
-    <p class="lead">
-        推荐的电影1. 所有人都可以看 2.可以左右切换
-    </p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div id="myCarousel" class="carousel slide">
+    <!-- 轮播（Carousel）指标 -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>   
+    <!-- 轮播（Carousel）项目 -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="/Images/0.jpg" alt="First slide">
+            <div class="carousel-caption"><h1>海上钢琴师</h1></div>
+        </div>
+        <div class="item">
+            <img src="/Images/1.jpg" alt="Second slide">
+            <div class="carousel-caption"><h1>追梦珊瑚</h1></div>
+        </div>
+        <div class="item">
+            <img src="/Images/2.jpg" alt="Third slide">
+            <div class="carousel-caption"><h1>天将雄狮</h1></div>
+        </div>
+    </div>
+    <!-- 轮播（Carousel）导航 -->
+    <a class="carousel-control left" href="#myCarousel" 
+       data-slide="prev">
+    </a>
+    <a class="carousel-control right" href="#myCarousel" 
+       data-slide="next">
+    </a>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <h2>最佳影片</h2>
+        <ol class="list-group">
+            <li class="list-group-item"><span class="badge">14</span>奇迹男孩</li>
+            <li class="list-group-item"><span class="badge">10</span>摔跤吧，爸爸！</li>
+            <li class="list-group-item"><span class="badge">4</span>战狼2</li>
+        </ol>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">更多 &raquo;</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h2>正在热映</h2>
+        <ol class="list-group">
+            <li class="list-group-item"><span class="badge">10</span>神秘巨星</li>
+            <li class="list-group-item"><span class="badge">8</span>无问西东</li>
+            <li class="list-group-item"><span class="badge">1</span>公牛历险记</li>
+        </ol>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">更多 &raquo;</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>永恒经典</h2>
+        <ol class="list-group">
+            <li class="list-group-item"><span class="badge">114</span>当幸福来敲门</li>
+            <li class="list-group-item"><span class="badge">110</span>阿甘正传</li>
+            <li class="list-group-item"><span class="badge">104</span>怦然心动</li>
+        </ol>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">更多 &raquo;</a></p>
     </div>
 </div>
