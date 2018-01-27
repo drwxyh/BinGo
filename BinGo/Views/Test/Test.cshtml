@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Test";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/app.js"></script>
+<h2>Test</h2>
+<div ng-app="myApp" ng-controller="myCtrl">
+    <table style="border:1px solid gray;">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+        <tr ng-repeat="mov in movies">
+            <td>{{mov.Id}}</td>
+            <td>{{mov.Name}}</td>
+        </tr>
+    </table>
+</div>
