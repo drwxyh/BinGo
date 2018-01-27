@@ -25,6 +25,7 @@ namespace BinGo
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/extend.css",
                       "~/Content/site.css"));
         }
     }
