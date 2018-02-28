@@ -4,5 +4,6 @@ app.controller('myCtrl',
         $http.get("/Test/GetMovie")
             .then(function(response) {
                 $scope.movies = response.data;
+                alert($scope.movie);
             });
     });

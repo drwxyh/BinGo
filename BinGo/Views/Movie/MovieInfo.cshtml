@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "MovieInfo";
+}
+
+<div id="wrapper">
+    <div id="content">
+        <h1>
+            <span>&nbsp;&nbsp;红海行动</span>
+        </h1>
+        <div class="container">
+            <div class="subject row" style="display: flex">
+                <div class="poster col-xs-3">
+                    <img src="~/Images/Poster/红海行动.png" />
+                </div>
+                <div class="info col-xs-3">
+                    <ul class="list-unstyled">
+                        <li><span>导演：</span><span>林超贤</span><br /></li>
+                        <li><span>编剧：</span><span>冯骥/陈珠珠/林明杰</span><br /></li>
+                        <li><span>主演：</span><span>张译/黄景瑜/海清/杜江</span><br /></li>
+                        <li><span>类型：</span><span>剧情/动作</span><br /></li>
+                        <li><span>地区：</span><span>中国大陆/香港</span><br /></li>
+                    </ul>
+                </div>
+                <div>
+                    <img src="~/Images/Other/part-line.png" height="100%" />
+                </div>
+                <div class="remark col-xs-4">
+                    <h2 style="text-align: center">评分</h2>
+                    <strong>4.5</strong>
+                    <div id="star"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery.raty.js"></script>
+<script>
+    $('#star').raty({ readOnly: true, score: 4.5 });
+</script>

@@ -17,7 +17,7 @@ namespace BinGo.EF
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Movie>().ToTable("dbMovies");
+            modelBuilder.Entity<Movie>().ToTable("movies");
             modelBuilder.Entity<Movie>().HasKey(x => x.Id);
         }
     }
