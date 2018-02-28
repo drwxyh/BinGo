@@ -1,7 +1,320 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Movie";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<style>
+    img {
+        max-height: 378px;
+    }
+     .poster {
+         margin: 5% 5% 5% 3%;
+     }
+    .stitle {
+    }
+    .srating {
+        display: inline-block;
+        vertical-align: top;
+        letter-spacing: normal;
+        word-spacing: normal;
+        height: 19px;
+        margin-left: 30%;
+        margin-bottom: 5px;
+    }
+    .star {
+        margin: 3px 3px 0 0;
+        width: 55px;
+    }
+    .subject-rate {
+        display: inline-block;
+        vertical-align: top;
+        letter-spacing: normal;
+        word-spacing: normal;
+        float: right;
+        color: #e09015;
+    }
+</style>
+<h1>选电影</h1>
+<div style="width: 100%">
 
-<p>Use this area to provide additional information.</p>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist" id="nav-tabs">
+        <li role="presentation" class="active"><a href="#hot" aria-controls="home" role="tab" data-toggle="tab">热门</a></li>
+        <li role="presentation"><a href="#latest" aria-controls="profile" role="tab" data-toggle="tab">最新</a></li>
+        <li role="presentation"><a href="#classic" aria-controls="messages" role="tab" data-toggle="tab">经典</a></li>
+        <li role="presentation"><a href="#chinese" aria-controls="settings" role="tab" data-toggle="tab">华语</a></li>
+        <li role="presentation"><a href="#EA" aria-controls="messages" role="tab" data-toggle="tab">欧美</a></li>
+        <li role="presentation"><a href="#JK" aria-controls="settings" role="tab" data-toggle="tab">日韩</a></li>
+        <li role="presentation"><a href="#HT" aria-controls="messages" role="tab" data-toggle="tab">港台</a></li>
+        <li role="presentation"><a href="#others" aria-controls="settings" role="tab" data-toggle="tab">更多</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane container active" id="hot">
+            <ul class="list-unstyled col-xs-3">
+                <li class="poster">
+                    <img src="~/Images/Poster/芳华.png" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>芳华</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="e"></span>
+                        <span class="subject-rate">4.5</span>
+                    </div>
+                </li>
+            </ul>
+            <ul class="list-unstyled col-xs-3">
+                <li class="poster">
+                    <img src="~/Images/Poster/红海行动.png" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>红海行动</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="f"></span>
+                        <span class="subject-rate">5</span>
+                    </div>
+                </li>
+            </ul>
+            <ul class="list-unstyled col-xs-3">
+                <li class="poster">
+                    <img src="~/Images/Poster/唐人街探案.png" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>唐人街探案</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="g"></span>
+                        <span class="subject-rate">3.5</span>
+                    </div>
+                </li>
+            </ul>
+            <ul class="list-unstyled col-xs-3">
+                <li class="poster">
+                    <img src="~/Images/Poster/无问西东.png" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>无问西东</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="h"></span>
+                        <span class="subject-rate">2.5</span>
+                    </div>
+                </li>
+            </ul>
+            <ul class="list-unstyled col-xs-3">
+                <li class="poster">
+                    <img src="~/Images/Poster/西游记女儿国.png" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>西游记女儿国</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="a"></span>
+                        <span class="subject-rate">2.5</span>
+                    </div>
+                </li>
+            </ul>
+            <ul class="list-unstyled col-xs-3">
+                <li class="poster">
+                    <img src="~/Images/Poster/熊出没.png" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>熊出没</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="b"></span>
+                        <span class="subject-rate">3.5</span>
+                    </div>
+                </li>
+            </ul>
+            <ul class="list-unstyled col-xs-3">
+                <li class="poster">
+                    <img src="~/Images/Poster/捉妖记.png" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>捉妖记</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="c"></span>
+                        <span class="subject-rate">2.5</span>
+                    </div>
+                </li>
+            </ul>
+            <ul class="list-unstyled col-xs-3">
+                <li class="poster">
+                    <img src="~/Images/Poster/祖宗十九代.png" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>祖宗十九代</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="d"></span>
+                        <span class="subject-rate">2.5</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="latest">
+            <ul class="list-unstyled col-xs-3">
+                <li class="poster">
+                    <img src="~/Images/Poster/西游记女儿国.png" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>西游记女儿国</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="a1"></span>
+                        <span class="subject-rate">2.5</span>
+                    </div>
+                </li>
+            </ul>
+            <ul class="list-unstyled col-xs-3">
+                <li class="poster">
+                    <img src="~/Images/Poster/熊出没.png" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>熊出没</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="b1"></span>
+                        <span class="subject-rate">3.5</span>
+                    </div>
+                </li>
+            </ul>
+            <ul class="list-unstyled col-xs-3">
+                <li class="poster">
+                    <img src="~/Images/Poster/捉妖记.png" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>捉妖记</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="c1"></span>
+                        <span class="subject-rate">2.5</span>
+                    </div>
+                </li>
+            </ul>
+            <ul class="list-unstyled col-xs-3">
+                <li class="poster">
+                    <img src="~/Images/Poster/祖宗十九代.png" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>祖宗十九代</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="d1"></span>
+                        <span class="subject-rate">2.5</span>
+                    </div>
+                </li>
+            </ul>
+            <ul class="list-unstyled col-xs-3">
+                <li class="poster">
+                    <img src="~/Images/Poster/芳华.png" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>芳华</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="e1"></span>
+                        <span class="subject-rate">4.5</span>
+                    </div>
+                </li>
+            </ul>
+            <ul class="list-unstyled col-xs-3">
+                <li class="poster">
+                    <img src="~/Images/Poster/红海行动.png" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>红海行动</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="f1"></span>
+                        <span class="subject-rate">5</span>
+                    </div>
+                </li>
+            </ul>
+            <ul class="list-unstyled col-xs-3">
+                <li class="poster">
+                    <img src="~/Images/Poster/唐人街探案.png" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>唐人街探案</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="g1"></span>
+                        <span class="subject-rate">3.5</span>
+                    </div>
+                </li>
+            </ul>
+            <ul class="list-unstyled col-xs-3">
+                <li class="poster">
+                    <img src="~/Images/Poster/无问西东.png" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>无问西东</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="h1"></span>
+                        <span class="subject-rate">2.5</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="classic">
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="chinese">
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="EA">
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="JK">
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="HT">
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="others">
+
+        </div>
+    </div>
+
+</div>
+<script src="~/Scripts/jquery.raty.js"></script>
+<script>
+    $('#a').raty({ readOnly: true, score: 2.5 });
+    $('#b').raty({ readOnly: true, score: 3.5 });
+    $('#c').raty({ readOnly: true, score: 2.5 });
+    $('#d').raty({ readOnly: true, score: 2.5 });
+    $('#e').raty({ readOnly: true, score: 4.5 });
+    $('#f').raty({ readOnly: true, score: 5.0 });
+    $('#g').raty({ readOnly: true, score: 3.5 });
+    $('#h').raty({ readOnly: true, score: 2.5 });
+    $('#a1').raty({ readOnly: true, score: 2.5 });
+    $('#b1').raty({ readOnly: true, score: 3.5 });
+    $('#c1').raty({ readOnly: true, score: 2.5 });
+    $('#d1').raty({ readOnly: true, score: 2.5 });
+    $('#e1').raty({ readOnly: true, score: 4.5 });
+    $('#f1').raty({ readOnly: true, score: 5.0 });
+    $('#g1').raty({ readOnly: true, score: 3.5 });
+    $('#h1').raty({ readOnly: true, score: 2.5 });
+
+</script>

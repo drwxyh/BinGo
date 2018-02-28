@@ -181,7 +181,14 @@
     <Content Include="Images\Home\2.jpg" />
     <Content Include="Images\Login\photograph.jpeg" />
     <Content Include="Images\Other\part-line.png" />
+    <Content Include="Images\Poster\唐人街探案.png" />
+    <Content Include="Images\Poster\捉妖记.png" />
+    <Content Include="Images\Poster\无问西东.png" />
+    <Content Include="Images\Poster\熊出没.png" />
+    <Content Include="Images\Poster\祖宗十九代.png" />
     <Content Include="Images\Poster\红海行动.png" />
+    <Content Include="Images\Poster\芳华.png" />
+    <Content Include="Images\Poster\西游记女儿国.png" />
     <Content Include="Images\Register\banner1.png" />
     <Content Include="Images\Register\banner2.png" />
     <Content Include="Images\Register\content.jpg" />
