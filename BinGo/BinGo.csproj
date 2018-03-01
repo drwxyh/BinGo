@@ -1019,6 +1019,7 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Movie\MovieInfo.cshtml" />
     <Content Include="Views\Account\UserInfo.cshtml" />
+    <Content Include="Views\Movie\MovieManage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
