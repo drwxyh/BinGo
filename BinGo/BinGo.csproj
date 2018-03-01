@@ -181,6 +181,9 @@
     <Content Include="Images\Home\2.jpg" />
     <Content Include="Images\Login\photograph.jpeg" />
     <Content Include="Images\Other\part-line.png" />
+    <Content Include="Images\Portrait\portrait1.jpg" />
+    <Content Include="Images\Portrait\portrait2.jpg" />
+    <Content Include="Images\Portrait\portrait3.jpg" />
     <Content Include="Images\Poster\唐人街探案.png" />
     <Content Include="Images\Poster\捉妖记.png" />
     <Content Include="Images\Poster\无问西东.png" />

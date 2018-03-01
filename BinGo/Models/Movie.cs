@@ -7,8 +7,8 @@ namespace BinGo.Models
 {
     public class Movie
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Director { get; set; }
+        public int movie_id { get; set; }
+        public string movie_Name { get; set; }
+        public string movie_director { get; set; }
     }
 }
