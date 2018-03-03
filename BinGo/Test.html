@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8"/>
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var employees = $('#Employee');
+            $('#btn').click(function () {
+                var username = $('#texUsername').val();
+                var password = $('#txtPassword').val();
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://localhost:2119/api/Employee',
+                    dataType: 'json',
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(username + ':' + password)
+                    },
+                    success: function(data) {
+                    employees.empty();
+                    $.each(data,
+                        function(index, val) {
+                            var fullName = val.FirstName + ' '+val.LastName;
+                            employees.append('<li>'+fullName+ '('+val.Gender+')</li>');
+                        });
+                    },
+                    complete: function(jqXHR) {
+                        if (jqXHR.status == '401') {
+                            employees.empty();
+                            employees.append('<li style="color:red">' + jqXHR.status +'</li>');
+                        }
+                    }   
+                });
+            });
+            $('#btnClear').click(function () {
+                employees.empty();
+            });
+        })
+    </script>
+</head>
+<body>
+<div>
+    Username : <input type="text" id="texUsername">
+    Password : <input type="text" id="txtPassword">
+    <br/><br/>
+    <input id="btn" type="button" value="Get"/>
+    <input id="btnClear" type="button" value="Clear"/>
+    <ul id="Employee"></ul>
+</div>
+</body>
+</html>

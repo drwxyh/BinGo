@@ -11,20 +11,20 @@
         background-image: url('../../Images/Login/photograph.jpeg');
     }
 </style>
-<div class="lg-content-agileits">
-    <form action="#" method="post" data-toggle="validator" role="form">
+<div ng-app="BinGoApp" ng-controller="LoginCtrl" class="lg-content-agileits">
+    <form data-toggle="validator" role="form">
         <div class="form-group">
-            <label class="control-label">User Account</label>
-            <input type="text" class="form-control" id="Email" placeholder="Signup Email" data-error="Enter Your Signup Email" required>
+            <label class="control-label">Register Email</label>
+            <input type="text" class="form-control" id="Email" ng-model="username" placeholder="Signup Email" data-error="Enter Your Signup Email" required>
             <div class="help-block with-errors"></div>
         </div>
         <div class="form-group">
             <label class="control-label">User Password</label>
-            <input type="text" class="form-control" id="Password" placeholder="Your Password" data-error="Enter Your Setting Password" required>
+            <input type="password" class="form-control" id="Password" ng-model="password" placeholder="Your Password" data-error="Enter Your Setting Password" required>
             <div class="help-block with-errors"></div>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-lg btn-success">Sign In</button>
+            <button type="submit" class="btn btn-lg btn-success" ng-click="Submit()">登录</button>
         </div>
     </form>
 </div>

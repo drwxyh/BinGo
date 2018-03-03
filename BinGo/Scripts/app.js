@@ -1,8 +1,11 @@
-﻿var app = angular.module('myApp', []);
-app.controller('myCtrl',
+﻿var app = angular.module('BinGoApp', []);
+app.controller('MovieCtrl',
     function ($scope, $http) {
-        $http.get("/Test/GetMovie")
-            .then(function(response) {
+        $http({
+            method: 'GET',
+            url: 'http://localhost:1365/api/movies'
+        })
+            .then(function (response) {
                 $scope.movies = response.data;
                 $scope.pageSize = 5;
                 $scope.pages = Math.ceil($scope.movies.length / $scope.pageSize); //分页数
@@ -38,7 +41,7 @@ app.controller('myCtrl',
                 };
                 //设置当前选中页样式
                 $scope.isActivePage = function (page) {
-                    return $scope.selPage == page;
+                    return ($scope.selPage === page);
                 };
                 //上一页
                 $scope.Previous = function () {
@@ -50,3 +53,48 @@ app.controller('myCtrl',
                 };
             });
     });
+
+app.controller('LoginCtrl',
+    function ($scope, $http) {
+        $scope.Submit = function () {
+            $http.post("http://localhost:1365/token", $.param({
+                username: $scope.username,
+                password: $scope.password,
+                grant_type: 'password'
+            }),
+                { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).then(
+                function successCallback(response) {
+                    sessionStorage.setItem('accessToken', response.access_Token);
+                    sessionStorage.setItem('username', $scope.username);
+                    window.location.href = '/Home/User';
+                },
+                function errorCallback(errorResponse) {
+                    alert("登录失败！");
+                }
+                );
+        }
+    });
+
+app.controller('RegisterCtrl',
+    function ($scope, $http) {
+        $scope.Register = function () {
+            $http.post("http://localhost:1365/api/account/register", $.param({
+                email: $scope.email,
+                password: $scope.password,
+                confirmPassword: $scope.cpassword
+            }),
+                { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).then(
+                function successCallback(response) {
+                },
+                function errorCallback(errorResponse) {
+                    alert('注册成功请登录！');
+                }
+                );
+        }
+    });
+
+app.controller('UserCtrl', function ($scope, $http) {
+    // 获取用户浏览历史
+
+    // 获取用户推荐列表
+});

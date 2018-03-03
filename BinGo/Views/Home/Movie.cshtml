@@ -5,11 +5,14 @@
     img {
         max-height: 378px;
     }
-     .poster {
-         margin: 5% 5% 5% 3%;
-     }
+
+    .poster {
+        margin: 5% 5% 5% 3%;
+    }
+
     .stitle {
     }
+
     .srating {
         display: inline-block;
         vertical-align: top;
@@ -19,10 +22,12 @@
         margin-left: 30%;
         margin-bottom: 5px;
     }
+
     .star {
         margin: 3px 3px 0 0;
         width: 55px;
     }
+
     .subject-rate {
         display: inline-block;
         vertical-align: top;
@@ -33,7 +38,7 @@
     }
 </style>
 <h1>选电影</h1>
-<div style="width: 100%">
+<div style="width: 100%" ng-app="BinGoApp" ng-controller="MovieCtrl">
 
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist" id="nav-tabs">
@@ -50,6 +55,20 @@
     <!-- Tab panes -->
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane container active" id="hot">
+            <ul class="list-unstyled col-xs-3" ng-repeat="mov in hotMovies">
+                <li class="poster">
+                    <img src="{{mov.picture}}" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>{{mov.title}}</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="{{mov.id}}"></span>
+                        <span class="subject-rate">{{mov.score}}</span>
+                    </div>
+                </li>
+            </ul>
             <ul class="list-unstyled col-xs-3">
                 <li class="poster">
                     <img src="~/Images/Poster/芳华.png" />
@@ -164,6 +183,20 @@
             </ul>
         </div>
         <div role="tabpanel" class="tab-pane" id="latest">
+            <ul class="list-unstyled col-xs-3" ng-repeat="mov in latestMovies">
+                <li class="poster">
+                    <img src="{{mov.picture}}" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>{{mov.title}}</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="{{mov.id}}"></span>
+                        <span class="subject-rate">{{mov.score}}</span>
+                    </div>
+                </li>
+            </ul>
             <ul class="list-unstyled col-xs-3">
                 <li class="poster">
                     <img src="~/Images/Poster/西游记女儿国.png" />
@@ -278,25 +311,102 @@
             </ul>
         </div>
         <div role="tabpanel" class="tab-pane" id="classic">
-
+            <ul class="list-unstyled col-xs-3" ng-repeat="mov in classicMovies">
+                <li class="poster">
+                    <img src="{{mov.picture}}" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>{{mov.title}}</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="{{mov.id}}"></span>
+                        <span class="subject-rate">{{mov.score}}</span>
+                    </div>
+                </li>
+            </ul>
         </div>
         <div role="tabpanel" class="tab-pane" id="chinese">
-
+            <ul class="list-unstyled col-xs-3" ng-repeat="mov in chineseMovies">
+                <li class="poster">
+                    <img src="{{mov.picture}}" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>{{mov.title}}</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="{{mov.id}}"></span>
+                        <span class="subject-rate">{{mov.score}}</span>
+                    </div>
+                </li>
+            </ul>
         </div>
         <div role="tabpanel" class="tab-pane" id="EA">
-
+            <ul class="list-unstyled col-xs-3" ng-repeat="mov in EAMovies">
+                <li class="poster">
+                    <img src="{{mov.picture}}" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>{{mov.title}}</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="{{mov.id}}"></span>
+                        <span class="subject-rate">{{mov.score}}</span>
+                    </div>
+                </li>
+            </ul>
         </div>
         <div role="tabpanel" class="tab-pane" id="JK">
-
+            <ul class="list-unstyled col-xs-3" ng-repeat="mov in JKMovies">
+                <li class="poster">
+                    <img src="{{mov.picture}}" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>{{mov.title}}</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="{{mov.id}}"></span>
+                        <span class="subject-rate">{{mov.score}}</span>
+                    </div>
+                </li>
+            </ul>
         </div>
         <div role="tabpanel" class="tab-pane" id="HT">
-
+            <ul class="list-unstyled col-xs-3" ng-repeat="mov in HTMovies">
+                <li class="poster">
+                    <img src="{{mov.picture}}" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>{{mov.title}}</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="{{mov.id}}"></span>
+                        <span class="subject-rate">{{mov.score}}</span>
+                    </div>
+                </li>
+            </ul>
         </div>
         <div role="tabpanel" class="tab-pane" id="others">
-
+            <ul class="list-unstyled col-xs-3" ng-repeat="mov in othersMovies">
+                <li class="poster">
+                    <img src="{{mov.picture}}" />
+                </li>
+                <li class="stitle text-center">
+                    <h4>{{mov.title}}</h4>
+                </li>
+                <li class="srating">
+                    <div class="text-center">
+                        <span class="star" id="{{mov.id}}"></span>
+                        <span class="subject-rate">{{mov.score}}</span>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
-
 </div>
 <script>
     $('#a').raty({ readOnly: true, score: 2.5 });

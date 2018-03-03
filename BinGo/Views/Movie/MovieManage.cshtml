@@ -3,8 +3,8 @@
     ViewBag.Title = "MovieManage";
 }
 
-<div ng-app="myapp" ng-controller="myCtrl">
-    <h2>电影管理</h2><hr/>
+<div ng-app="BinGoApp" ng-controller="MovieCtrl">
+    <h2>电影管理</h2><hr />
     <div class="row" style="margin-bottom: 20px">
         <div class="input-group input-group-sm col-xs-4">
             <span class="input-group-addon" id="sizing-addon1">搜索</span>
@@ -57,17 +57,17 @@
                     <div class="modal-body">
                         <div class="input-group">
                             <label class="input-group-addon">片名</label>
-                            <input type="text" class="form-control" ng-model="newName" placeholder="请输入影片名"/>
+                            <input type="text" class="form-control" ng-model="newName" placeholder="请输入影片名" />
                         </div>
                         <br />
                         <div class="input-group">
                             <label class="input-group-addon">时间</label>
-                            <input type="text" class="form-control" ng-model="newDate" placeholder="请输入上映时间"/>
+                            <input type="text" class="form-control" ng-model="newDate" placeholder="请输入上映时间" />
                         </div>
                         <br />
                         <div class="input-group">
                             <label class="input-group-addon">导演</label>
-                            <input type="text" class="form-control" ng-model="newDirector" placeholder="请输入导演"/>
+                            <input type="text" class="form-control" ng-model="newDirector" placeholder="请输入导演" />
                         </div>
                     </div>
 
@@ -97,17 +97,17 @@
                     <div class="modal-body">
                         <div class="input-group">
                             <label class="input-group-addon">片名</label>
-                            <input type="text" class="form-control" ng-model="prod.name" value="{{prod.name}}" readonly/>
+                            <input type="text" class="form-control" ng-model="prod.name" value="{{prod.name}}" readonly />
                         </div>
                         <br />
                         <div class="input-group">
                             <label class="input-group-addon">时间</label>
-                            <input type="text" class="form-control" ng-model="prod.date" value="{{prod.date}}" readonly/>
+                            <input type="text" class="form-control" ng-model="prod.date" value="{{prod.date}}" readonly />
                         </div>
                         <br />
                         <div class="input-group">
                             <label class="input-group-addon">导演</label>
-                            <input type="text" class="form-control" ng-model="prod.director" value="{{prod.director}}" readonly/>
+                            <input type="text" class="form-control" ng-model="prod.director" value="{{prod.director}}" readonly />
                         </div>
                     </div>
 
@@ -138,17 +138,17 @@
                     <div class="modal-body">
                         <div class="input-group">
                             <label class="input-group-addon">片名</label>
-                            <input type="text" class="form-control" ng-model="prod.name" value="{{prod.name}}"/>
+                            <input type="text" class="form-control" ng-model="prod.name" value="{{prod.name}}" />
                         </div>
                         <br />
                         <div class="input-group">
                             <label class="input-group-addon">时间</label>
-                            <input type="text" class="form-control" ng-model="prod.date" value="{{prod.date}}"/>
+                            <input type="text" class="form-control" ng-model="prod.date" value="{{prod.date}}" />
                         </div>
                         <br />
                         <div class="input-group">
                             <label class="input-group-addon">导演</label>
-                            <input type="text" class="form-control" ng-model="prod.director" value="{{prod.director}}"/>
+                            <input type="text" class="form-control" ng-model="prod.director" value="{{prod.director}}" />
                         </div>
                     </div>
 
@@ -166,8 +166,8 @@
     </div>
 </div>
 <script type="text/javascript">
-    var app = angular.module('myapp',[]);
-    app.controller('myCtrl',function($scope){
+    var app = angular.module('myapp', []);
+    app.controller('myCtrl', function ($scope) {
         //定义表格内容
         $scope.texts = [
             { name: "红海行动", date: "2018/1/20", director: "林超贤" },
@@ -182,42 +182,42 @@
         $scope.prod = {};
         //定义一个单击删除按钮时触发的事件，用于删除选中行
         $scope.del = function ($index) {
-            if($index>=0){
-                if(confirm("是否删除"+$scope.texts[$index].name) ){
-                    $scope.texts.splice($index,1);
+            if ($index >= 0) {
+                if (confirm("是否删除" + $scope.texts[$index].name)) {
+                    $scope.texts.splice($index, 1);
                 }
             }
         };
-    
+
         //定义一个全局变量idx,用于存储选中行的索引，方便执行保存操作。idx取值为0、1、、、、都有用，所以暂取值为-1;
         var idx = -1;
         //定义一个点击添加按钮时触发的事件，用于新增数据
-        $scope.add = function(){
+        $scope.add = function () {
             //显示bootstrap中的模块窗口
             $('#add').modal('show');
         };
         //定义一个点击保存按钮时触发的事件
-        $scope.save = function(){
+        $scope.save = function () {
             //将添加的值赋给数组
             $scope.texts.name = $scope.newName;
             $scope.texts.date = $scope.newDate;
             $scope.texts.director = $scope.newDirector;
-            $scope.texts.push({name:$scope.newName,date:$scope.newDate,director:$scope.newDirector});
+            $scope.texts.push({ name: $scope.newName, date: $scope.newDate, director: $scope.newDirector });
             //关闭模块窗口
             $('#add').modal('hide');
         };
         //定义一个点击修改按钮时出发的事件，用于显示详细信息
-        $scope.detail = function($index) {
+        $scope.detail = function ($index) {
             $('#info').modal('show');
             $scope.prod.name = $scope.texts[$index].name;
             $scope.prod.date = $scope.texts[$index].date;
             $scope.prod.director = $scope.texts[$index].director;
         }
         //定义一个点击修改按钮时出发的事件，用于修改数据
-        $scope.update = function($index){
+        $scope.update = function ($index) {
             //显示bootstrap中的模块窗口
             $('#modify').modal('show');
- 
+
             //将选中行的数据绑定到临时对象prod中，在下面的模态窗口中展示出来
             $scope.prod.name = $scope.texts[$index].name;
             $scope.prod.date = $scope.texts[$index].date;
@@ -225,7 +225,7 @@
             //选中行的索引赋值给全局变量idx
             idx = $index;
         };
- 
+
         //定义一个点击确定按钮时触发的事件,
         $scope.ensure = function () {
             //将修改后的值赋给数组
@@ -235,6 +235,6 @@
             //关闭模块窗口
             $('#modify').modal('hide');
         };
-    
+
     });
 </script>

@@ -4,49 +4,65 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Content/style.css" rel="stylesheet" />
-<script src="~/Scripts/validator.min.js"></script>
 <style>
     body {
         background: url(../Images/Register/content.jpg) no-repeat;
     }
 </style>
-<div class="reg-content-agileits">
+<div class="reg-content-agileits" ng-app="BinGoApp" ng-controller="RegisterCtrl">
     <form action="#" method="post" data-toggle="validator" role="form">
         <div class="form-group">
-            <label for="firstname" class="control-label">First Name</label>
-            <input type="text" class="form-control" id="firstname" placeholder="First Name" data-error="Enter Your First Name" required>
-            <div class="help-block with-errors"></div>
-        </div>
-        <div class="form-group">
-            <label for="lastname" class="control-label">Last Name</label>
-            <input type="text" class="form-control" id="lastname" placeholder="Last Name" data-error="Enter Your Last Name" required>
+            <label for="firstname" class="control-label">Username</label>
+            <input type="text" class="form-control" id="txtName" ng-model="username" placeholder="Username" data-error="Enter Your Username" required>
             <div class="help-block with-errors"></div>
         </div>
         <div class="form-group">
             <label for="inputEmail" class="control-label">Email</label>
-            <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="This email address is invalid" required>
+            <input type="email" class="form-control" id="txtEmail" ng-model="email" placeholder="Email" data-error="This email address is invalid" required>
             <div class="help-block with-errors"></div>
         </div>
         <div class="form-group">
             <label for="Phone" class="control-label">Phone</label>
-            <input type="text" class="form-control" id="Phone" placeholder="Phone" data-error="Enter Your Phone Number" required>
+            <input type="text" class="form-control" id="txtPhone" ng-model="phone" placeholder="Phone" data-error="Enter Your Phone Number" required>
             <div class="help-block with-errors"></div>
         </div>
         <div class="form-group">
             <label for="inputPassword" class="control-label">Password</label>
             <div class="form-inline row">
                 <div class="form-group col-md-6">
-                    <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>
+                    <input type="password" data-minlength="6" class="form-control" id="txtPassword" ng-model="password" placeholder="Password" required>
                     <div class="help-block">Minimum of 6 characters</div>
                 </div>
                 <div class="form-group col-md-6">
-                    <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm Password" required>
+                    <input type="password" class="form-control" id="txtConfirmPassword" ng-model="cpassword" data-match="#txtPassword" data-match-error="These don't match" placeholder="Confirm Password" required>
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-lg btn-success">Sign Up</button>
+            <button type="submit" class="btn btn-lg btn-success" ng-click="Register()">注册</button>
         </div>
     </form>
+    <div id="divError" class="alert alert-danger collapse">
+        <a id="linkClose" class="close" href="#">&times;</a>
+        <div id="divErrorText"></div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="successModal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Success</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <h2>注册成功</h2>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-success">
+                        关闭
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

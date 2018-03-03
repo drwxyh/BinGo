@@ -8,6 +8,7 @@ using System.Web;
 
 namespace BinGo.EF
 {
+    // 创建数据库操作上下文，EF用这个文件来创建和访问数据库
     public class SqlDB:DbContext
     {
         public SqlDB() :base("DefaultConnection") {
