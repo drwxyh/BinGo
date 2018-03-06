@@ -170,7 +170,9 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap3.css" />
     <Content Include="Content\extend.css" />
+    <Content Include="Content\movieStyle.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -179,7 +181,35 @@
     <Content Include="Images\Home\0.jpg" />
     <Content Include="Images\Home\1.jpg" />
     <Content Include="Images\Home\2.jpg" />
+    <Content Include="Images\Home\bg.jpg" />
     <Content Include="Images\Login\photograph.jpeg" />
+    <Content Include="Images\Movie\body-bg.gif" />
+    <Content Include="Images\Movie\coming-soon1.jpg" />
+    <Content Include="Images\Movie\coming-soon2.jpg" />
+    <Content Include="Images\Movie\comments.gif" />
+    <Content Include="Images\Movie\favicon.ico" />
+    <Content Include="Images\Movie\image-hover.png" />
+    <Content Include="Images\Movie\logo.gif" />
+    <Content Include="Images\Movie\movie1.jpg" />
+    <Content Include="Images\Movie\movie10.jpg" />
+    <Content Include="Images\Movie\movie11.jpg" />
+    <Content Include="Images\Movie\movie12.jpg" />
+    <Content Include="Images\Movie\movie13.jpg" />
+    <Content Include="Images\Movie\movie14.jpg" />
+    <Content Include="Images\Movie\movie15.jpg" />
+    <Content Include="Images\Movie\movie16.jpg" />
+    <Content Include="Images\Movie\movie17.jpg" />
+    <Content Include="Images\Movie\movie18.jpg" />
+    <Content Include="Images\Movie\movie2.jpg" />
+    <Content Include="Images\Movie\movie3.jpg" />
+    <Content Include="Images\Movie\movie4.jpg" />
+    <Content Include="Images\Movie\movie5.jpg" />
+    <Content Include="Images\Movie\movie6.jpg" />
+    <Content Include="Images\Movie\movie7.jpg" />
+    <Content Include="Images\Movie\movie8.jpg" />
+    <Content Include="Images\Movie\movie9.jpg" />
+    <Content Include="Images\Movie\social.gif" />
+    <Content Include="Images\Movie\stars.gif" />
     <Content Include="Images\Other\part-line.png" />
     <Content Include="Images\Portrait\portrait1.jpg" />
     <Content Include="Images\Portrait\portrait2.jpg" />
@@ -990,6 +1020,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-func.js" />
     <Content Include="Scripts\jquery.raty.js" />
     <Content Include="Scripts\jquery.raty.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -1022,6 +1053,7 @@
     <Content Include="Views\Account\UserInfo.cshtml" />
     <Content Include="Views\Movie\MovieManage.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Home\UserManage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,37 +4,68 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Content/style.css" rel="stylesheet" />
+<script src="~/Scripts/validator.min.js"></script>
 <style>
     body {
         background: url(../Images/Register/content.jpg) no-repeat;
     }
 </style>
 <div class="reg-content-agileits" ng-app="BinGoApp" ng-controller="RegisterCtrl">
-    <form action="#" method="post" data-toggle="validator" role="form">
+    <form data-toggle="validator" role="form">
         <div class="form-group">
-            <label for="firstname" class="control-label">Username</label>
-            <input type="text" class="form-control" id="txtName" ng-model="username" placeholder="Username" data-error="Enter Your Username" required>
+            <label for="txtName" class="control-label">用户名</label>
+            <input type="text" class="form-control" id="txtName" ng-model="username" placeholder="用户名" data-error="请输入您的用户名" required/>
             <div class="help-block with-errors"></div>
         </div>
         <div class="form-group">
-            <label for="inputEmail" class="control-label">Email</label>
-            <input type="email" class="form-control" id="txtEmail" ng-model="email" placeholder="Email" data-error="This email address is invalid" required>
+            <label for="txtEmail" class="control-label">邮箱</label>
+            <input type="email" class="form-control" id="txtEmail" ng-model="email" placeholder="邮箱" data-error="您输入的邮箱格式不正确" required/>
             <div class="help-block with-errors"></div>
         </div>
         <div class="form-group">
-            <label for="Phone" class="control-label">Phone</label>
-            <input type="text" class="form-control" id="txtPhone" ng-model="phone" placeholder="Phone" data-error="Enter Your Phone Number" required>
+            <label for="txtPhone" class="control-label">手机号</label>
+            <input type="text" class="form-control" id="txtPhone" ng-model="phone" placeholder="手机号" data-error="请输入您的手机号" required/>
             <div class="help-block with-errors"></div>
         </div>
         <div class="form-group">
-            <label for="inputPassword" class="control-label">Password</label>
+            <label for="txtQuestion" class="control-label">验证问题</label>
+            <input type="text" class="form-control" id="txtQuestion" ng-model="question" placeholder="验证问题" data-error="请输入您的验证问题" required/>
+            <div class="help-block with-errors"></div>
+        </div>
+        <div class="form-group">
+            <label for="txtAnswer" class="control-label">问题答案</label>
+            <input type="text" class="form-control" id="txtAnswer" ng-model="answer" placeholder="问题答案" data-error="请输入验证问题的答案" required/>
+            <div class="help-block with-errors"></div>
+        </div>
+        <div class="form-group">
+            <div class="form-inline row">
+                <label for="txtGender" class="control-label col-md-6">性别</label>
+                <label for="txtAge" class="control-label col-md-6">年龄</label>
+            </div>
             <div class="form-inline row">
                 <div class="form-group col-md-6">
-                    <input type="password" data-minlength="6" class="form-control" id="txtPassword" ng-model="password" placeholder="Password" required>
-                    <div class="help-block">Minimum of 6 characters</div>
+                    <select ng-model="gender" ng-options="x for x in genderOptions" id="txtGender" class="form-control" data-error="请选择您的性别！" required>
+                    </select>
+                    <div class="help-block with-errors"></div>
                 </div>
                 <div class="form-group col-md-6">
-                    <input type="password" class="form-control" id="txtConfirmPassword" ng-model="cpassword" data-match="#txtPassword" data-match-error="These don't match" placeholder="Confirm Password" required>
+                    <select ng-model="age" ng-options="x for x in ageOptions" id="txtAge" class="form-control" data-error="请选择您的年龄！" required></select>
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-inline row">
+                <label class="control-label col-md-6">密码</label>
+                <label class="control-label col-md-6">确认密码</label>
+            </div>
+            <div class="form-inline row">
+                <div class="form-group col-md-6">
+                    <input type="password" data-minlength="6" class="form-control" id="txtPassword" ng-model="password" placeholder="密码" required/>
+                    <div class="help-block">最小长度为六位</div>
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="password" class="form-control" id="txtConfirmPassword" ng-model="cpassword" data-match="#txtPassword" data-match-error="密码不一致！" placeholder="确认密码" required/>
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
@@ -43,26 +74,4 @@
             <button type="submit" class="btn btn-lg btn-success" ng-click="Register()">注册</button>
         </div>
     </form>
-    <div id="divError" class="alert alert-danger collapse">
-        <a id="linkClose" class="close" href="#">&times;</a>
-        <div id="divErrorText"></div>
-    </div>
-    <div class="modal fade" tabindex="-1" id="successModal" data-keyboard="false" data-backdrop="static">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4>Success</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <h2>注册成功</h2>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-success">
-                        关闭
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>

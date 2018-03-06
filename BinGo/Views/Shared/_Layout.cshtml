@@ -11,6 +11,7 @@
     <script src="~/Scripts/angular.js"></script>
     <script src="~/Scripts/jquery.raty.js"></script>
     <script src="~/Scripts/app.js"></script>
+    <script src="~/Scripts/jquery.raty.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -30,10 +31,12 @@
                     <li>@Html.ActionLink("首页", "Index", "Home")</li>
                     <li>@Html.ActionLink("电影", "Movie", "Home")</li>
                     <li>@Html.ActionLink("我的", "User", "Home")</li>
+                    <li>@Html.ActionLink("管理", "UserManage", "Home")</li>
                 </ul>
                 <ul class="nav navbar-nav pull-right">
                     <li id="btnRegister">@Html.ActionLink("注册", "Register", "Register")</li>
                     <li id="btnLogin">@Html.ActionLink("登录", "Login", "Login")</li>
+                    <li><a id="btnName"></a></li>
                     <li id="btnLogoff">@Html.ActionLink("退出", "Index", "Home")</li>
                 </ul>
                 <form class="navbar-form">
@@ -59,17 +62,20 @@
     @RenderSection("scripts", required: false)
     <script>
         $(document).ready(function () {
-            if (sessionStorage.getItem('accessToken') == null) {
+            if (sessionStorage.getItem('loginStatus') == null) {
                 $('#btnLogoff').addClass('hidden');
+                $('#btnName').addClass('hidden');
                 $('#btnRegister').removeClass('hidden');
                 $('#btnLogin').removeClass('hidden');
             } else {
-                $('#btnLogoff').removeClass('hidden');
                 $('#btnRegister').addClass('hidden');
                 $('#btnLogin').addClass('hidden');
+                $('#btnLogoff').removeClass('hidden');
+                $('#btnName').removeClass('hidden');
+                $('#btnName').text("您好，"+ sessionStorage.getItem('username'));
             }
             $('#btnLogoff').click(function () {
-                sessionStorage.removeItem('accessToken');
+                sessionStorage.removeItem('loginStatus');
                 sessionStorage.removeItem('username');
             });
         })

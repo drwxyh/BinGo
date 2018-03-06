@@ -14,16 +14,17 @@ namespace BinGo.Controllers
         }
 
         public ActionResult Movie()
-        {
-            ViewBag.Message = "Your application description page.";
-
+        { 
             return View();
         }
 
         public ActionResult User()
         {
-            ViewBag.Message = "Your contact page.";
+            return View();
+        }
 
+        public ActionResult UserManage()
+        {
             return View();
         }
     }

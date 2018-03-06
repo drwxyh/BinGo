@@ -3,7 +3,7 @@
     ViewBag.Title = "MovieManage";
 }
 
-<div ng-app="BinGoApp" ng-controller="MovieCtrl">
+<div ng-app="myapp" ng-controller="myCtrl">
     <h2>电影管理</h2><hr />
     <div class="row" style="margin-bottom: 20px">
         <div class="input-group input-group-sm col-xs-4">
@@ -26,7 +26,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="x in texts | filter:test">
+                <tr ng-repeat="x in movies | filter:test">
                     <td>{{$index + 1}}</td>
                     <td>{{x.name}}</td>
                     <td>{{x.date}}</td>
@@ -169,14 +169,14 @@
     var app = angular.module('myapp', []);
     app.controller('myCtrl', function ($scope) {
         //定义表格内容
-        $scope.texts = [
+        $scope.movies = [
             { name: "红海行动", date: "2018/1/20", director: "林超贤" },
             { name: "熊出没", date: "2018/1/19", director: "袁俊翔" },
             { name: "唐人街探案2", date: "2018/1/16", director: "王宝强" },
             { name: "芳华", date: "2017/12/20", director: "冯小刚" },
             { name: "无问西东", date: "2017/1/10", director: "王刚" },
             { name: "西游记女儿国", date: "2018/1/20", director: "赵丽颖" },
-            { name: "至暗时刻", date: "2018/1/23", director: "斯皮尔伯格" },
+            { name: "至暗时刻", date: "2018/1/23", director: "斯皮尔伯格" }
         ];
         //定义一个空对象，用于保存和修改数据时临时存储
         $scope.prod = {};

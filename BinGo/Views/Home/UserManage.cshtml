@@ -1,0 +1,181 @@
+﻿
+@{
+    ViewBag.Title = "UserManage";
+}
+
+<h2>用户管理</h2>
+<div class="row" ng-app="BinGoApp" ng-controller="UserManageCtrl"style="margin-bottom: 20px">
+    <div class="input-group input-group-sm col-xs-4">
+        <span class="input-group-addon" id="sizing-addon1">搜索</span>
+        <input type="text" class="form-control" ng-model="test" placeholder="请输入关键字">
+    </div>
+    <div class="pull-right">
+        <button class="btn btn-primary btn-sm" ng-click="add()">添加</button>
+    </div>
+</div>
+<div class="container">
+    <table class="table table-bordered  table-striped table-hover" style="text-align: center">
+        <thead>
+            <tr>
+                <td>序号</td>
+                <td>用户名</td>
+                <td>邮箱</td>
+                <td>手机号</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="x in texts | filter:test">
+                <td>{{$index + 1}}</td>
+                <td>{{x.username}}</td>
+                <td>{{x.email}}</td>
+                <td>{{x.phone}}</td>
+                <td>
+                    <button class="btn btn-info btn-sm" ng-click="detail($index)">详情</button>
+                    <button class="btn btn-warning btn-sm" ng-click="update($index)">权限</button>
+                    <button class="btn btn-danger btn-sm" ng-click="del($index)">删除</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <nav>
+        <ul class="pagination">
+            <li>
+                <a ng-click="Previous()">
+                    <span>上一页</span>
+                </a>
+            </li>
+            <li ng-repeat="page in pageList" ng-class="{active: isActivePage(currPage)}">
+                <a ng-click="selectPage(totalPage)">{{ totalPage }}</a>
+            </li>
+            <li>
+                <a ng-click="Next()">
+                    <span>下一页</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- 添加信息 -->
+    <div class="modal" id="add">
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                    <h3 class="modal-title">添加信息</h3>
+                </div>
+
+                <div class="modal-body">
+                    <div class="input-group">
+                        <label class="input-group-addon">片名</label>
+                        <input type="text" class="form-control" ng-model="newName" placeholder="请输入影片名" />
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <label class="input-group-addon">时间</label>
+                        <input type="text" class="form-control" ng-model="newDate" placeholder="请输入上映时间" />
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <label class="input-group-addon">导演</label>
+                        <input type="text" class="form-control" ng-model="newDirector" placeholder="请输入导演" />
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-success" ng-click="upload()">确定</button>
+                    <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- 详细信息-->
+    <div class="modal" id="info">
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                    <h3 class="modal-title">详细信息</h3>
+                </div>
+
+                <div class="modal-body">
+                    <div class="input-group">
+                        <label class="input-group-addon">片名</label>
+                        <input type="text" class="form-control" ng-model="prod.name" value="{{prod.name}}" readonly />
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <label class="input-group-addon">时间</label>
+                        <input type="text" class="form-control" ng-model="prod.date" value="{{prod.date}}" readonly />
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <label class="input-group-addon">导演</label>
+                        <input type="text" class="form-control" ng-model="prod.director" value="{{prod.director}}" readonly />
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button class="btn btn-success" ng-click="ensure()">确定</button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- 修改信息 -->
+    <div class="modal" id="modify">
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                    <h3 class="modal-title">修改信息</h3>
+                </div>
+
+                <div class="modal-body">
+                    <div class="input-group">
+                        <label class="input-group-addon">片名</label>
+                        <input type="text" class="form-control" ng-model="prod.name" value="{{prod.name}}" />
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <label class="input-group-addon">时间</label>
+                        <input type="text" class="form-control" ng-model="prod.date" value="{{prod.date}}" />
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <label class="input-group-addon">导演</label>
+                        <input type="text" class="form-control" ng-model="prod.director" value="{{prod.director}}" />
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button class="btn btn-success" ng-click="ensure()">确定</button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
