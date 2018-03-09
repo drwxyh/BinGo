@@ -59,7 +59,7 @@ app.controller('RegisterCtrl',
             }).then(function successCallback(response) {
                 alert(response.data.msg);
                 if (response.data.status === 0) {
-                    window.location.href = '/Login/Login';
+                    window.location.href = '/Login/Questionnaire';
                 }
             }, function errorCallback(errorresponse) {
                 alert(errorresponse.data.msg);
@@ -120,4 +120,10 @@ app.controller('UserInfoCtrl', function ($scope, $http) {
 
 app.controller('UserManageCtrl', function ($scope, $http) {
     // 用户修改自己的信息
+});
+
+app.controller('QuestionniareCtrl', function($scope, $http) {
+    $scope.MoveTo = function() {
+        window.location.href = '/Login/Login';
+    }
 });

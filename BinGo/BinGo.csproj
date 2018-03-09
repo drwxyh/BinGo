@@ -173,6 +173,7 @@
     <Content Include="Content\bootstrap3.css" />
     <Content Include="Content\extend.css" />
     <Content Include="Content\movieStyle.css" />
+    <Content Include="Content\Questionnaire\styles.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -239,7 +240,9 @@
     <Content Include="Images\Portrait\portrait1.jpg" />
     <Content Include="Images\Portrait\portrait2.jpg" />
     <Content Include="Images\Portrait\portrait3.jpg" />
+    <Content Include="Images\Poster\厉害了，我的国.png" />
     <Content Include="Images\Poster\唐人街探案.png" />
+    <Content Include="Images\Poster\妈妈咪鸭.png" />
     <Content Include="Images\Poster\捉妖记.png" />
     <Content Include="Images\Poster\无问西东.png" />
     <Content Include="Images\Poster\熊出没.png" />
@@ -1054,6 +1057,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\photo-wall.js" />
+    <Content Include="Scripts\Questionnaire\modernizr.js" />
+    <Content Include="Scripts\Questionnaire\stopExecutionOnTimeout.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\validator.min.js" />
@@ -1080,6 +1085,7 @@
     <Content Include="Views\Movie\MovieManage.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Home\UserManage.cshtml" />
+    <Content Include="Views\Register\Questionnaire.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
