@@ -1,0 +1,156 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/movieStyle.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-func.js"></script>
+<div class="row">
+    <div class="col-md-3"><h2>搜索电影</h2></div>
+    <div class="pull-right">
+        <form class="navbar-form pull-right" style="margin-top: 25px;">
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="searchText" placeholder="关键字"/>
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="Search()">搜索</button>
+        </form>
+    </div>
+</div>
+<hr />
+<div ng-app="BinGoApp" ng-controller="SearchCtrl">
+    <div class="container">
+        <div class="box">
+            <div class="movie">
+                <ul class="list-unstyled">
+                    <li>
+                        <div class="movie-image">
+                            <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                        </div>
+                    </li>
+                    <li class="text-center">
+                        <span>X-MAN</span>
+                        <div class="subject-rate">
+                            <span class="star a"></span>
+                            <span>2.5</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="movie">
+                <ul class="list-unstyled">
+                    <li>
+                        <div class="movie-image">
+                            <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                        </div>
+                    </li>
+                    <li class="text-center">
+                        <span>X-MAN</span>
+                        <div class="subject-rate">
+                            <span class="star a"></span>
+                            <span>2.5</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="movie">
+                <ul class="list-unstyled">
+                    <li>
+                        <div class="movie-image">
+                            <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                        </div>
+                    </li>
+                    <li class="text-center">
+                        <span>X-MAN</span>
+                        <div class="subject-rate">
+                            <span class="star a"></span>
+                            <span>2.5</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="movie">
+                <ul class="list-unstyled">
+                    <li>
+                        <div class="movie-image">
+                            <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                        </div>
+                    </li>
+                    <li class="text-center">
+                        <span>X-MAN</span>
+                        <div class="subject-rate">
+                            <span class="star a"></span>
+                            <span>2.5</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="movie">
+                <ul class="list-unstyled">
+                    <li>
+                        <div class="movie-image">
+                            <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                        </div>
+                    </li>
+                    <li class="text-center">
+                        <span>X-MAN</span>
+                        <div class="subject-rate">
+                            <span class="star a"></span>
+                            <span>2.5</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="movie">
+                <ul class="list-unstyled">
+                    <li>
+                        <div class="movie-image">
+                            <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                        </div>
+                    </li>
+                    <li class="text-center">
+                        <span>X-MAN</span>
+                        <div class="subject-rate">
+                            <span class="star a"></span>
+                            <span>2.5</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="movie">
+                <ul class="list-unstyled">
+                    <li>
+                        <div class="movie-image">
+                            <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                        </div>
+                    </li>
+                    <li class="text-center">
+                        <span>X-MAN</span>
+                        <div class="subject-rate">
+                            <span class="star a"></span>
+                            <span>2.5</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="movie">
+                <ul class="list-unstyled">
+                    <li>
+                        <div class="movie-image">
+                            <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                        </div>
+                    </li>
+                    <li class="text-center">
+                        <span>X-MAN</span>
+                        <div class="subject-rate">
+                            <span class="star a"></span>
+                            <span>2.5</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('.a').raty({ readOnly: true, score: 2.5 });
+</script>

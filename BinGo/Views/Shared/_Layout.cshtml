@@ -29,7 +29,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("首页", "Index", "Home")</li>
-                    <li>@Html.ActionLink("电影", "Movie", "Home")</li>
+                    <li>@Html.ActionLink("分类", "Movie", "Home")</li>
+                    <li>@Html.ActionLink("搜索", "Search", "Home")</li>
                     <li>@Html.ActionLink("我的", "User", "Home")</li>
                     <li>@Html.ActionLink("管理", "UserManage", "Home")</li>
                 </ul>
@@ -39,12 +40,12 @@
                     <li><a id="btnName"></a></li>
                     <li id="btnLogoff">@Html.ActionLink("退出", "Index", "Home")</li>
                 </ul>
-                <form class="navbar-form">
+                @*<form class="navbar-form">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="关键字">
                     </div>
                     <button type="submit" class="btn btn-primary">搜索</button>
-                </form>
+                </form>*@
 
             </div>
         </div>

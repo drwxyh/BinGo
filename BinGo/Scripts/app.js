@@ -234,3 +234,9 @@ app.controller('QuestionniareCtrl', function($scope, $http) {
         window.location.href = '/Login/Login';
     }
 });
+
+app.controller('SearchCtrl', function($scope, $http) {
+    $scope.Search = function() {
+
+    }
+});
