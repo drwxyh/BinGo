@@ -7,7 +7,7 @@
 <div class="row" ng-app="BinGoApp" ng-controller="UserManageCtrl"style="margin-bottom: 20px">
     <div class="input-group input-group-sm col-xs-4">
         <span class="input-group-addon" id="sizing-addon1">搜索</span>
-        <input type="text" class="form-control" ng-model="test" placeholder="请输入关键字">
+        <input type="text" class="form-control" ng-model="searchText" placeholder="请输入关键字">
     </div>
     <div class="pull-right">
         <button class="btn btn-primary btn-sm" ng-click="add()">添加</button>
@@ -25,7 +25,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="x in texts | filter:test">
+            <tr ng-repeat="x in movies | filter:searchText">
                 <td>{{$index + 1}}</td>
                 <td>{{x.username}}</td>
                 <td>{{x.email}}</td>
@@ -46,7 +46,7 @@
                 </a>
             </li>
             <li ng-repeat="page in pageList" ng-class="{active: isActivePage(currPage)}">
-                <a ng-click="selectPage(totalPage)">{{ totalPage }}</a>
+                <a ng-click="selectPage(totalPages)">{{ totalPages }}</a>
             </li>
             <li>
                 <a ng-click="Next()">

@@ -4,12 +4,22 @@
 }
 <link href="~/Content/movieStyle.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-func.js"></script>
-<div ng-app="BinGoApp" ng-controller="UserInfoCtrl">
-    <div class="jumbotron row" style="background-color:lightgrey">
+<script src="~/Scripts/easyBackground-min.js"></script>
+<style>
+    .jumbotron {
+        background-image: url('../../Images/Portrait/leaf-wood-macro.jpg');
+        background-size: 100% 100%;
+    }
+    .modal-backdrop {
+        z-index: unset;
+    }
+</style>
+<div ng-app="BinGoApp" ng-controller="UserInfoCtrl" style="color:#fdf5e6 ">
+    <div id="info" class="jumbotron row">
         <div class="col-xs-4">
-            <img class="img-thumbnail" src="~/Images/Portrait/portrait2.jpg" width="80%" />
+            <img class="img-thumbnail" src="~/Images/Portrait/girl.jpg" width="90%"/>
         </div>
-        <div class="col-xs-8">
+        <div class="col-xs-7">
             <h3>{{user.username}}</h3>
             <div class="row">
                 <div class="row">
@@ -27,7 +37,7 @@
             <button class="btn btn-primary btn-sm" ng-click="Modify()">修改信息</button>
         </div>
     </div>
-    <div id="recommend" class="container">
+    <div id="recommend" class="container" style="color: #fdf5e6">
         <div>
             <h4>推荐电影</h4>
         </div>
@@ -39,9 +49,6 @@
                     <td>片名</td>
                     <td>导演</td>
                     <td>主演</td>
-                    <td>类别</td>
-                    <td>日期</td>
-                    <td>时长</td>
                     <td>评分</td>
                 </tr>
             </thead>
@@ -51,9 +58,6 @@
                     <td>{{mov.title}}</td>
                     <td>{{mov.director}}</td>
                     <td>{{mov.actor}}</td>
-                    <td>{{mov.type}}</td>
-                    <td>{{mov.date}}</td>
-                    <td>{{mov.time}}</td>
                     <td>{{mov.score}}</td>
                 </tr>
             </tbody>
@@ -194,7 +198,7 @@
     <hr />
 
     <!--修改信息模态框-->
-    <div class="modal" id="modify">
+    <div class="modal" id="modify" style="color: black;">
 
         <div class="modal-dialog">
 
@@ -243,5 +247,8 @@
     </div>
 </div>
 <script>
+    $('body').easyBackground({
+        wrapNeighbours: true
+    });
     $('.a').raty({ readOnly: true, score: 2.5 });
 </script>
