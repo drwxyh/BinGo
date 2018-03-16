@@ -60,6 +60,11 @@ a img {
     text-align: center;
     padding-top: 160px;
     display: block;
+    width: 100px;
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .star {

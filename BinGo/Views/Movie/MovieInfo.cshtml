@@ -4,10 +4,10 @@
 }
 <link href="~/Content/movieStyle.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-func.js"></script>
-<div id="wrapper">
+<div id="wrapper" ng-app="BinGoApp" ng-controller="MovieInfoCtrl" ng-init="movieId=@ViewData["id"]">
     <div id="content">
         <h1>
-            <span>&nbsp;&nbsp;红海行动</span>
+            <span>&nbsp;&nbsp;{{movie.movie_name}}</span>
         </h1>
         <div class="container">
             <div class="subject row" style="display: flex">
@@ -16,11 +16,13 @@
                 </div>
                 <div class="info col-xs-3">
                     <ul class="list-unstyled">
-                        <li><span>导演：</span><span>林超贤</span><br /></li>
-                        <li><span>编剧：</span><span>冯骥/陈珠珠/林明杰</span><br /></li>
-                        <li><span>主演：</span><span>张译/黄景瑜/海清/杜江</span><br /></li>
-                        <li><span>类型：</span><span>剧情/动作</span><br /></li>
-                        <li><span>地区：</span><span>中国大陆/香港</span><br /></li>
+                        <li><span>导演：</span><span>{{movie.movie_director}}</span><br /></li>
+                        <li><span>主演：</span><span>{{movie.movie_actor}}</span><br /></li>
+                        <li><span>类型：</span><span>{{movie.type_id}}</span><br /></li>
+                        <li><span>地区：</span><span>{{movie.movie_district}}</span><br /></li>
+                        <li><span>时间：</span><span>{{movie.movie_date}}</span><br /></li>
+                        <li><span>时长：</span><span>{{movie.movie_time}}</span><br /></li>
+                        <li><span>关键词：</span><span>{{movie.movie_keyword}}</span><br /></li>
                     </ul>
                 </div>
                 <div>
@@ -28,102 +30,29 @@
                 </div>
                 <div class="remark col-xs-4">
                     <h2 style="text-align: center">评分</h2>
-                    <strong>4.5</strong>
-                    <div id="star"></div>
+                    <span>{{mov.movie_name}}</span>
+                    <div class="subject-rate">
+                        <span class="star" data-score={{mov.movie_rating}}></span>
+                        <span>{{mov.movie_rating}}</span>
+                    </div>
                 </div>
             </div>
 
             <h3>类似电影</h3><hr />
             <div class="container">
                 <div class="box">
-                    <div class="movie">
+                    <div class="movie" ng-repeat="mov in movieList">
                         <ul class="list-unstyled">
                             <li>
                                 <div class="movie-image">
-                                    <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
                                 </div>
                             </li>
                             <li class="text-center">
-                                <span>X-MAN</span>
+                                <span>{{mov.movie_name}}</span>
                                 <div class="subject-rate">
-                                    <span class="star a"></span>
-                                    <span>2.5</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="movie">
-                        <ul class="list-unstyled">
-                            <li>
-                                <div class="movie-image">
-                                    <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
-                                </div>
-                            </li>
-                            <li class="text-center">
-                                <span>X-MAN</span>
-                                <div class="subject-rate">
-                                    <span class="star a"></span>
-                                    <span>2.5</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div><div class="movie">
-                        <ul class="list-unstyled">
-                            <li>
-                                <div class="movie-image">
-                                    <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
-                                </div>
-                            </li>
-                            <li class="text-center">
-                                <span>X-MAN</span>
-                                <div class="subject-rate">
-                                    <span class="star a"></span>
-                                    <span>2.5</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div><div class="movie">
-                        <ul class="list-unstyled">
-                            <li>
-                                <div class="movie-image">
-                                    <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
-                                </div>
-                            </li>
-                            <li class="text-center">
-                                <span>X-MAN</span>
-                                <div class="subject-rate">
-                                    <span class="star a"></span>
-                                    <span>2.5</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div><div class="movie">
-                        <ul class="list-unstyled">
-                            <li>
-                                <div class="movie-image">
-                                    <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
-                                </div>
-                            </li>
-                            <li class="text-center">
-                                <span>X-MAN</span>
-                                <div class="subject-rate">
-                                    <span class="star a"></span>
-                                    <span>2.5</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div><div class="movie">
-                        <ul class="list-unstyled">
-                            <li>
-                                <div class="movie-image">
-                                    <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
-                                </div>
-                            </li>
-                            <li class="text-center">
-                                <span>X-MAN</span>
-                                <div class="subject-rate">
-                                    <span class="star a"></span>
-                                    <span>2.5</span>
+                                    <span class="star" data-score={{mov.movie_rating}}></span>
+                                    <span>{{mov.movie_rating}}</span>
                                 </div>
                             </li>
                         </ul>
@@ -135,5 +64,10 @@
 </div>
 <script src="~/Scripts/jquery.raty.js"></script>
 <script>
-    $('#star').raty({ readOnly: true, score: 4.5 });
+    $('.star').raty({
+        readOnly: true,
+        score: function() {
+            return $(this).attr('data-score');
+        }
+    });
 </script>

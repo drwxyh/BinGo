@@ -9,8 +9,9 @@ namespace BinGo.Controllers
     public class MovieController : Controller
     {
         // GET: MovieInfo
-        public ActionResult MovieInfo()
+        public ActionResult MovieInfo(int id)
         {
+            ViewData["id"] = id;
             return View();
         }
 

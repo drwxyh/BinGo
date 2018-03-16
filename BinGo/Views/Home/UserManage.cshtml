@@ -2,9 +2,10 @@
 @{
     ViewBag.Title = "UserManage";
 }
-
+<script src="~/Scripts/validator.min.js"></script>
+<div class="container" ng-app="BinGoApp" ng-controller="UserManageCtrl">
 <h2>用户管理</h2>
-<div class="row" ng-app="BinGoApp" ng-controller="UserManageCtrl"style="margin-bottom: 20px">
+<div class="row" style="margin-bottom: 20px">
     <div class="input-group input-group-sm col-xs-4">
         <span class="input-group-addon" id="sizing-addon1">搜索</span>
         <input type="text" class="form-control" ng-model="searchText" placeholder="请输入关键字">
@@ -17,11 +18,11 @@
     <table class="table table-bordered  table-striped table-hover" style="text-align: center">
         <thead>
             <tr>
-                <td>序号</td>
-                <td>用户名</td>
-                <td>邮箱</td>
-                <td>手机号</td>
-                <td>操作</td>
+                <td class="col-md-2">序号</td>
+                <td class="col-md-2">用户名</td>
+                <td class="col-md-2">邮箱</td>
+                <td class="col-md-2">手机号</td>
+                <td class="col-md-4">操作</td>
             </tr>
         </thead>
         <tbody>
@@ -70,20 +71,65 @@
                 </div>
 
                 <div class="modal-body">
-                    <div class="input-group">
-                        <label class="input-group-addon">片名</label>
-                        <input type="text" class="form-control" ng-model="newName" placeholder="请输入影片名" />
-                    </div>
-                    <br />
-                    <div class="input-group">
-                        <label class="input-group-addon">时间</label>
-                        <input type="text" class="form-control" ng-model="newDate" placeholder="请输入上映时间" />
-                    </div>
-                    <br />
-                    <div class="input-group">
-                        <label class="input-group-addon">导演</label>
-                        <input type="text" class="form-control" ng-model="newDirector" placeholder="请输入导演" />
-                    </div>
+                    <form data-toggle="validator" role="form">
+                        <div class="form-group">
+                            <label for="txtName" class="control-label">用户名</label>
+                            <input type="text" class="form-control" id="txtName" ng-model="username" placeholder="用户名" data-error="请输入您的用户名" required />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtEmail" class="control-label">邮箱</label>
+                            <input type="email" class="form-control" id="txtEmail" ng-model="email" placeholder="邮箱" data-error="您输入的邮箱格式不正确" required />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtPhone" class="control-label">手机号</label>
+                            <input type="text" class="form-control" id="txtPhone" ng-model="phone" placeholder="手机号" data-error="请输入您的手机号" required />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtQuestion" class="control-label">验证问题</label>
+                            <input type="text" class="form-control" id="txtQuestion" ng-model="question" placeholder="验证问题" data-error="请输入您的验证问题" required />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtAnswer" class="control-label">问题答案</label>
+                            <input type="text" class="form-control" id="txtAnswer" ng-model="answer" placeholder="问题答案" data-error="请输入验证问题的答案" required />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-inline row">
+                                <label for="txtGender" class="control-label col-md-6">性别</label>
+                                <label for="txtAge" class="control-label col-md-6">年龄</label>
+                            </div>
+                            <div class="form-inline row">
+                                <div class="form-group col-md-6">
+                                    <select ng-model="gender" ng-options="x for x in genderOptions" id="txtGender" class="form-control" data-error="请选择您的性别！" required></select>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <select ng-model="age" ng-options="x for x in ageOptions" id="txtAge" class="form-control" data-error="请选择您的年龄！" required></select>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-inline row">
+                                <label class="control-label col-md-6">密码</label>
+                                <label class="control-label col-md-6">确认密码</label>
+                            </div>
+                            <div class="form-inline row">
+                                <div class="form-group col-md-6">
+                                    <input type="password" data-minlength="6" class="form-control" id="txtPassword" ng-model="password" placeholder="密码" required />
+                                    <div class="help-block">最小长度为六位</div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="password" class="form-control" id="txtConfirmPassword" ng-model="cpassword" data-match="#txtPassword" data-match-error="密码不一致！" placeholder="确认密码" required />
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
                 <div class="modal-footer">
@@ -111,25 +157,47 @@
                 </div>
 
                 <div class="modal-body">
-                    <div class="input-group">
-                        <label class="input-group-addon">片名</label>
-                        <input type="text" class="form-control" ng-model="prod.name" value="{{prod.name}}" readonly />
-                    </div>
-                    <br />
-                    <div class="input-group">
-                        <label class="input-group-addon">时间</label>
-                        <input type="text" class="form-control" ng-model="prod.date" value="{{prod.date}}" readonly />
-                    </div>
-                    <br />
-                    <div class="input-group">
-                        <label class="input-group-addon">导演</label>
-                        <input type="text" class="form-control" ng-model="prod.director" value="{{prod.director}}" readonly />
-                    </div>
+                    <form data-toggle="validator" role="form">
+                        <div class="form-group">
+                            <label for="txtName" class="control-label">用户名</label>
+                            <input type="text" class="form-control" id="txtName" ng-model="username" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label for="txtEmail" class="control-label">邮箱</label>
+                            <input type="email" class="form-control" id="txtEmail" ng-model="email" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label for="txtPhone" class="control-label">手机号</label>
+                            <input type="text" class="form-control" id="txtPhone" ng-model="phone" readonly />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtQuestion" class="control-label">验证问题</label>
+                            <input type="text" class="form-control" id="txtQuestion" ng-model="question" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label for="txtAnswer" class="control-label">问题答案</label>
+                            <input type="text" class="form-control" id="txtAnswer" ng-model="answer" readonly />
+                        </div>
+                        <div class="form-group">
+                            <div class="form-inline row">
+                                <label for="txtGender" class="control-label col-md-6">性别</label>
+                                <label for="txtAge" class="control-label col-md-6">年龄</label>
+                            </div>
+                            <div class="form-inline row">
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" id="txtGender" ng-model="gender" readonly />
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" id="txtAge" ng-model="age" readonly />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
                 <div class="modal-footer">
                     <button class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button class="btn btn-success" ng-click="ensure()">确定</button>
                 </div>
 
             </div>
@@ -152,20 +220,65 @@
                 </div>
 
                 <div class="modal-body">
-                    <div class="input-group">
-                        <label class="input-group-addon">片名</label>
-                        <input type="text" class="form-control" ng-model="prod.name" value="{{prod.name}}" />
-                    </div>
-                    <br />
-                    <div class="input-group">
-                        <label class="input-group-addon">时间</label>
-                        <input type="text" class="form-control" ng-model="prod.date" value="{{prod.date}}" />
-                    </div>
-                    <br />
-                    <div class="input-group">
-                        <label class="input-group-addon">导演</label>
-                        <input type="text" class="form-control" ng-model="prod.director" value="{{prod.director}}" />
-                    </div>
+                    <form data-toggle="validator" role="form">
+                        <div class="form-group">
+                            <label for="txtName" class="control-label">用户名</label>
+                            <input type="text" class="form-control" id="txtName" ng-model="username" placeholder="用户名" data-error="请输入您的用户名" required />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtEmail" class="control-label">邮箱</label>
+                            <input type="email" class="form-control" id="txtEmail" ng-model="email" placeholder="邮箱" data-error="您输入的邮箱格式不正确" required />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtPhone" class="control-label">手机号</label>
+                            <input type="text" class="form-control" id="txtPhone" ng-model="phone" placeholder="手机号" data-error="请输入您的手机号" required />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtQuestion" class="control-label">验证问题</label>
+                            <input type="text" class="form-control" id="txtQuestion" ng-model="question" placeholder="验证问题" data-error="请输入您的验证问题" required />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtAnswer" class="control-label">问题答案</label>
+                            <input type="text" class="form-control" id="txtAnswer" ng-model="answer" placeholder="问题答案" data-error="请输入验证问题的答案" required />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-inline row">
+                                <label for="txtGender" class="control-label col-md-6">性别</label>
+                                <label for="txtAge" class="control-label col-md-6">年龄</label>
+                            </div>
+                            <div class="form-inline row">
+                                <div class="form-group col-md-6">
+                                    <select ng-model="gender" ng-options="x for x in genderOptions" id="txtGender" class="form-control" data-error="请选择您的性别！" required></select>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <select ng-model="age" ng-options="x for x in ageOptions" id="txtAge" class="form-control" data-error="请选择您的年龄！" required></select>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-inline row">
+                                <label class="control-label col-md-6">密码</label>
+                                <label class="control-label col-md-6">确认密码</label>
+                            </div>
+                            <div class="form-inline row">
+                                <div class="form-group col-md-6">
+                                    <input type="password" data-minlength="6" class="form-control" id="txtPassword" ng-model="password" placeholder="密码" required />
+                                    <div class="help-block">最小长度为六位</div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="password" class="form-control" id="txtConfirmPassword" ng-model="cpassword" data-match="#txtPassword" data-match-error="密码不一致！" placeholder="确认密码" required />
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
                 <div class="modal-footer">
@@ -178,4 +291,5 @@
         </div>
 
     </div>
+</div>
 </div>

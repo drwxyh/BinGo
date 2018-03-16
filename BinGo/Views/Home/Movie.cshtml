@@ -2,170 +2,210 @@
     ViewBag.Title = "Movie";
 }
 <link href="~/Content/movieStyle.css" rel="stylesheet" />
+<div class="container" ng-app="BinGoApp" ng-controller="MovieCtrl">
+    <h2>分类电影</h2>
+    <div style="width: 100%">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="nav-tabs">
+            <li role="presentation" class="active"><a href="#Action" aria-controls="home" role="tab" data-toggle="tab">动作</a></li>
+            <li role="presentation"><a href="#War" aria-controls="profile" role="tab" data-toggle="tab">战争</a></li>
+            <li role="presentation"><a href="#History" aria-controls="messages" role="tab" data-toggle="tab">历史</a></li>
+            <li role="presentation"><a href="#Comedy" aria-controls="settings" role="tab" data-toggle="tab">喜剧</a></li>
+            <li role="presentation"><a href="#Mystery" aria-controls="messages" role="tab" data-toggle="tab">悬疑</a></li>
+            <li role="presentation"><a href="#Musical" aria-controls="settings" role="tab" data-toggle="tab">音乐</a></li>
+            <li role="presentation"><a href="#Romance" aria-controls="messages" role="tab" data-toggle="tab">爱情</a></li>
+            <li role="presentation"><a href="#Sci-Fi" aria-controls="settings" role="tab" data-toggle="tab">科幻</a></li>
+        </ul>
 
-<h2>分类电影</h2>
-<div style="width: 100%" ng-app="BinGoApp" ng-controller="MovieCtrl">
+        @*<div class="movie">
+                <ul class="list-unstyled">
+                    <li>
+                        <div class="movie-image">
+                            <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                        </div>
+                    </li>
+                    <li class="text-center">
+                        <span>X-MAN</span>
+                        <div class="subject-rate">
+                            <span class="star" data-score="2.5"></span>
+                            <span>2.5</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>*@
 
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist" id="nav-tabs">
-        <li role="presentation" class="active"><a href="#hot" aria-controls="home" role="tab" data-toggle="tab">热门</a></li>
-        <li role="presentation"><a href="#latest" aria-controls="profile" role="tab" data-toggle="tab">最新</a></li>
-        <li role="presentation"><a href="#classic" aria-controls="messages" role="tab" data-toggle="tab">经典</a></li>
-        <li role="presentation"><a href="#chinese" aria-controls="settings" role="tab" data-toggle="tab">华语</a></li>
-        <li role="presentation"><a href="#EA" aria-controls="messages" role="tab" data-toggle="tab">欧美</a></li>
-        <li role="presentation"><a href="#JK" aria-controls="settings" role="tab" data-toggle="tab">日韩</a></li>
-        <li role="presentation"><a href="#HT" aria-controls="messages" role="tab" data-toggle="tab">港台</a></li>
-        <li role="presentation"><a href="#others" aria-controls="settings" role="tab" data-toggle="tab">更多</a></li>
-    </ul>
-
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <div role="tabpanel" class="tab-pane container active" id="hot">
-            <div class="box">
-                <div class="movie">
-                    <ul class="list-unstyled">
-                        <li>
-                            <div class="movie-image">
-                                <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
-                            </div>
-                        </li>
-                        <li class="text-center">
-                            <span>X-MAN</span>
-                            <div class="subject-rate">
-                                <span class="star a"></span>
-                                <span>2.5</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="movie">
-                    <ul class="list-unstyled">
-                        <li>
-                            <div class="movie-image">
-                                <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
-                            </div>
-                        </li>
-                        <li class="text-center">
-                            <span>X-MAN</span>
-                            <div class="subject-rate">
-                                <span class="star a"></span>
-                                <span>2.5</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div><div class="movie">
-                    <ul class="list-unstyled">
-                        <li>
-                            <div class="movie-image">
-                                <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
-                            </div>
-                        </li>
-                        <li class="text-center">
-                            <span>X-MAN</span>
-                            <div class="subject-rate">
-                                <span class="star a"></span>
-                                <span>2.5</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div><div class="movie">
-                    <ul class="list-unstyled">
-                        <li>
-                            <div class="movie-image">
-                                <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
-                            </div>
-                        </li>
-                        <li class="text-center">
-                            <span>X-MAN</span>
-                            <div class="subject-rate">
-                                <span class="star a"></span>
-                                <span>2.5</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div><div class="movie">
-                    <ul class="list-unstyled">
-                        <li>
-                            <div class="movie-image">
-                                <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
-                            </div>
-                        </li>
-                        <li class="text-center">
-                            <span>X-MAN</span>
-                            <div class="subject-rate">
-                                <span class="star a"></span>
-                                <span>2.5</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div><div class="movie">
-                    <ul class="list-unstyled">
-                        <li>
-                            <div class="movie-image">
-                                <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
-                            </div>
-                        </li>
-                        <li class="text-center">
-                            <span>X-MAN</span>
-                            <div class="subject-rate">
-                                <span class="star a"></span>
-                                <span>2.5</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div><div class="movie">
-                    <ul class="list-unstyled">
-                        <li>
-                            <div class="movie-image">
-                                <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
-                            </div>
-                        </li>
-                        <li class="text-center">
-                            <span>X-MAN</span>
-                            <div class="subject-rate">
-                                <span class="star a"></span>
-                                <span>2.5</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div><div class="movie">
-                    <ul class="list-unstyled">
-                        <li>
-                            <div class="movie-image">
-                                <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
-                            </div>
-                        </li>
-                        <li class="text-center">
-                            <span>X-MAN</span>
-                            <div class="subject-rate">
-                                <span class="star a"></span>
-                                <span>2.5</span>
-                            </div>
-                        </li>
-                    </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane container active" id="Action">
+                <div class="box">
+                    <div class="movie" ng-repeat="mov in ActionList">
+                        <ul class="list-unstyled">
+                            <li>
+                                <div class="movie-image">
+                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                                </div>
+                            </li>
+                            <li class="text-center">
+                                <span>{{mov.movie_name}}</span>
+                                <div class="subject-rate">
+                                    <span class="star" data-score={{mov.movie_rating}}></span>
+                                    <span>{{mov.movie_rating}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="chinese">
-
-        </div>
-        <div role="tabpanel" class="tab-pane" id="EA">
-
-        </div>
-        <div role="tabpanel" class="tab-pane" id="JK">
-
-        </div>
-        <div role="tabpanel" class="tab-pane" id="HT">
-
-        </div>
-        <div role="tabpanel" class="tab-pane" id="others">
-
+            <div role="tabpanel" class="tab-pane" id="War">
+                <div class="box">
+                    <div class="movie" ng-repeat="mov in WarList">
+                        <ul class="list-unstyled">
+                            <li>
+                                <div class="movie-image">
+                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                                </div>
+                            </li>
+                            <li class="text-center">
+                                <span>{{mov.movie_name}}</span>
+                                <div class="subject-rate">
+                                    <span class="star" data-score={{mov.movie_rating}}></span>
+                                    <span>{{mov.movie_rating}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="History">
+                <div class="box">
+                    <div class="movie" ng-repeat="mov in HistoryList">
+                        <ul class="list-unstyled">
+                            <li>
+                                <div class="movie-image">
+                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                                </div>
+                            </li>
+                            <li class="text-center">
+                                <span>{{mov.movie_name}}</span>
+                                <div class="subject-rate">
+                                    <span class="star" data-score={{mov.movie_rating}}></span>
+                                    <span>{{mov.movie_rating}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="Comedy">
+                <div class="box">
+                    <div class="movie" ng-repeat="mov in ComedyList">
+                        <ul class="list-unstyled">
+                            <li>
+                                <div class="movie-image">
+                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                                </div>
+                            </li>
+                            <li class="text-center">
+                                <span>{{mov.movie_name}}</span>
+                                <div class="subject-rate">
+                                    <span class="star" data-score={{mov.movie_rating}}></span>
+                                    <span>{{mov.movie_rating}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="Mystery">
+                <div class="box">
+                    <div class="movie" ng-repeat="mov in MysteryList">
+                        <ul class="list-unstyled">
+                            <li>
+                                <div class="movie-image">
+                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                                </div>
+                            </li>
+                            <li class="text-center">
+                                <span>{{mov.movie_name}}</span>
+                                <div class="subject-rate">
+                                    <span class="star" data-score={{mov.movie_rating}}></span>
+                                    <span>{{mov.movie_rating}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="Musical">
+                <div class="box">
+                    <div class="movie" ng-repeat="mov in MusicalList">
+                        <ul class="list-unstyled">
+                            <li>
+                                <div class="movie-image">
+                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                                </div>
+                            </li>
+                            <li class="text-center">
+                                <span>{{mov.movie_name}}</span>
+                                <div class="subject-rate">
+                                    <span class="star" data-score={{mov.movie_rating}}></span>
+                                    <span>{{mov.movie_rating}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="Romance">
+                <div class="box">
+                    <div class="movie" ng-repeat="mov in RomanceList">
+                        <ul class="list-unstyled">
+                            <li>
+                                <div class="movie-image">
+                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                                </div>
+                            </li>
+                            <li class="text-center">
+                                <span>{{mov.movie_name}}</span>
+                                <div class="subject-rate">
+                                    <span class="star" data-score={{mov.movie_rating}}></span>
+                                    <span>{{mov.movie_rating}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="Sci-Fi">
+                <div class="box">
+                    <div class="movie" ng-repeat="mov in SciFiList">
+                        <ul class="list-unstyled">
+                            <li>
+                                <div class="movie-image">
+                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                                </div>
+                            </li>
+                            <li class="text-center">
+                                <span>{{mov.movie_name}}</span>
+                                <div class="subject-rate">
+                                    <span class="star" data-score={{mov.movie_rating}}></span>
+                                    <span>{{mov.movie_rating}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-
 <script src="~/Scripts/jquery-func.js"></script>
 <script>
-    $('.a').raty({ readOnly: true, score: 2.5 });
+    $('.star').raty({
+        readOnly: true,
+        score: function () {
+            return $(this).attr('data-score');
+        }
+    });
 </script>
