@@ -17,23 +17,6 @@
             <li role="presentation"><a href="#Sci-Fi" aria-controls="settings" role="tab" data-toggle="tab">科幻</a></li>
         </ul>
 
-        @*<div class="movie">
-                <ul class="list-unstyled">
-                    <li>
-                        <div class="movie-image">
-                            <a href="#"><span class="play"><span class="name">X-MAN</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
-                        </div>
-                    </li>
-                    <li class="text-center">
-                        <span>X-MAN</span>
-                        <div class="subject-rate">
-                            <span class="star" data-score="2.5"></span>
-                            <span>2.5</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>*@
-
         <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane container active" id="Action">
@@ -42,13 +25,13 @@
                         <ul class="list-unstyled">
                             <li>
                                 <div class="movie-image">
-                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie" /></a>
                                 </div>
                             </li>
                             <li class="text-center">
-                                <span>{{mov.movie_name}}</span>
+                                <span class="name">{{mov.movie_name}}</span>
                                 <div class="subject-rate">
-                                    <span class="star" data-score={{mov.movie_rating}}></span>
+                                    <span class="star" data-score={{mov.movie_star}}></span>
                                     <span>{{mov.movie_rating}}</span>
                                 </div>
                             </li>
@@ -62,13 +45,13 @@
                         <ul class="list-unstyled">
                             <li>
                                 <div class="movie-image">
-                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie" /></a>
                                 </div>
                             </li>
                             <li class="text-center">
-                                <span>{{mov.movie_name}}</span>
+                                <span class="name">{{mov.movie_name}}</span>
                                 <div class="subject-rate">
-                                    <span class="star" data-score={{mov.movie_rating}}></span>
+                                    <span class="star" data-score={{mov.movie_star}}></span>
                                     <span>{{mov.movie_rating}}</span>
                                 </div>
                             </li>
@@ -82,13 +65,13 @@
                         <ul class="list-unstyled">
                             <li>
                                 <div class="movie-image">
-                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie" /></a>
                                 </div>
                             </li>
                             <li class="text-center">
-                                <span>{{mov.movie_name}}</span>
+                                <span class="name">{{mov.movie_name}}</span>
                                 <div class="subject-rate">
-                                    <span class="star" data-score={{mov.movie_rating}}></span>
+                                    <span class="star" data-score={{mov.movie_star}}></span>
                                     <span>{{mov.movie_rating}}</span>
                                 </div>
                             </li>
@@ -102,13 +85,13 @@
                         <ul class="list-unstyled">
                             <li>
                                 <div class="movie-image">
-                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie" /></a>
                                 </div>
                             </li>
                             <li class="text-center">
-                                <span>{{mov.movie_name}}</span>
+                                <span class="name">{{mov.movie_name}}</span>
                                 <div class="subject-rate">
-                                    <span class="star" data-score={{mov.movie_rating}}></span>
+                                    <span class="star" data-score={{mov.movie_star}}></span>
                                     <span>{{mov.movie_rating}}</span>
                                 </div>
                             </li>
@@ -122,13 +105,13 @@
                         <ul class="list-unstyled">
                             <li>
                                 <div class="movie-image">
-                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie" /></a>
                                 </div>
                             </li>
                             <li class="text-center">
-                                <span>{{mov.movie_name}}</span>
+                                <span class="name">{{mov.movie_name}}</span>
                                 <div class="subject-rate">
-                                    <span class="star" data-score={{mov.movie_rating}}></span>
+                                    <span class="star" data-score={{mov.movie_star}}></span>
                                     <span>{{mov.movie_rating}}</span>
                                 </div>
                             </li>
@@ -142,13 +125,13 @@
                         <ul class="list-unstyled">
                             <li>
                                 <div class="movie-image">
-                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie" /></a>
                                 </div>
                             </li>
                             <li class="text-center">
-                                <span>{{mov.movie_name}}</span>
+                                <span class="name">{{mov.movie_name}}</span>
                                 <div class="subject-rate">
-                                    <span class="star" data-score={{mov.movie_rating}}></span>
+                                    <span class="star" data-score={{mov.movie_star}}></span>
                                     <span>{{mov.movie_rating}}</span>
                                 </div>
                             </li>
@@ -162,13 +145,13 @@
                         <ul class="list-unstyled">
                             <li>
                                 <div class="movie-image">
-                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie" /></a>
                                 </div>
                             </li>
                             <li class="text-center">
-                                <span>{{mov.movie_name}}</span>
+                                <span class="name">{{mov.movie_name}}</span>
                                 <div class="subject-rate">
-                                    <span class="star" data-score={{mov.movie_rating}}></span>
+                                    <span class="star" data-score={{mov.movie_star}}></span>
                                     <span>{{mov.movie_rating}}</span>
                                 </div>
                             </li>
@@ -182,13 +165,13 @@
                         <ul class="list-unstyled">
                             <li>
                                 <div class="movie-image">
-                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie" /></a>
                                 </div>
                             </li>
                             <li class="text-center">
-                                <span>{{mov.movie_name}}</span>
+                                <span class="name">{{mov.movie_name}}</span>
                                 <div class="subject-rate">
-                                    <span class="star" data-score={{mov.movie_rating}}></span>
+                                    <span class="star" data-score={{mov.movie_star}}></span>
                                     <span>{{mov.movie_rating}}</span>
                                 </div>
                             </li>

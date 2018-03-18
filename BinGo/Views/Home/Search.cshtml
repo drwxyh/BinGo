@@ -13,7 +13,7 @@
                 <div class="form-group">
                     <input type="text" class="form-control" ng-model="searchText" placeholder="关键字" />
                 </div>
-                <button type="submit" class="btn btn-primary" ng-click="Search()">搜索</button>
+                <button type="submit" class="btn btn-primary" ng-click="Search()" ng-keydown="$event.keyCode === 13 && Search()">搜索</button>
             </form>
         </div>
     </div>
@@ -25,13 +25,13 @@
                 <ul class="list-unstyled">
                     <li>
                         <div class="movie-image">
-                            <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                            <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie" /></a>
                         </div>
                     </li>
                     <li class="text-center">
-                        <span>{{mov.movie_id}}</span>
+                        <span class="name">{{mov.movie_name}}</span>
                         <div class="subject-rate">
-                            <span class="star" data-score={{mov.movie_rating}}></span>
+                            <span class="star" data-score={{mov.movie_star}}></span>
                             <span>{{mov.movie_rating}}</span>
                         </div>
                     </li>

@@ -26,15 +26,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="x in movies | filter:searchText">
+            <tr ng-repeat="x in users | filter:searchText">
                 <td>{{$index + 1}}</td>
                 <td>{{x.username}}</td>
                 <td>{{x.email}}</td>
                 <td>{{x.phone}}</td>
                 <td>
-                    <button class="btn btn-info btn-sm" ng-click="detail($index)">详情</button>
-                    <button class="btn btn-warning btn-sm" ng-click="update($index)">权限</button>
-                    <button class="btn btn-danger btn-sm" ng-click="del($index)">删除</button>
+                    <button class="btn btn-info btn-sm" ng-click="detail(x.id)">详情</button>
+                    <button class="btn btn-warning btn-sm" ng-click="update(x.id)">权限</button>
+                    <button class="btn btn-danger btn-sm" ng-click="delete(x.id,x.username)">删除</button>
                 </td>
             </tr>
         </tbody>
@@ -74,27 +74,27 @@
                     <form data-toggle="validator" role="form">
                         <div class="form-group">
                             <label for="txtName" class="control-label">用户名</label>
-                            <input type="text" class="form-control" id="txtName" ng-model="username" placeholder="用户名" data-error="请输入您的用户名" required />
+                            <input type="text" class="form-control" ng-model="username" placeholder="用户名" data-error="请输入您的用户名" required />
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group">
                             <label for="txtEmail" class="control-label">邮箱</label>
-                            <input type="email" class="form-control" id="txtEmail" ng-model="email" placeholder="邮箱" data-error="您输入的邮箱格式不正确" required />
+                            <input type="email" class="form-control" ng-model="email" placeholder="邮箱" data-error="您输入的邮箱格式不正确" required />
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group">
                             <label for="txtPhone" class="control-label">手机号</label>
-                            <input type="text" class="form-control" id="txtPhone" ng-model="phone" placeholder="手机号" data-error="请输入您的手机号" required />
+                            <input type="text" class="form-control" ng-model="phone" placeholder="手机号" data-error="请输入您的手机号" required />
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group">
                             <label for="txtQuestion" class="control-label">验证问题</label>
-                            <input type="text" class="form-control" id="txtQuestion" ng-model="question" placeholder="验证问题" data-error="请输入您的验证问题" required />
+                            <input type="text" class="form-control" ng-model="question" placeholder="验证问题" data-error="请输入您的验证问题" required />
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group">
                             <label for="txtAnswer" class="control-label">问题答案</label>
-                            <input type="text" class="form-control" id="txtAnswer" ng-model="answer" placeholder="问题答案" data-error="请输入验证问题的答案" required />
+                            <input type="text" class="form-control" ng-model="answer" placeholder="问题答案" data-error="请输入验证问题的答案" required />
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group">
@@ -104,11 +104,11 @@
                             </div>
                             <div class="form-inline row">
                                 <div class="form-group col-md-6">
-                                    <select ng-model="gender" ng-options="x for x in genderOptions" id="txtGender" class="form-control" data-error="请选择您的性别！" required></select>
+                                    <select ng-model="gender" ng-options="x for x in genderOptions" class="form-control" data-error="请选择您的性别！" required></select>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <select ng-model="age" ng-options="x for x in ageOptions" id="txtAge" class="form-control" data-error="请选择您的年龄！" required></select>
+                                    <select ng-model="age" ng-options="x for x in ageOptions" class="form-control" data-error="请选择您的年龄！" required></select>
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
@@ -120,11 +120,11 @@
                             </div>
                             <div class="form-inline row">
                                 <div class="form-group col-md-6">
-                                    <input type="password" data-minlength="6" class="form-control" id="txtPassword" ng-model="password" placeholder="密码" required />
+                                    <input type="password" data-minlength="6" class="form-control" ng-model="password" placeholder="密码" required />
                                     <div class="help-block">最小长度为六位</div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="password" class="form-control" id="txtConfirmPassword" ng-model="cpassword" data-match="#txtPassword" data-match-error="密码不一致！" placeholder="确认密码" required />
+                                    <input type="password" class="form-control" ng-model="cpassword" data-match="#txtPassword" data-match-error="密码不一致！" placeholder="确认密码" required />
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
@@ -160,24 +160,24 @@
                     <form data-toggle="validator" role="form">
                         <div class="form-group">
                             <label for="txtName" class="control-label">用户名</label>
-                            <input type="text" class="form-control" id="txtName" ng-model="username" readonly />
+                            <input type="text" class="form-control" ng-model="username" readonly />
                         </div>
                         <div class="form-group">
                             <label for="txtEmail" class="control-label">邮箱</label>
-                            <input type="email" class="form-control" id="txtEmail" ng-model="email" readonly />
+                            <input type="email" class="form-control" ng-model="email" readonly />
                         </div>
                         <div class="form-group">
                             <label for="txtPhone" class="control-label">手机号</label>
-                            <input type="text" class="form-control" id="txtPhone" ng-model="phone" readonly />
+                            <input type="text" class="form-control" ng-model="phone" readonly />
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group">
                             <label for="txtQuestion" class="control-label">验证问题</label>
-                            <input type="text" class="form-control" id="txtQuestion" ng-model="question" readonly />
+                            <input type="text" class="form-control" ng-model="question" readonly />
                         </div>
                         <div class="form-group">
                             <label for="txtAnswer" class="control-label">问题答案</label>
-                            <input type="text" class="form-control" id="txtAnswer" ng-model="answer" readonly />
+                            <input type="text" class="form-control" ng-model="answer" readonly />
                         </div>
                         <div class="form-group">
                             <div class="form-inline row">
@@ -186,10 +186,10 @@
                             </div>
                             <div class="form-inline row">
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="txtGender" ng-model="gender" readonly />
+                                    <input type="text" class="form-control" ng-model="gender" readonly />
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="txtAge" ng-model="age" readonly />
+                                    <input type="text" class="form-control" ng-model="age" readonly />
                                 </div>
                             </div>
                         </div>
@@ -223,27 +223,27 @@
                     <form data-toggle="validator" role="form">
                         <div class="form-group">
                             <label for="txtName" class="control-label">用户名</label>
-                            <input type="text" class="form-control" id="txtName" ng-model="username" placeholder="用户名" data-error="请输入您的用户名" required />
+                            <input type="text" class="form-control" ng-model="username" placeholder="用户名" data-error="请输入您的用户名" required />
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group">
                             <label for="txtEmail" class="control-label">邮箱</label>
-                            <input type="email" class="form-control" id="txtEmail" ng-model="email" placeholder="邮箱" data-error="您输入的邮箱格式不正确" required />
+                            <input type="email" class="form-control" ng-model="email" placeholder="邮箱" data-error="您输入的邮箱格式不正确" required />
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group">
                             <label for="txtPhone" class="control-label">手机号</label>
-                            <input type="text" class="form-control" id="txtPhone" ng-model="phone" placeholder="手机号" data-error="请输入您的手机号" required />
+                            <input type="text" class="form-control" ng-model="phone" placeholder="手机号" data-error="请输入您的手机号" required />
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group">
                             <label for="txtQuestion" class="control-label">验证问题</label>
-                            <input type="text" class="form-control" id="txtQuestion" ng-model="question" placeholder="验证问题" data-error="请输入您的验证问题" required />
+                            <input type="text" class="form-control" ng-model="question" placeholder="验证问题" data-error="请输入您的验证问题" required />
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group">
                             <label for="txtAnswer" class="control-label">问题答案</label>
-                            <input type="text" class="form-control" id="txtAnswer" ng-model="answer" placeholder="问题答案" data-error="请输入验证问题的答案" required />
+                            <input type="text" class="form-control" ng-model="answer" placeholder="问题答案" data-error="请输入验证问题的答案" required />
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group">
@@ -253,11 +253,11 @@
                             </div>
                             <div class="form-inline row">
                                 <div class="form-group col-md-6">
-                                    <select ng-model="gender" ng-options="x for x in genderOptions" id="txtGender" class="form-control" data-error="请选择您的性别！" required></select>
+                                    <select ng-model="gender" ng-options="x for x in genderOptions" class="form-control" data-error="请选择您的性别！" required></select>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <select ng-model="age" ng-options="x for x in ageOptions" id="txtAge" class="form-control" data-error="请选择您的年龄！" required></select>
+                                    <select ng-model="age" ng-options="x for x in ageOptions" class="form-control" data-error="请选择您的年龄！" required></select>
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>

@@ -55,12 +55,11 @@ a img {
 
 .movie span.name {
     font-weight: bold;
-    color: #fff;
     font-size: 14px;
     text-align: center;
-    padding-top: 160px;
+    padding-top: 10px;
     display: block;
-    width: 100px;
+    width: 100%;
     white-space: nowrap;
     word-break: keep-all;
     overflow: hidden;

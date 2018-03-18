@@ -43,24 +43,24 @@
             <h4>推荐电影</h4>
         </div>
         <hr />
-        <table class="table table-bordered  table-striped table-hover" style="text-align: center">
+        <table class="table table-bordered" style="text-align: center">
             <thead>
-                <tr>
-                    <td>序号</td>
-                    <td>片名</td>
-                    <td>导演</td>
-                    <td>主演</td>
-                    <td>评分</td>
-                </tr>
+            <tr>
+                <td>序号</td>
+                <td>片名</td>
+                <td>导演</td>
+                <td>主演</td>
+                <td>评分</td>
+            </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="mov in movies">
-                    <td>{{$index + 1}}</td>
-                    <td>{{mov.title}}</td>
-                    <td>{{mov.director}}</td>
-                    <td>{{mov.actor}}</td>
-                    <td>{{mov.score}}</td>
-                </tr>
+            <tr ng-repeat="mov in movies">
+                <td>{{$index + 1}}</td>
+                <td><a href="/Movie/MovieInfo/{{mov.movie_id}}">{{mov.movie_name}}</a></td>
+                <td>{{mov.movie_director}}</td>
+                <td>{{mov.movie_actor}}</td>
+                <td>{{mov.movie_rating}}</td>
+            </tr>
             </tbody>
         </table>
     </div>
@@ -114,9 +114,15 @@
 
     </div>
 </div>
+<script src="~/Scripts/jquery-func.js"></script>
 <script>
     $('body').easyBackground({
         wrapNeighbours: true
     });
-    $('.a').raty({ readOnly: true, score: 2.5 });
+    $('.star').raty({
+        readOnly: true,
+        score: function () {
+            return $(this).attr('data-score');
+        }
+    });
 </script>

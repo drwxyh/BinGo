@@ -12,7 +12,7 @@
         <div class="container">
             <div class="subject row" style="display: flex">
                 <div class="poster col-xs-3">
-                    <img src="~/Images/Poster/红海行动.png" />
+                    <img src={{movie.pic_url}} />
                 </div>
                 <div class="info col-xs-3">
                     <ul class="list-unstyled">
@@ -30,10 +30,9 @@
                 </div>
                 <div class="remark col-xs-4">
                     <h2 style="text-align: center">评分</h2>
-                    <span>{{mov.movie_name}}</span>
                     <div class="subject-rate">
-                        <span class="star" data-score={{mov.movie_rating}}></span>
-                        <span>{{mov.movie_rating}}</span>
+                        <span class="star" data-score={{movie.movie_star}}></span>
+                        <span>{{movie.movie_rating}}</span>
                     </div>
                 </div>
             </div>
@@ -45,13 +44,13 @@
                         <ul class="list-unstyled">
                             <li>
                                 <div class="movie-image">
-                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src="~/Images/Movie/movie1.jpg" alt="movie" /></a>
+                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie" /></a>
                                 </div>
                             </li>
                             <li class="text-center">
-                                <span>{{mov.movie_name}}</span>
+                                <span class="name">{{mov.movie_name}}</span>
                                 <div class="subject-rate">
-                                    <span class="star" data-score={{mov.movie_rating}}></span>
+                                    <span class="star" data-score={{mov.movie_star}}></span>
                                     <span>{{mov.movie_rating}}</span>
                                 </div>
                             </li>
