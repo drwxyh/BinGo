@@ -171,7 +171,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap3.css" />
     <Content Include="Content\extend.css" />
+    <Content Include="Content\htmleaf-demo.css" />
+    <Content Include="Content\jk-rating-stars.min.css" />
     <Content Include="Content\movieStyle.css" />
+    <Content Include="Content\normalize.css" />
     <Content Include="Content\Questionnaire\styles.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
@@ -239,6 +242,7 @@
     <Content Include="Images\Portrait\dog-lying-down-landscape-looking-away-grass-animal-20191.jpg" />
     <Content Include="Images\Portrait\girl.jpg" />
     <Content Include="Images\Portrait\leaf-wood-macro.jpg" />
+    <Content Include="Images\Portrait\lebron-james.jpg" />
     <Content Include="Images\Portrait\portrait1.jpg" />
     <Content Include="Images\Portrait\portrait2.jpg" />
     <Content Include="Images\Portrait\portrait3.jpg" />
@@ -1049,8 +1053,14 @@
     <Content Include="Scripts\i18n\angular-locale_zh.js" />
     <Content Include="Scripts\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jk-rating-stars.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-func.js" />
     <Content Include="Scripts\jquery.raty.js" />
@@ -1088,7 +1098,7 @@
     <Content Include="Views\Account\UserInfo.cshtml" />
     <Content Include="Views\Movie\MovieManage.cshtml" />
     <Content Include="Scripts\version.json" />
-    <Content Include="Views\Home\UserManage.cshtml" />
+    <Content Include="Views\Home\Manage.cshtml" />
     <Content Include="Views\Register\Questionnaire.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
@@ -1107,7 +1117,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\BinGoAPI\EmployeeDataAccess\EmployeeDataAccess.csproj">

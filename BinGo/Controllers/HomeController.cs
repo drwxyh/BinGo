@@ -23,7 +23,7 @@ namespace BinGo.Controllers
             return View();
         }
 
-        public ActionResult UserManage()
+        public ActionResult Manage()
         {
             return View();
         }

@@ -31,7 +31,7 @@
                     <li class="text-center">
                         <span class="name">{{mov.movie_name}}</span>
                         <div class="subject-rate">
-                            <span class="star" data-score={{mov.movie_star}}></span>
+                            <jk-rating-stars max-rating="5" rating="mov.movie_rating/2" ng-model="movie.movie_rating" read-only="readOnly"></jk-rating-stars>
                             <span>{{mov.movie_rating}}</span>
                         </div>
                     </li>
@@ -40,11 +40,4 @@
         </div>
     </div>
 </div>
-<script>
-    $('.star').raty({
-        readOnly: true,
-        score: function () {
-            return $(this).attr('data-score');
-        }
-    });
-</script>
+

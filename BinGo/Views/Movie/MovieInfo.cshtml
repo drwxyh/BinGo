@@ -10,48 +10,59 @@
             <span>&nbsp;&nbsp;{{movie.movie_name}}</span>
         </h1>
         <div class="container">
-            <div class="subject row" style="display: flex">
-                <div class="poster col-xs-3">
-                    <img src={{movie.pic_url}} />
+            <div class="row" style="display: flex">
+                <div class="col-xs-3">
+                    <img src={{movie.pic_url}}  alt={{movie.movie_name}}/>
                 </div>
-                <div class="info col-xs-3">
-                    <ul class="list-unstyled">
-                        <li><span>导演：</span><span>{{movie.movie_director}}</span><br /></li>
-                        <li><span>主演：</span><span>{{movie.movie_actor}}</span><br /></li>
-                        <li><span>类型：</span><span>{{movie.type_id}}</span><br /></li>
-                        <li><span>地区：</span><span>{{movie.movie_district}}</span><br /></li>
-                        <li><span>时间：</span><span>{{movie.movie_date}}</span><br /></li>
-                        <li><span>时长：</span><span>{{movie.movie_time}}</span><br /></li>
-                        <li><span>关键词：</span><span>{{movie.movie_keyword}}</span><br /></li>
+                <div class="info col-xs-4">
+                    <ul class="list-unstyled" style="font-size: 16px; font-weight: bold">
+                        <li class="row"><span class="col-xs-3">◎导演：</span><span class="col-xs-8">{{movie.movie_director}}</span></li>
+                        <li class="row"><span class="col-xs-3">◎主演：</span><span class="col-xs-8">{{movie.movie_actor}}</span></li>
+                        <li class="row"><span class="col-xs-3">◎类型：</span><span class="col-xs-8">{{movie.type_id}}</span></li>
+                        <li class="row"><span class="col-xs-3">◎地区：</span><span class="col-xs-8">{{movie.movie_district}}</span></li>
+                        <li class="row"><span class="col-xs-3">◎时间：</span><span class="col-xs-8">{{movie.movie_date+"年"}}</span></li>
+                        <li class="row"><span class="col-xs-3">◎时长：</span><span class="col-xs-8">{{movie.movie_time+"分钟"}}</span></li>
+                        <li class="row"><span class="col-xs-3">◎主题：</span><span class="col-xs-7">{{movie.movie_keyword}}</span></li>
                     </ul>
                 </div>
                 <div>
-                    <img src="~/Images/Other/part-line.png" height="100%" />
+                    <img src="~/Images/Other/part-line.png" height="100%"/>
                 </div>
-                <div class="remark col-xs-4">
-                    <h2 style="text-align: center">评分</h2>
-                    <div class="subject-rate">
-                        <span class="star" data-score={{movie.movie_star}}></span>
-                        <span>{{movie.movie_rating}}</span>
+                <div id="remark" class="col-xs-4">
+                    <h2 style="text-align: center">总体评分</h2>
+                    <div style="text-align: center">
+                        <jk-rating-stars max-rating="10" rating="movie.movie_rating" ng-model="movie.movie_rating" read-only="readOnly"></jk-rating-stars>
+                        <span style="font-size: 20px; color: darkorange;">{{movie.movie_rating+'分'}}</span>
+                    </div>
+                    <h2 style="text-align: center">我的评分</h2>
+                    <div style="text-align: center">
+                        <jk-rating-stars max-rating="10" rating="Rate"></jk-rating-stars>
+                        <span style="font-size: 20px; color: darkorange;">{{Rate+'分'}}</span>
+                        <form role="form">
+                            <div class="form-group">
+                                <textarea class="form-control" rows="3" placeholder="请简短评论……"></textarea>
+                            </div>
+                        </form>
+                        <button class="btn btn-success" ng-click="Comment()">提交</button>
                     </div>
                 </div>
             </div>
 
-            <h3>类似电影</h3><hr />
+            <h3>类似电影</h3><hr/>
             <div class="container">
                 <div class="box">
                     <div class="movie" ng-repeat="mov in movieList">
                         <ul class="list-unstyled">
                             <li>
                                 <div class="movie-image">
-                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie" /></a>
+                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt={{mov.movie_name}}/></a>
                                 </div>
                             </li>
                             <li class="text-center">
                                 <span class="name">{{mov.movie_name}}</span>
                                 <div class="subject-rate">
-                                    <span class="star" data-score={{mov.movie_star}}></span>
-                                    <span>{{mov.movie_rating}}</span>
+                                    <jk-rating-stars max-rating="5" rating="mov.movie_rating/2" ng-model="mov.movie_rating" read-only="readOnly"></jk-rating-stars>
+                                    <span>{{mov.movie_rating+'分'}}</span>
                                 </div>
                             </li>
                         </ul>
@@ -61,12 +72,5 @@
         </div>
     </div>
 </div>
-<script src="~/Scripts/jquery.raty.js"></script>
-<script>
-    $('.star').raty({
-        readOnly: true,
-        score: function() {
-            return $(this).attr('data-score');
-        }
-    });
-</script>
+
+

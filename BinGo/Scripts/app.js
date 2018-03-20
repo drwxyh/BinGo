@@ -1,9 +1,11 @@
-﻿var app = angular.module('BinGoApp', []);
+﻿var app = angular.module('BinGoApp', ['jkAngularRatingStars']);
 // 防止session跨域丢失
 app.config(['$httpProvider', config]);
 function config($httpProvider) {
     $httpProvider.defaults.withCredentials = true;
 }
+// 星级评分
+
 
 app.controller('MovieCtrl', function ($scope, $http) {
     // 根据关键字，获取各个类别的电影列表
@@ -130,26 +132,33 @@ app.controller('MovieCtrl', function ($scope, $http) {
 });
 
 app.controller('LoginCtrl', function ($scope, $http) {
-    $scope.submit = function () {
-        $http({
-            method: 'POST',
-            url: 'http://127.0.0.1:8088/user/login.do',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            withCredentials: true,
-            data: $.param({
-                username: $scope.username,
-                password: $scope.password
-            })
-        }).then(function successCallback(response) {
-            alert(response.data.msg);
-            if (response.data.status === 0) {
-                sessionStorage.setItem('loginStatus', 1);
-                sessionStorage.setItem('username', $scope.username);
-                window.location.href = '/Home/User';
-            }
-        }, function errorCallback(errorresponse) {
-            alert(errorresponse.data.msg);
-        });
+    if (sessionStorage.getItem('loginStatus') === null) {
+        $scope.submit = function() {
+            $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/user/login.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                withCredentials: true,
+                data: $.param({
+                    username: $scope.username,
+                    password: $scope.password
+                })
+            }).then(function successCallback(response) {
+                    alert(response.data.msg);
+                    if (response.data.status === 0) {
+                        sessionStorage.setItem('loginStatus', 1);
+                        sessionStorage.setItem('role', response.data.data.role);
+                        sessionStorage.setItem('username', $scope.username);
+                        window.location.href = '/Home/User';
+                    }
+                },
+                function errorCallback(errorresponse) {
+                    alert(errorresponse.data.msg);
+                });
+        }
+    } else {
+        alert("您已经登录，无法重复登录！");
+        window.location.href = '/Home/Index';
     }
 });
 
@@ -191,40 +200,40 @@ app.controller('RegisterCtrl', function ($scope, $http) {
 
 app.controller('UserInfoCtrl', function ($scope, $http) {
     // 登录时在session中存储了登录状态
-    if (sessionStorage.getItem('loginStatus') != null) {
-        // 获取登陆用户信息
-        $http({
-            method: 'POST',
-            url: 'http://127.0.0.1:8088/user/get_user_info.do',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            data: $.param({})
-        }).then(function successCallback(response) {
-            if (response.data.status === 0) {
-                $scope.user = response.data.data;
-                $scope.newuser = response.data.data;
+    $http({
+        method: 'POST',
+        url: 'http://127.0.0.1:8088/user/get_user_info.do',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        data: $.param({})
+    }).then(function successCallback(response) {
+        if (response.data.status === 0) {
+            $scope.user = response.data.data;
+            if ($scope.user.sex === 1) {
+                $scope.img = "http://localhost:6305/Images/Portrait/lebron-james.jpg";
+            } else {
+                $scope.img = "http://localhost:6305/Images/Portrait/girl.jpg";
             }
-        },
-            function errorCallback(errorresponse) {
-                alert(errorresponse.data.msg);
-            });
+            $scope.newuser = response.data.data;
+        }
+    },
+        function errorCallback(errorresponse) {
+            alert(errorresponse.data.msg);
+        });
 
-        // 获取用户推荐列表
-        $http({
-            method: 'POST',
-            url: 'http://127.0.0.1:8088/user/get_recommend.do',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-        }).then(function successCallback(response) {
-            if (response.data.status === 0) {
-                $scope.movies = response.data.data;
-            }
-        },
-            function errorCallback(errorresponse) {
-                alert(errorresponse.data.msg);
-            });
-    } else {
-        alert("请登录");
-        window.location.href = '\Login\Login';
-    }
+    // 获取用户推荐列表
+    $http({
+        method: 'POST',
+        url: 'http://127.0.0.1:8088/user/get_recommend.do',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    }).then(function successCallback(response) {
+        if (response.data.status === 0) {
+            $scope.movies = response.data.data;
+        }
+    },
+        function errorCallback(errorresponse) {
+            alert(errorresponse.data.msg);
+        });
+
     // 修改用户信息相关函数
     $scope.Modify = function () {
         $('#modify').modal('show');
@@ -253,14 +262,23 @@ app.controller('UserInfoCtrl', function ($scope, $http) {
     }
 });
 
-app.controller('UserManageCtrl', function ($scope, $http) {
+app.controller('ManageCtrl', function ($scope, $http) {
     $scope.gender = "男";
     $scope.genderOptions = ["男", "女"];
     $scope.age = "90后";
     $scope.ageOptions = ["10后", "00后", "90后", "80后", "70后", "60后", "50后"];
+    $scope.movietype = "动作";
+    $scope.movietime = 120;
+    $scope.typeOptions = ["动作", "战争", "历史", "喜剧", "悬疑", "音乐", "爱情", "科幻"];
+    $scope.timeOptions = [90, 100, 110, 120, 130, 140, 150, 160];
     // 存储用户信息
     $scope.users = [];
-    $scope.selPage = 1;
+    $scope.UPage = 1;
+    $scope.UTotal = 0;
+    // 存储电影信息
+    $scope.movies = [];
+    $scope.MPage = 1;
+    $scope.MTotal = 0;
     // 获取用户列表
     $http({
         method: 'POST',
@@ -274,104 +292,155 @@ app.controller('UserManageCtrl', function ($scope, $http) {
         if (response.data.status === 0) {
             //alert(JSON.stringify(response));
             $scope.users = response.data.data.list;
-            $scope.pages = response.data.data.pages;
-            $scope.newPages = $scope.pages > 5 ? 5 : $scope.pages;
-            $scope.pageList = [];
+            $scope.UTotal = response.data.data.pages;
         }
     }, function errorCallback(errorresponse) {
         alert(errorresponse.data.msg);
     });
-    // 添加模态框
-    $scope.add = function () {
-        $('#add').modal('show');
-    }
-    $scope.upload = function () {
-        // 将用户信息上传
-    }
+    // 获取电影列表
+    $http({
+        method: 'POST',
+        url: 'http://127.0.0.1:8088//movie/showlist.do',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        data: $.param({
+            pageSize: 10,
+            pageNum: 1
+        })
+    }).then(function successCallback(response) {
+        if (response.data.status === 0) {
+            $scope.movies = response.data.data.list;
+            $scope.MTotal = response.data.data.pages;
+            //alert($scope.MTotal);
+        }
+    }, function errorCallback(errorresponse) {
+        alert(errorresponse.data.msg);
+    });
+
     // 详情模态框
-    $scope.detail = function (id) {
-        $('#info').modal('show');
+    $scope.UDetail = function (id) {
+        $('#uinfo').modal('show');
 
     }
     // 修改模态框
-    $scope.update = function (id) {
-        $('#modify').modal('show');
+    $scope.UUpdate = function (id) {
+        $('#umodify').modal('show');
         // 显示用户信息
     }
-    $scope.ensure = function (id) {
+    $scope.UEnsure = function (id) {
         // 将用户信息传回数据库
     }
     // 删除
-    $scope.delete = function (id,name) {
+    $scope.UDelete = function (id, name) {
         alert("删除用户:" + name);
     }
-    //分页要repeat的数组
-    for (var i = 0; i < $scope.NewPages; i++) {
-        $scope.pageList.push(i + 1);
-    }
-    //打印当前选中页索引
-    $scope.selectPage = function (page) {
-        //不能小于1大于最大
-        if (page < 1 || page > $scope.pages) return;
-        //最多显示分页数5
-        if (page > 2) {
-            //因为只显示5个页数，大于2页开始分页转换
-            var newpageList = [];
-            for (var i = (page - 3); i < ((page + 2) > $scope.pages ? $scope.pages : (page + 2)); i++) {
-                newpageList.push(i + 1);
-            }
-            $scope.pageList = newpageList;
-        }
-        $scope.selPage = page;
-        $scope.setData();
-        $scope.isActivePage(page);
-        console.log("选择的页：" + page);
-    };
-    //设置当前选中页样式
-    $scope.isActivePage = function (page) {
-        return $scope.selPage == page;
-    };
     //上一页
-    $scope.Previous = function () {
-        $http({
-            method: 'POST',
-            url: 'http://127.0.0.1:8088/manage/user/list.do',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            data: $.param({
-                pageSize: 10,
-                pageNum: $scope.selPage - 1
-            })
-        }).then(function successCallback(response) {
-            if (response.data.status === 0) {
-                $scope.users = response.data.data.list;
-                $scope.pages = response.data.data.pages;
-                $scope.newPages = $scope.pages > 5 ? 5 : $scope.pages;
-                $scope.pageList = [];
-            }
-        }, function errorCallback(errorresponse) {
-            alert(errorresponse.data.msg);
-        });
+    $scope.UPrevious = function () {
+        if ($scope.UPage > 1) {
+            $scope.UPage--;
+            $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/manage/user/list.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                data: $.param({
+                    pageSize: 20,
+                    pageNum: $scope.UPage
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.users = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+        }
     }
     //下一页
     $scope.Next = function () {
-        $http({
-            method: 'POST',
-            url: 'http://127.0.0.1:8088/manage/user/list.do',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            data: $.param({
-                pageSize: 10,
-                pageNum: $scope.selPage + 1
-            })
-        }).then(function successCallback(response) {
-            if (response.data.status === 0) {
-                $scope.users = response.data.data.list;
-                $scope.pages = response.data.data.pages;
-                $scope.newPages = $scope.pages > 5 ? 5 : $scope.pages;
-                $scope.pageList = [];
-            }
-        }, function errorCallback(errorresponse) {
-            alert(errorresponse.data.msg);
-        });
+        if ($scope.UPage < $scope.UTotal) {
+            $scope.UPage++;
+            $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/manage/user/list.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                data: $.param({
+                    pageSize: 20,
+                    pageNum: $scope.UPage
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.users = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+        }
+    };
+
+    // 添加模态框
+    $scope.MAdd = function () {
+        $('#madd').modal('show');
+    }
+    $scope.MUpload = function () {
+        // 将用户信息上传
+    }
+    // 详情模态框
+    $scope.MDetail = function (id) {
+        $('#minfo').modal('show');
+
+    }
+    // 修改模态框
+    $scope.MUpdate = function (id) {
+        $('#mmodify').modal('show');
+        // 显示用户信息
+    }
+    $scope.MEnsure = function (id) {
+        // 将用户信息传回数据库
+    }
+    // 删除
+    $scope.MDelete = function (id, name) {
+        alert("删除用户:" + name);
+    }
+    //上一页
+    $scope.MPrevious = function () {
+        if ($scope.MPage > 1) {
+            $scope.MPage--;
+            $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088//movie/showlist.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                data: $.param({
+                    pageSize: 10,
+                    pageNum: $scope.MPage
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.movies = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+        }
+    }
+    //下一页
+    $scope.MNext = function () {
+        if ($scope.MPage < $scope.MTotal) {
+            $scope.MPage++;
+            $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088//movie/showlist.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                data: $.param({
+                    pageSize: 10,
+                    pageNum: $scope.MPage
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.movies = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+        }
     };
 });
 
@@ -407,40 +476,44 @@ app.controller('SearchCtrl', function ($scope, $http) {
 });
 
 app.controller('MovieInfoCtrl', function ($scope, $http) {
-    $scope.$watch("movieId", function () {
-        var id = parseInt($scope.movieId);
-        // 根据电影Id获取电影详情
-        $http({
-            method: 'POST',
-            url: 'http://127.0.0.1:8088/manage/movie/get_information.do',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            data: $.param({
-                movie_id: id
-            })
-        }).then(function successCallback(response) {
-            // alert(JSON.stringify(response));
-            if (response.data.status === 0) {
-                //alert(JSON.stringify(response));
-                $scope.movie = response.data.data;
-            }
-        }, function errorCallback(errorresponse) {
-            alert(errorresponse.data.msg);
+    $scope.$watch("movieId",
+        function () {
+            var id = parseInt($scope.movieId);
+            // 根据电影Id获取电影详情
+            $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/manage/movie/get_information.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                data: $.param({
+                    movie_id: id
+                })
+            }).then(function successCallback(response) {
+                // alert(JSON.stringify(response));
+                if (response.data.status === 0) {
+                    $scope.movie = response.data.data;
+                    //alert($scope.movie.movie_star);
+                }
+            },
+                function errorCallback(errorresponse) {
+                    alert(errorresponse.data.msg);
+                });
+            // 获取电影类似的5部电影
+            $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/movie/showsimilarmovie.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                data: $.param({
+                    movieId: id
+                })
+            }).then(function successCallback(response) {
+                // alert(JSON.stringify(response));
+                if (response.data.status === 0) {
+                    $scope.movieList = response.data.data;
+                }
+            },
+                function errorCallback(errorresponse) {
+                    alert(errorresponse.data.msg);
+                });
         });
-        // 获取电影类似的5部电影
-        $http({
-            method: 'POST',
-            url: 'http://127.0.0.1:8088/movie/showsimilarmovie.do',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            data: $.param({
-                movieId: id
-            })
-        }).then(function successCallback(response) {
-            // alert(JSON.stringify(response));
-            if (response.data.status === 0) {
-                $scope.movieList = response.data.data;
-            }
-        }, function errorCallback(errorresponse) {
-            alert(errorresponse.data.msg);
-        });
-    });
+
 });
