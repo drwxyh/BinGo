@@ -245,9 +245,9 @@
                                         <td>{{x.movie_actor}}</td>
                                         <td>{{x.movie_keyword}}</td>
                                         <td>
-                                            <button class="btn btn-info btn-sm" ng-click="MDetail(x.id)">详情</button>
-                                            <button class="btn btn-warning btn-sm" ng-click="MUpdate(x.id)">修改</button>
-                                            <button class="btn btn-danger btn-sm" ng-click="MDelete(x.id,x.movie_name)">删除</button>
+                                            <button class="btn btn-info btn-sm" ng-click="MDetail(x.movie_id)">详情</button>
+                                            <button class="btn btn-warning btn-sm" ng-click="MUpdate(x.movie_id)">修改</button>
+                                            <button class="btn btn-danger btn-sm" ng-click="MDelete(x.movie_id,x.movie_name)">删除</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -279,11 +279,6 @@
                                         </div>
                                         <div class="modal-body">
                                             <form data-toggle="validator" role="form">
-                                                <div class="form-group">
-                                                    <label class="control-label">片号</label>
-                                                    <input type="text" class="form-control" ng-model="movieid" placeholder="电影号" data-error="请输入电影号" required />
-                                                    <div class="help-block with-errors"></div>
-                                                </div>
                                                 <div class="form-group">
                                                     <label class="control-label">片名</label>
                                                     <input type="text" class="form-control" ng-model="moviename" placeholder="片名" data-error="请输入电影名称" required />
@@ -331,7 +326,7 @@
                                                     </div>
                                                     <div class="form-inline row">
                                                         <div class="form-group col-md-6">
-                                                            <input type="date" class="form-control" ng-model="moviedate" placeholder="上映时间" data-error="请输入电影发行时间" required />
+                                                            <input type="number" class="form-control" ng-model="moviedate" max="2018" min="1990" placeholder="上映时间" data-error="请输入电影发行时间" required />
                                                             <div class="help-block with-errors"></div>
                                                         </div>
                                                         <div class="form-group col-md-6">
@@ -402,7 +397,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label">海报</label>
-                                                    <input type="text" class="form-control" ng-model="movie.pic_id" readonly />
+                                                    <input type="text" class="form-control" ng-model="movie.pic_url" readonly />
                                                     <div class="help-block with-errors"></div>
                                                 </div>
                                                 <div class="form-group">
@@ -416,12 +411,12 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="form-inline row">
-                                                        <label class="control-label col-md-6">类型</label>
+                                                        <label class="control-label col-md-6">上映时间</label>
                                                         <label class="control-label col-md-6">时长(分钟)</label>
                                                     </div>
                                                     <div class="form-inline row">
                                                         <div class="form-group col-md-6">
-                                                            <input ng-model="movietype" class="form-control" readonly />
+                                                            <input ng-model="movie.movie_date" class="form-control" readonly />
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <input ng-model="movie.movie_time" class="form-control" readonly />
@@ -483,12 +478,8 @@
                                                     <div class="help-block with-errors"></div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label">时间</label>
-
-                                                </div>
-                                                <div class="form-group">
                                                     <label class="control-label">海报</label>
-                                                    <input type="text" class="form-control" ng-model="movie.pic_id" placeholder="电影海报" data-error="请输入电影海报url" required />
+                                                    <input type="text" class="form-control" ng-model="movie.pic_url" placeholder="电影海报" data-error="请输入电影海报url" required />
                                                     <div class="help-block with-errors"></div>
                                                 </div>
                                                 <div class="form-group">
@@ -508,7 +499,7 @@
                                                     </div>
                                                     <div class="form-inline row">
                                                         <div class="form-group col-md-6">
-                                                            <input type="date" class="form-control" ng-model="movie.movie_date" placeholder="上映时间" data-error="请输入电影发行时间" required />
+                                                            <input type="number" class="form-control" ng-model="movie.movie_date" max="2018" min="1990" placeholder="上映时间" data-error="请输入电影发行时间" required />
                                                             <div class="help-block with-errors"></div>
                                                         </div>
                                                         <div class="form-group col-md-6">

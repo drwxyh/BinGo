@@ -1019,14 +1019,14 @@
 //testimonials
 ! (function($) {
 
-	$.fn.alpha = function(options) {
+	$.fn.show = function(options) {
 
 		var settings = $.extend({
 			autoplay: 'on',
 			delay: 4000,
 			layout: 'default',
 			bubbleColor: 'cornflowerblue',
-			bubbleText: 'black',
+			bubbleText: 'white',
 			quoteColor: 'white',
 			active: 0
 

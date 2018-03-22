@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - LanDouban</title>
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
-   
     <script src="@Url.Content("~/Scripts/jquery-3.3.1.min.js")"></script>
     <script src="~/Scripts/angular.js"></script>
     <script src="~/Scripts/jk-rating-stars.min.js"></script>
@@ -35,6 +34,7 @@
                     <li>@Html.ActionLink("搜索", "Search", "Home")</li>
                     <li id="user"></li>
                     <li id="manage"></li>
+                    <li>@Html.ActionLink("开发者", "Contact", "Home")</li>
                 </ul>
                 <ul class="nav navbar-nav pull-right">
                     <li id="btnRegister">@Html.ActionLink("注册", "Register", "Register")</li>

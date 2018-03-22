@@ -1172,6 +1172,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
         }).then(function successCallback(response) {
             if (response.data.status === 0) {
                 alert("修改成功！");
+                $('#umodify').modal('hide');
                 $scope.Reload($scope.UPage, 'User');
             }
         }, function errorCallback(errorresponse) {
@@ -1195,6 +1196,11 @@ app.controller('ManageCtrl', function ($scope, $http) {
         }).then(function successCallback(response) {
             if (response.data.status === 0) {
                 alert("删除用户成功！");
+                $('#udelete').modal('hide');
+                $scope.Reload($scope.UPage, 'User');
+            } else {
+                alert(JSON.stringify(response.data.msg));
+                $('#udelete').modal('hide');
                 $scope.Reload($scope.UPage, 'User');
             }
         }, function errorCallback(errorresponse) {
@@ -1215,6 +1221,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
             }).then(function successCallback(response) {
                 if (response.data.status === 0) {
                     $scope.users = response.data.data.list;
+                    $scope.UTotal = response.data.data.pages;
                 }
             }, function errorCallback(errorresponse) {
                 alert(errorresponse.data.msg);
@@ -1222,7 +1229,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
                 break;
             case "Movie": $scope.MPage = page, $http({
                 method: 'POST',
-                url: 'http://127.0.0.1:8088//movie/showlist.do',
+                url: 'http://127.0.0.1:8088/movie/showlist.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 data: $.param({
                     pageSize: 8,
@@ -1231,6 +1238,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
             }).then(function successCallback(response) {
                 if (response.data.status === 0) {
                     $scope.movies = response.data.data.list;
+                    $scope.MTotal = response.data.data.pages;
                 }
             }, function errorCallback(errorresponse) {
                 alert(errorresponse.data.msg);
@@ -1288,10 +1296,9 @@ app.controller('ManageCtrl', function ($scope, $http) {
     $scope.MUpload = function () {
         $http({
             method: 'POST',
-            url: 'http://127.0.0.1:8088/manage/movie/movie/add.do',
+            url: 'http://127.0.0.1:8088/manage/movie/add.do',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: $.param({
-                movie_id: $scope.movieid,
                 movie_name: $scope.moviename,
                 movie_director: $scope.moviedirector,
                 movie_actor: $scope.movieactor,
@@ -1300,13 +1307,16 @@ app.controller('ManageCtrl', function ($scope, $http) {
                 movie_district: $scope.moviedistrict,
                 movie_date: $scope.moviedate,
                 movie_keyword: $scope.moviekeyword,
-                pic_id: $scope.moviepicture,
+                pic_url: $scope.moviepicture,
                 movie_imdblid: $scope.movieimdblid,
-                movie_time: $scope.movietime
-            })
+                movie_time: $scope.movietime,
+                movie_rating: 0,
+                movie_numVotes:0
+    })
         }).then(function successCallback(response) {
             if (response.data.status === 0) {
                 alert("电影添加成功！");
+                $('#madd').modal('hide');
                 $scope.Reload($scope.MPage, 'Movie');
             }
         }, function errorCallback(errorresponse) {
@@ -1344,7 +1354,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
                 movie_id: id
             })
         }).then(function successCallback(response) {
-            alert(JSON.stringify(response));
+            //alert(JSON.stringify(response));
             if (response.data.status === 0) {
                 $scope.movie = response.data.data;
             }
@@ -1375,6 +1385,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
         }).then(function successCallback(response) {
             if (response.data.status === 0) {
                 alert("电影信息修改成功！");
+                $('#mmodify').modal('hide');
                 $scope.Reload($scope.MPage, 'Movie');
             }
         }, function errorCallback(errorresponse) {
@@ -1388,22 +1399,26 @@ app.controller('ManageCtrl', function ($scope, $http) {
         $scope.mdeleteId = id;
     }
     $scope.MDeleteCommit = function () {
-        alert("删除成功！");
-        //$http({
-        //    method: 'POST',
-        //    url: 'http://127.0.0.1:8088/manage/movie/delete.do',
-        //    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        //    data: $.param({
-        //        movie_id: $scope.mdeleteId
-        //    })
-        //}).then(function successCallback(response) {
-        //    if (response.data.status === 0) {
-        //        alert("删除电影成功！");
-        //        $scope.Reload($scope.MPage, 'Movie');
-        //    }
-        //}, function errorCallback(errorresponse) {
-        //    alert(errorresponse.data.msg);
-        //});
+        $http({
+            method: 'POST',
+            url: 'http://127.0.0.1:8088/manage/movie/delete.do',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            data: $.param({
+                movie_id: $scope.mdeleteId
+            })
+        }).then(function successCallback(response) {
+            if (response.data.status === 1) {
+                alert("删除电影成功！");
+                $('#mdelete').modal('hide');
+                $scope.Reload($scope.MPage, 'Movie');
+            } else {
+                alert(JSON.stringify(response.data.msg));
+                $('#mdelete').modal('hide');
+                $scope.Reload($scope.MPage, 'Movie');
+            }
+        }, function errorCallback(errorresponse) {
+            alert(errorresponse.data.msg);
+        });
     }
     //上一页
     $scope.MPrevious = function () {

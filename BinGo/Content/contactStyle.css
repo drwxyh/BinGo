@@ -1,18 +1,30 @@
-﻿   a, a:active{
-       text-decoration: none
-   }
-   .clearfix:before,
-   .clearfix:after,
-   ul:before,
-   ul:after{
-       display: table;
-       content: " ";
-   }
-   .clearfix:after,
-   ul:after{
-       clear:both;
-   }
-   ul li{
-       display: inline-block;
-       margin-left: 10px;
-   }
+﻿a, a:active {
+    text-decoration: none
+}
+
+.clearfix:before,
+.clearfix:after,
+ul:before,
+ul:after {
+    display: table;
+    content: " ";
+}
+
+.clearfix:after,
+ul:after {
+    clear: both;
+}
+
+ul li {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+@font-face {
+    font-family: 'PWYummyDonuts';
+    src: url('../fonts/PWYummyDonuts.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'IDAHO_Conrad_Garner';
+    src: url('../fonts/IDAHO_Conrad_Garner.ttf') format('truetype');
+}
