@@ -4,8 +4,6 @@ app.config(['$httpProvider', config]);
 function config($httpProvider) {
     $httpProvider.defaults.withCredentials = true;
 }
-// 星级评分
-
 
 app.controller('MovieCtrl', function ($scope, $http) {
     $scope.ActionCurOrderType = "";
@@ -50,7 +48,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                     });
                 break;
             case "War":
-                if (page < $scope.WarTotalPages) $scope.WarCurPage-- ,
+                if (page < $scope.WarTotalPages) $scope.WarCurPage++ ,
                     $http({
                         method: 'POST',
                         url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
@@ -71,7 +69,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                     });
                 break;
             case "History":
-                if (page < $scope.HistoryTotalPages) $scope.HistoryCurPage-- ,
+                if (page < $scope.HistoryTotalPages) $scope.HistoryCurPage++ ,
                     $http({
                         method: 'POST',
                         url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
@@ -92,7 +90,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                     });
                 break;
             case "Comedy":
-                if (page < $scope.ComedyTotalPages) $scope.ComedyCurPage-- ,
+                if (page < $scope.ComedyTotalPages) $scope.ComedyCurPage++ ,
                     $http({
                         method: 'POST',
                         url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
@@ -113,7 +111,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                     });
                 break;
             case "Mystery":
-                if (page < $scope.MysteryTotalPages) $scope.MysteryCurPage-- ,
+                if (page < $scope.MysteryTotalPages) $scope.MysteryCurPage++ ,
                     $http({
                         method: 'POST',
                         url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
@@ -134,7 +132,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                     });
                 break;
             case "Musical":
-                if (page < $scope.MusicalTotalPages) $scope.MusicalCurPage-- ,
+                if (page < $scope.MusicalTotalPages) $scope.MusicalCurPage++ ,
                     $http({
                         method: 'POST',
                         url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
@@ -143,19 +141,19 @@ app.controller('MovieCtrl', function ($scope, $http) {
                         data: $.param({
                             pageSize: 12,
                             pageNum: $scope.MusicalCurPage,
-                            orderBy: $scope.MiscalCurOrderType,
-                            movie_keyword: 'Miscal'
+                            orderBy: $scope.MusicalCurOrderType,
+                            movie_keyword: 'Musical'
                         })
                     }).then(function successCallback(response) {
                         if (response.data.status === 0) {
-                            $scope.MiscalList = response.data.data.list;
+                            $scope.MusicalList = response.data.data.list;
                         }
                     }, function errorCallback(errorresponse) {
                         alert(errorresponse.data.msg);
                     });
                 break;
             case "Romance":
-                if (page < $scope.RomanceTotalPages) $scope.RomanceCurPage-- ,
+                if (page < $scope.RomanceTotalPages) $scope.RomanceCurPage++ ,
                     $http({
                         method: 'POST',
                         url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
@@ -176,7 +174,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                     });
                 break;
             case "Sci-Fi":
-                if (page < $scope.SciFiTotalPages) $scope.SciFiCurPage-- ,
+                if (page < $scope.SciFiTotalPages) $scope.SciFiCurPage++ ,
                     $http({
                         method: 'POST',
                         url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
@@ -197,10 +195,10 @@ app.controller('MovieCtrl', function ($scope, $http) {
                     });
                 break;
             case "All":
-                if (page < $scope.AllTotalPages) $scope.AllCurPage-- ,
+                if (page < $scope.AllTotalPages) $scope.AllCurPage++ ,
                     $http({
                         method: 'POST',
-                        url: 'http://127.0.0.1:8088//movie/showlist.do',
+                        url: 'http://127.0.0.1:8088/movie/showlist.do',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         withCredentials: true,
                         data: $.param({
@@ -335,12 +333,12 @@ app.controller('MovieCtrl', function ($scope, $http) {
                         data: $.param({
                             pageSize: 12,
                             pageNum: $scope.MusicalCurPage,
-                            orderBy: $scope.MiscalCurOrderType,
-                            movie_keyword: 'Miscal'
+                            orderBy: $scope.MusicalCurOrderType,
+                            movie_keyword: 'Musical'
                         })
                     }).then(function successCallback(response) {
                         if (response.data.status === 0) {
-                            $scope.MiscalList = response.data.data.list;
+                            $scope.MusicalList = response.data.data.list;
                         }
                     }, function errorCallback(errorresponse) {
                         alert(errorresponse.data.msg);
@@ -392,7 +390,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 if (page > 1) $scope.AllCurPage-- ,
                     $http({
                         method: 'POST',
-                        url: 'http://127.0.0.1:8088//movie/showlist.do',
+                        url: 'http://127.0.0.1:8088/movie/showlist.do',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         withCredentials: true,
                         data: $.param({
@@ -516,12 +514,12 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 data: $.param({
                     pageSize: 12,
                     pageNum: page,
-                    orderBy: $scope.MiscalCurOrderType,
-                    movie_keyword: 'Miscal'
+                    orderBy: $scope.MusicalCurOrderType,
+                    movie_keyword: 'Musical'
                 })
             }).then(function successCallback(response) {
                 if (response.data.status === 0) {
-                    $scope.MiscalList = response.data.data.list;
+                    $scope.MusicalList = response.data.data.list;
                 }
             }, function errorCallback(errorresponse) {
                 alert(errorresponse.data.msg);
@@ -567,7 +565,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 break;
             case "All": $http({
                 method: 'POST',
-                url: 'http://127.0.0.1:8088//movie/showlist.do',
+                url: 'http://127.0.0.1:8088/movie/showlist.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true,
                 data: $.param({
@@ -601,7 +599,6 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 })
             }).then(function successCallback(response) {
                 if (response.data.status === 0) {
-                    alert($scope.ActionCurOrderType);
                     $scope.ActionList = response.data.data.list;
                 }
             }, function errorCallback(errorresponse) {
@@ -635,6 +632,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 data: $.param({
                     pageSize: 12,
                     pageNum: 1,
+                    orderBy: orderType,
                     movie_keyword: 'History'
                 })
             }).then(function successCallback(response) {
@@ -653,6 +651,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 data: $.param({
                     pageSize: 12,
                     pageNum: 1,
+                    orderBy: orderType,
                     movie_keyword: 'Comedy'
                 })
             }).then(function successCallback(response) {
@@ -671,6 +670,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 data: $.param({
                     pageSize: 12,
                     pageNum: 1,
+                    orderBy: orderType,
                     movie_keyword: 'Mystery'
                 })
             }).then(function successCallback(response) {
@@ -689,6 +689,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 data: $.param({
                     pageSize: 12,
                     pageNum: 1,
+                    orderBy: orderType,
                     movie_keyword: 'Musical'
                 })
             }).then(function successCallback(response) {
@@ -707,6 +708,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 data: $.param({
                     pageSize: 12,
                     pageNum: 1,
+                    orderBy: orderType,
                     movie_keyword: 'Romance'
                 })
             }).then(function successCallback(response) {
@@ -725,6 +727,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 data: $.param({
                     pageSize: 12,
                     pageNum: 1,
+                    orderBy: orderType,
                     movie_keyword: 'Sci-Fi'
                 })
             }).then(function successCallback(response) {
@@ -737,11 +740,12 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 break;
             case "All": $scope.AllCurOrderType = orderType, $scope.AllCurPage = 1, $http({
                 method: 'POST',
-                url: 'http://127.0.0.1:8088//movie/showlist.do',
+                url: 'http://127.0.0.1:8088/movie/showlist.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true,
                 data: $.param({
                     pageSize: 12,
+                    orderBy: orderType,
                     pageNum: 1
                 })
             }).then(function successCallback(response) {
@@ -901,7 +905,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
     });
     $http({
         method: 'POST',
-        url: 'http://127.0.0.1:8088//movie/showlist.do',
+        url: 'http://127.0.0.1:8088/movie/showlist.do',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         withCredentials: true,
         data: $.param({
@@ -1050,14 +1054,8 @@ app.controller('UserInfoCtrl', function ($scope, $http) {
 });
 
 app.controller('ManageCtrl', function ($scope, $http) {
-    $scope.gender = "男";
     $scope.genderOptions = ["男", "女"];
-    $scope.age = "90后";
     $scope.ageOptions = ["10后", "00后", "90后", "80后", "70后", "60后", "50后"];
-    $scope.movietype = "动作";
-    $scope.movietime = 120;
-    $scope.typeOptions = ["动作", "战争", "历史", "喜剧", "悬疑", "音乐", "爱情", "科幻"];
-    $scope.timeOptions = [90, 100, 110, 120, 130, 140, 150, 160];
     // 存储用户信息
     $scope.users = [];
     $scope.UPage = 1;
@@ -1072,12 +1070,12 @@ app.controller('ManageCtrl', function ($scope, $http) {
         url: 'http://127.0.0.1:8088/manage/user/list.do',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         data: $.param({
-            pageSize: 20,
+            pageSize: 15,
             pageNum: 1
         })
     }).then(function successCallback(response) {
+        //alert(JSON.stringify(response));
         if (response.data.status === 0) {
-            //alert(JSON.stringify(response));
             $scope.users = response.data.data.list;
             $scope.UTotal = response.data.data.pages;
         }
@@ -1090,7 +1088,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
         url: 'http://127.0.0.1:8088//movie/showlist.do',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         data: $.param({
-            pageSize: 10,
+            pageSize: 8,
             pageNum: 1
         })
     }).then(function successCallback(response) {
@@ -1106,19 +1104,139 @@ app.controller('ManageCtrl', function ($scope, $http) {
     // 详情模态框
     $scope.UDetail = function (id) {
         $('#uinfo').modal('show');
-
+        $http({
+            method: 'POST',
+            url: 'http://127.0.0.1:8088/manage/user/get_information.do',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            data: $.param({
+                userId: id
+            })
+        }).then(function successCallback(response) {
+            if (response.data.status === 0) {
+                $scope.cur = response.data.data;
+                if ($scope.cur.sex === 1) {
+                    $scope.gender = '男';
+                } else {
+                    $scope.gender = '女';
+                }
+            }
+        }, function errorCallback(errorresponse) {
+            alert(errorresponse.data.msg);
+        });
     }
     // 修改模态框
     $scope.UUpdate = function (id) {
         $('#umodify').modal('show');
         // 显示用户信息
+        $http({
+            method: 'POST',
+            url: 'http://127.0.0.1:8088/manage/user/get_information.do',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            data: $.param({
+                userId: id
+            })
+        }).then(function successCallback(response) {
+            if (response.data.status === 0) {
+                $scope.cur = response.data.data;
+                if ($scope.cur.sex === 1) {
+                    $scope.gender = '男';
+                } else {
+                    $scope.gender = '女';
+                }
+            }
+        }, function errorCallback(errorresponse) {
+            alert(errorresponse.data.msg);
+        });
     }
-    $scope.UEnsure = function (id) {
+    $scope.UUpdateCommit = function () {
         // 将用户信息传回数据库
+        var sex;
+        if ($scope.gender === '男') {
+            sex = 1;
+        } else {
+            sex = 0;
+        }
+        $http({
+            method: 'POST',
+            url: 'http://127.0.0.1:8088/manage/user/update_information.do',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            data: $.param({
+                id: $scope.cur.id,
+                email: $scope.cur.email,
+                phone: $scope.cur.phone,
+                question:$scope.cur.question,
+                answer: $scope.cur.answer,
+                age: $scope.cur.age,
+                sex: sex
+            })
+        }).then(function successCallback(response) {
+            if (response.data.status === 0) {
+                alert("修改成功！");
+                $scope.Reload($scope.UPage, 'User');
+            }
+        }, function errorCallback(errorresponse) {
+            alert(errorresponse.data.msg);
+        });
     }
     // 删除
     $scope.UDelete = function (id, name) {
-        alert("删除用户:" + name);
+        $('#udelete').modal('show');
+        $scope.uname = name;
+        $scope.udeleteId = id;
+    }
+    $scope.UDeleteCommit = function () {
+        $http({
+            method: 'POST',
+            url: 'http://127.0.0.1:8088/manage/user/delete.do',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            data: $.param({
+                userId: $scope.udeleteId
+            })
+        }).then(function successCallback(response) {
+            if (response.data.status === 0) {
+                alert("删除用户成功！");
+                $scope.Reload($scope.UPage, 'User');
+            }
+        }, function errorCallback(errorresponse) {
+            alert(errorresponse.data.msg);
+        });
+    }
+    // 更新页码
+    $scope.Reload = function (page, type) {
+        switch (type) {
+            case "User": $scope.UPage = page, $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/manage/user/list.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                data: $.param({
+                    pageSize: 15,
+                    pageNum: $scope.UPage
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.users = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+                break;
+            case "Movie": $scope.MPage = page, $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088//movie/showlist.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                data: $.param({
+                    pageSize: 8,
+                    pageNum: $scope.MPage
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.movies = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+                break;
+        }
     }
     //上一页
     $scope.UPrevious = function () {
@@ -1129,7 +1247,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
                 url: 'http://127.0.0.1:8088/manage/user/list.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 data: $.param({
-                    pageSize: 20,
+                    pageSize: 15,
                     pageNum: $scope.UPage
                 })
             }).then(function successCallback(response) {
@@ -1150,7 +1268,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
                 url: 'http://127.0.0.1:8088/manage/user/list.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 data: $.param({
-                    pageSize: 20,
+                    pageSize: 15,
                     pageNum: $scope.UPage
                 })
             }).then(function successCallback(response) {
@@ -1168,24 +1286,124 @@ app.controller('ManageCtrl', function ($scope, $http) {
         $('#madd').modal('show');
     }
     $scope.MUpload = function () {
-        // 将用户信息上传
+        $http({
+            method: 'POST',
+            url: 'http://127.0.0.1:8088/manage/movie/movie/add.do',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            data: $.param({
+                movie_id: $scope.movieid,
+                movie_name: $scope.moviename,
+                movie_director: $scope.moviedirector,
+                movie_actor: $scope.movieactor,
+                movie_language: $scope.movielanguage,
+                type_id: 1,
+                movie_district: $scope.moviedistrict,
+                movie_date: $scope.moviedate,
+                movie_keyword: $scope.moviekeyword,
+                pic_id: $scope.moviepicture,
+                movie_imdblid: $scope.movieimdblid,
+                movie_time: $scope.movietime
+            })
+        }).then(function successCallback(response) {
+            if (response.data.status === 0) {
+                alert("电影添加成功！");
+                $scope.Reload($scope.MPage, 'Movie');
+            }
+        }, function errorCallback(errorresponse) {
+            alert(errorresponse.data.msg);
+        });
     }
     // 详情模态框
     $scope.MDetail = function (id) {
         $('#minfo').modal('show');
-
+        $http({
+            method: 'POST',
+            url: 'http://127.0.0.1:8088/manage/movie/get_information.do',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            data: $.param({
+                movie_id: id
+            })
+        }).then(function successCallback(response) {
+            //alert(JSON.stringify(response));
+            if (response.data.status === 0) {
+                $scope.movie = response.data.data;
+            }
+        }, function errorCallback(errorresponse) {
+            alert(errorresponse.data.msg);
+        });
     }
     // 修改模态框
     $scope.MUpdate = function (id) {
         $('#mmodify').modal('show');
         // 显示用户信息
+        $http({
+            method: 'POST',
+            url: 'http://127.0.0.1:8088/manage/movie/get_information.do',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            data: $.param({
+                movie_id: id
+            })
+        }).then(function successCallback(response) {
+            alert(JSON.stringify(response));
+            if (response.data.status === 0) {
+                $scope.movie = response.data.data;
+            }
+        }, function errorCallback(errorresponse) {
+            alert(errorresponse.data.msg);
+        });
     }
-    $scope.MEnsure = function (id) {
+    $scope.MUpdateCommit = function () {
         // 将用户信息传回数据库
+        $http({
+            method: 'POST',
+            url: 'http://127.0.0.1:8088/manage/movie/update_information.do',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            data: $.param({
+                movie_id: $scope.movie.movie_id,
+                movie_name: $scope.movie.movie_name,
+                movie_director: $scope.movie.movie_director,
+                movie_actor: $scope.movie.movie_actor,
+                movie_language: $scope.movie.movie_language,
+                type_id: 1,
+                movie_district: $scope.movie.movie_district,
+                movie_date: $scope.movie.movie_date,
+                movie_keyword: $scope.movie.movie_keyword,
+                pic_id: $scope.movie.pic_id,
+                movie_imdblid: $scope.movie.movie_imdblid,
+                movie_time: $scope.movie.movie_time
+            })
+        }).then(function successCallback(response) {
+            if (response.data.status === 0) {
+                alert("电影信息修改成功！");
+                $scope.Reload($scope.MPage, 'Movie');
+            }
+        }, function errorCallback(errorresponse) {
+            alert(errorresponse.data.msg);
+        });
     }
     // 删除
     $scope.MDelete = function (id, name) {
-        alert("删除用户:" + name);
+        $('#mdelete').modal('show');
+        $scope.mname = name;
+        $scope.mdeleteId = id;
+    }
+    $scope.MDeleteCommit = function () {
+        alert("删除成功！");
+        //$http({
+        //    method: 'POST',
+        //    url: 'http://127.0.0.1:8088/manage/movie/delete.do',
+        //    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        //    data: $.param({
+        //        movie_id: $scope.mdeleteId
+        //    })
+        //}).then(function successCallback(response) {
+        //    if (response.data.status === 0) {
+        //        alert("删除电影成功！");
+        //        $scope.Reload($scope.MPage, 'Movie');
+        //    }
+        //}, function errorCallback(errorresponse) {
+        //    alert(errorresponse.data.msg);
+        //});
     }
     //上一页
     $scope.MPrevious = function () {
@@ -1193,10 +1411,10 @@ app.controller('ManageCtrl', function ($scope, $http) {
             $scope.MPage--;
             $http({
                 method: 'POST',
-                url: 'http://127.0.0.1:8088//movie/showlist.do',
+                url: 'http://127.0.0.1:8088/movie/showlist.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 data: $.param({
-                    pageSize: 10,
+                    pageSize: 8,
                     pageNum: $scope.MPage
                 })
             }).then(function successCallback(response) {
@@ -1214,10 +1432,10 @@ app.controller('ManageCtrl', function ($scope, $http) {
             $scope.MPage++;
             $http({
                 method: 'POST',
-                url: 'http://127.0.0.1:8088//movie/showlist.do',
+                url: 'http://127.0.0.1:8088/movie/showlist.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 data: $.param({
-                    pageSize: 10,
+                    pageSize: 8,
                     pageNum: $scope.MPage
                 })
             }).then(function successCallback(response) {
@@ -1261,7 +1479,7 @@ app.controller('SearchCtrl', function ($scope, $http) {
         });
     }
 });
-
+// 待添加评论
 app.controller('MovieInfoCtrl', function ($scope, $http) {
     $scope.$watch("movieId",
         function () {

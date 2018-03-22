@@ -5,84 +5,7 @@
 <link href="~/Content/htmleaf-demo.css" rel="stylesheet" />
 <link href="~/Content/normalize.css" rel="stylesheet" />
 <script src="~/Scripts/validator.min.js"></script>
-<style type="text/css">
-    .demo {
-        width: 100%;
-        height: 600px;
-        min-height: 600px;
-    }
-
-    a:hover, a:focus {
-        text-decoration: none;
-        outline: none;
-    }
-
-    .tab .nav-tabs {
-        border-bottom: 0 none;
-    }
-
-        .tab .nav-tabs li {
-            margin-right: 10px;
-        }
-
-            .tab .nav-tabs li a {
-                position: relative;
-                padding: 15px;
-                color: #fff;
-                font-size: 17px;
-                z-index: 1;
-            }
-
-                .tab .nav-tabs li a:hover {
-                    background: transparent;
-                    border: 1px solid transparent;
-                }
-
-                .tab .nav-tabs li a:before {
-                    content: "";
-                    width: 100%;
-                    height: 100%;
-                    position: absolute;
-                    bottom: 8px;
-                    left: -1px;
-                    font-size: 17px;
-                    background: #72b7a0;
-                    border: 1px solid #d3d3d3;
-                    border-bottom: 0px none;
-                    border-radius: 10px 10px 0 0;
-                    transform-origin: left center 0;
-                    transform: perspective(4px) rotateX(2deg);
-                    z-index: -1;
-                }
-
-            .tab .nav-tabs li.active a:before {
-                background: #fff;
-            }
-
-            .tab .nav-tabs li.active a,
-            .tab .nav-tabs li.active a:focus,
-            .tab .nav-tabs li.active a:hover {
-                border: 1px solid transparent;
-                background: transparent;
-                color: #444;
-                z-index: 2;
-            }
-
-    .tab-content .tab-pane {
-        border: 1px solid #d3d3d3;
-        padding: 20px;
-        background: #fff;
-        line-height: 22px;
-    }
-
-        .tab-content .tab-pane h3 {
-            margin-top: 0;
-        }
-
-    .mt30 {
-        margin-top: 30px;
-    }
-</style>
+<link href="~/Content/tabStyle.css" rel="stylesheet" />
 <div class="container" ng-app="BinGoApp" ng-controller="ManageCtrl" style="margin-top: 40px;">
     <div class="row">
         <div class="col-md-12 mt30">
@@ -127,7 +50,7 @@
                                 </tbody>
                             </table>
                             <nav>
-                                <ul class="pagination">
+                                <ul class="pagination pull-right">
                                     <li>
                                         <a ng-click="UPrevious()">
                                             <span>上一页</span>
@@ -139,6 +62,7 @@
                                         </a>
                                     </li>
                                 </ul>
+                                <div style="text-align: center">第<input type="number" min="1" max="{{UTotal}}" ng-model=UPage ng-change="Reload(UPage,'User')" />页{{' 共'+UTotal+'页'}}</div>
                             </nav>
                             <!-- 详细信息-->
                             <div class="modal" id="uinfo">
@@ -157,37 +81,37 @@
                                         <div class="modal-body">
                                             <form data-toggle="validator" role="form">
                                                 <div class="form-group">
-                                                    <label for="txtName" class="control-label">用户名</label>
-                                                    <input type="text" class="form-control" ng-model="username" readonly />
+                                                    <label class="control-label">用户名</label>
+                                                    <input type="text" class="form-control" ng-model="cur.username" readonly />
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="txtEmail" class="control-label">邮箱</label>
-                                                    <input type="email" class="form-control" ng-model="email" readonly />
+                                                    <label class="control-label">邮箱</label>
+                                                    <input type="email" class="form-control" ng-model="cur.email" readonly />
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="txtPhone" class="control-label">手机号</label>
-                                                    <input type="text" class="form-control" ng-model="phone" readonly />
+                                                    <label class="control-label">手机号</label>
+                                                    <input type="text" class="form-control" ng-model="cur.phone" readonly />
                                                     <div class="help-block with-errors"></div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="txtQuestion" class="control-label">验证问题</label>
-                                                    <input type="text" class="form-control" ng-model="question" readonly />
+                                                    <label class="control-label">验证问题</label>
+                                                    <input type="text" class="form-control" ng-model="cur.question" readonly />
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="txtAnswer" class="control-label">问题答案</label>
-                                                    <input type="text" class="form-control" ng-model="answer" readonly />
+                                                    <label class="control-label">问题答案</label>
+                                                    <input type="text" class="form-control" ng-model="cur.answer" readonly />
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="form-inline row">
-                                                        <label for="txtGender" class="control-label col-md-6">性别</label>
-                                                        <label for="txtAge" class="control-label col-md-6">年龄</label>
+                                                        <label class="control-label col-md-6">性别</label>
+                                                        <label class="control-label col-md-6">年龄</label>
                                                     </div>
                                                     <div class="form-inline row">
                                                         <div class="form-group col-md-6">
                                                             <input type="text" class="form-control" ng-model="gender" readonly />
                                                         </div>
                                                         <div class="form-group col-md-6">
-                                                            <input type="text" class="form-control" ng-model="age" readonly />
+                                                            <input type="text" class="form-control" ng-model="cur.age" readonly />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -195,7 +119,7 @@
                                         </div>
 
                                         <div class="modal-footer">
-                                            <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                                            <button class="btn btn-success" data-dismiss="modal">关闭</button>
                                         </div>
 
                                     </div>
@@ -220,34 +144,34 @@
                                         <div class="modal-body">
                                             <form data-toggle="validator" role="form">
                                                 <div class="form-group">
-                                                    <label for="txtName" class="control-label">用户名</label>
-                                                    <input type="text" class="form-control" ng-model="username" placeholder="用户名" data-error="请输入您的用户名" required />
+                                                    <label class="control-label">用户名</label>
+                                                    <input type="text" class="form-control" ng-model="cur.username" placeholder="用户名" data-error="请输入您的用户名" readonly />
                                                     <div class="help-block with-errors"></div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="txtEmail" class="control-label">邮箱</label>
-                                                    <input type="email" class="form-control" ng-model="email" placeholder="邮箱" data-error="您输入的邮箱格式不正确" required />
+                                                    <label class="control-label">邮箱</label>
+                                                    <input type="email" class="form-control" ng-model="cur.email" placeholder="邮箱" data-error="您输入的邮箱格式不正确" required />
                                                     <div class="help-block with-errors"></div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="txtPhone" class="control-label">手机号</label>
-                                                    <input type="text" class="form-control" ng-model="phone" placeholder="手机号" data-error="请输入您的手机号" required />
+                                                    <label class="control-label">手机号</label>
+                                                    <input type="text" class="form-control" ng-model="cur.phone" placeholder="手机号" data-error="请输入您的手机号" required />
                                                     <div class="help-block with-errors"></div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="txtQuestion" class="control-label">验证问题</label>
-                                                    <input type="text" class="form-control" ng-model="question" placeholder="验证问题" data-error="请输入您的验证问题" required />
+                                                    <label class="control-label">验证问题</label>
+                                                    <input type="text" class="form-control" ng-model="cur.question" placeholder="验证问题" data-error="请输入您的验证问题" required />
                                                     <div class="help-block with-errors"></div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="txtAnswer" class="control-label">问题答案</label>
-                                                    <input type="text" class="form-control" ng-model="answer" placeholder="问题答案" data-error="请输入验证问题的答案" required />
+                                                    <label class="control-label">问题答案</label>
+                                                    <input type="text" class="form-control" ng-model="cur.answer" placeholder="问题答案" data-error="请输入验证问题的答案" required />
                                                     <div class="help-block with-errors"></div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="form-inline row">
-                                                        <label for="txtGender" class="control-label col-md-6">性别</label>
-                                                        <label for="txtAge" class="control-label col-md-6">年龄</label>
+                                                        <label class="control-label col-md-6">性别</label>
+                                                        <label class="control-label col-md-6">年龄</label>
                                                     </div>
                                                     <div class="form-inline row">
                                                         <div class="form-group col-md-6">
@@ -255,23 +179,7 @@
                                                             <div class="help-block with-errors"></div>
                                                         </div>
                                                         <div class="form-group col-md-6">
-                                                            <select ng-model="age" ng-options="x for x in ageOptions" class="form-control" data-error="请选择您的年龄！" required></select>
-                                                            <div class="help-block with-errors"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="form-inline row">
-                                                        <label class="control-label col-md-6">密码</label>
-                                                        <label class="control-label col-md-6">确认密码</label>
-                                                    </div>
-                                                    <div class="form-inline row">
-                                                        <div class="form-group col-md-6">
-                                                            <input type="password" data-minlength="6" class="form-control" id="txtPassword" ng-model="password" placeholder="密码" required />
-                                                            <div class="help-block">最小长度为六位</div>
-                                                        </div>
-                                                        <div class="form-group col-md-6">
-                                                            <input type="password" class="form-control" id="txtConfirmPassword" ng-model="cpassword" data-match="#txtPassword" data-match-error="密码不一致！" placeholder="确认密码" required />
+                                                            <select ng-model="cur.age" ng-options="x for x in ageOptions" class="form-control" data-error="请选择您的年龄！" required></select>
                                                             <div class="help-block with-errors"></div>
                                                         </div>
                                                     </div>
@@ -281,13 +189,31 @@
 
                                         <div class="modal-footer">
                                             <button class="btn btn-default" data-dismiss="modal">关闭</button>
-                                            <button class="btn btn-success" ng-click="UEnsure()">确定</button>
+                                            <button class="btn btn-success" ng-click="UUpdateCommit()">确定</button>
                                         </div>
 
                                     </div>
 
                                 </div>
 
+                            </div>
+                            <!-- 信息删除 -->
+                            <div class="modal fade" id="udelete">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            <h4 class="modal-title">删除警告</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-danger center">您确认要删除用户：“{{uname}}”吗？</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                                            <button class="btn btn-danger" ng-click="UDeleteCommit()">确定</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -297,8 +223,8 @@
                                 <span class="input-group-addon">搜索</span>
                                 <input type="text" class="form-control" ng-model="msearchText" placeholder="请输入关键字">
                             </div>
-                            <div class="pull-right">
-                                <button class="btn btn-primary btn-sm" ng-click="MAdd()">添加</button>
+                            <div class="pull-right" style="margin-right: 3%;">
+                                <button class="btn btn-primary btn-sm" ng-click="MAdd()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加</button>
                             </div>
                         </div>
                         <div class="container">
@@ -327,7 +253,7 @@
                                 </tbody>
                             </table>
                             <nav>
-                                <ul class="pagination">
+                                <ul class="pagination pull-right">
                                     <li>
                                         <a ng-click="MPrevious()">
                                             <span>上一页</span>
@@ -339,21 +265,18 @@
                                         </a>
                                     </li>
                                 </ul>
+                                <div style="text-align: center">第<input type="number" min="1" max="{{MTotal}}" ng-model=MPage ng-change="Reload(MPage,'Movie')" />页{{' 共'+MTotal+'页'}}</div>
                             </nav>
                             <!-- 添加信息 -->
                             <div class="modal" id="madd">
-
                                 <div class="modal-dialog">
-
                                     <div class="modal-content">
-
                                         <div class="modal-header">
                                             <button class="close" data-dismiss="modal">
                                                 <span class="glyphicon glyphicon-remove"></span>
                                             </button>
                                             <h3 class="modal-title">添加信息</h3>
                                         </div>
-
                                         <div class="modal-body">
                                             <form data-toggle="validator" role="form">
                                                 <div class="form-group">
@@ -387,13 +310,8 @@
                                                     <div class="help-block with-errors"></div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label">时间</label>
-                                                    <input type="text" class="form-control" ng-model="moviedate" placeholder="时间" data-error="请输入电影发行时间" required />
-                                                    <div class="help-block with-errors"></div>
-                                                </div>
-                                                <div class="form-group">
                                                     <label class="control-label">海报</label>
-                                                    <input type="text" class="form-control" ng-model="moviedistrict" placeholder="海报" data-error="请输入电影海报url" required />
+                                                    <input type="text" class="form-control" ng-model="moviepicture" placeholder="海报" data-error="请输入电影海报url" required />
                                                     <div class="help-block with-errors"></div>
                                                 </div>
                                                 <div class="form-group">
@@ -408,16 +326,16 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="form-inline row">
-                                                        <label class="control-label col-md-6">类型</label>
-                                                        <label class="control-label col-md-6">时长</label>
+                                                        <label class="control-label col-md-6">上映时间</label>
+                                                        <label class="control-label col-md-6">时长(分钟)</label>
                                                     </div>
                                                     <div class="form-inline row">
                                                         <div class="form-group col-md-6">
-                                                            <select ng-model="movietype" ng-options="x for x in typeOptions" class="form-control" data-error="请选择电影类型！" required></select>
+                                                            <input type="date" class="form-control" ng-model="moviedate" placeholder="上映时间" data-error="请输入电影发行时间" required />
                                                             <div class="help-block with-errors"></div>
                                                         </div>
                                                         <div class="form-group col-md-6">
-                                                            <select ng-model="movietime" ng-options="x for x in timeOptions" class="form-control" data-error="请选择电影时长！" required></select>
+                                                            <input type="number" ng-model="movietime" class="form-control" placeholder="电影时长" data-error="请输入电影时长" required />
                                                             <div class="help-block with-errors"></div>
                                                         </div>
                                                     </div>
@@ -437,18 +355,14 @@
                             </div>
                             <!-- 详细信息-->
                             <div class="modal" id="minfo">
-
                                 <div class="modal-dialog">
-
                                     <div class="modal-content">
-
                                         <div class="modal-header">
                                             <button class="close" data-dismiss="modal">
                                                 <span class="glyphicon glyphicon-remove"></span>
                                             </button>
                                             <h3 class="modal-title">详细信息</h3>
                                         </div>
-
                                         <div class="modal-body">
                                             <form data-toggle="validator" role="form">
                                                 <div class="form-group">
@@ -488,7 +402,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label">海报</label>
-                                                    <input type="text" class="form-control" ng-model="movie.movie_district" readonly />
+                                                    <input type="text" class="form-control" ng-model="movie.pic_id" readonly />
                                                     <div class="help-block with-errors"></div>
                                                 </div>
                                                 <div class="form-group">
@@ -503,11 +417,11 @@
                                                 <div class="form-group">
                                                     <div class="form-inline row">
                                                         <label class="control-label col-md-6">类型</label>
-                                                        <label class="control-label col-md-6">时长</label>
+                                                        <label class="control-label col-md-6">时长(分钟)</label>
                                                     </div>
                                                     <div class="form-inline row">
                                                         <div class="form-group col-md-6">
-                                                            <input ng-model="movie.movie_typeid" class="form-control" readonly />
+                                                            <input ng-model="movietype" class="form-control" readonly />
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <input ng-model="movie.movie_time" class="form-control" readonly />
@@ -528,23 +442,19 @@
                             </div>
                             <!-- 修改信息 -->
                             <div class="modal" id="mmodify">
-
                                 <div class="modal-dialog">
-
                                     <div class="modal-content">
-
                                         <div class="modal-header">
                                             <button class="close" data-dismiss="modal">
                                                 <span class="glyphicon glyphicon-remove"></span>
                                             </button>
                                             <h3 class="modal-title">修改信息</h3>
                                         </div>
-
                                         <div class="modal-body">
                                             <form data-toggle="validator" role="form">
                                                 <div class="form-group">
                                                     <label class="control-label">片号</label>
-                                                    <input type="text" class="form-control" ng-model="movie.movie_id" placeholder="电影号" data-error="请输入电影号" required />
+                                                    <input type="text" class="form-control" ng-model="movie.movie_id" placeholder="电影号" data-error="请输入电影号" readonly />
                                                     <div class="help-block with-errors"></div>
                                                 </div>
                                                 <div class="form-group">
@@ -569,22 +479,21 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label">地区</label>
-                                                    <input type="text" class="form-control" ng-model="movie.movie_district" placeholder="地区" data-error="请输入电影发行地区" required />
+                                                    <input type="text" class="form-control" ng-model="movie.movie_district" placeholder="上映地区" data-error="请输入电影发行地区" required />
                                                     <div class="help-block with-errors"></div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label">时间</label>
-                                                    <input type="text" class="form-control" ng-model="movie.movie_date" placeholder="时间" data-error="请输入电影发行时间" required />
-                                                    <div class="help-block with-errors"></div>
+
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label">海报</label>
-                                                    <input type="text" class="form-control" ng-model="movie.movie_district" placeholder="海报" data-error="请输入电影海报url" required />
+                                                    <input type="text" class="form-control" ng-model="movie.pic_id" placeholder="电影海报" data-error="请输入电影海报url" required />
                                                     <div class="help-block with-errors"></div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label">主题</label>
-                                                    <input type="text" class="form-control" ng-model="movie.movie_keyword" placeholder="主题" data-error="请输入电影主题" required />
+                                                    <input type="text" class="form-control" ng-model="movie.movie_keyword" placeholder="电影主题" data-error="请输入电影主题" required />
                                                     <div class="help-block with-errors"></div>
                                                 </div>
                                                 <div class="form-group">
@@ -594,16 +503,16 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="form-inline row">
-                                                        <label class="control-label col-md-6">类型</label>
-                                                        <label class="control-label col-md-6">时长</label>
+                                                        <label class="control-label col-md-6">上映时间</label>
+                                                        <label class="control-label col-md-6">时长(时间)</label>
                                                     </div>
                                                     <div class="form-inline row">
                                                         <div class="form-group col-md-6">
-                                                            <select ng-model="movietype" ng-options="x for x in typeOptions" class="form-control" data-error="请选择电影类型！" required></select>
+                                                            <input type="date" class="form-control" ng-model="movie.movie_date" placeholder="上映时间" data-error="请输入电影发行时间" required />
                                                             <div class="help-block with-errors"></div>
                                                         </div>
                                                         <div class="form-group col-md-6">
-                                                            <select ng-model="movietime" ng-options="x for x in timeOptions" class="form-control" data-error="请选择电影时长！" required></select>
+                                                            <input type="number" ng-model="movie.movie_time" class="form-control" placeholder="电影时长" data-error="请输入电影时长" required />
                                                             <div class="help-block with-errors"></div>
                                                         </div>
                                                     </div>
@@ -613,7 +522,25 @@
 
                                         <div class="modal-footer">
                                             <button class="btn btn-default" data-dismiss="modal">关闭</button>
-                                            <button class="btn btn-success" ng-click="MEnsure()">确定</button>
+                                            <button class="btn btn-success" ng-click="MUpdateCommit()">确定</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 信息删除 -->
+                            <div class="modal fade" id="mdelete">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            <h4 class="modal-title">删除警告</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-danger center">您确认要删除电影：“{{mname}}” 吗？</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                                            <button class="btn btn-danger" ng-click="MDeleteCommit()">确定</button>
                                         </div>
                                     </div>
                                 </div>

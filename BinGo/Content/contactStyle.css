@@ -1,0 +1,18 @@
+﻿   a, a:active{
+       text-decoration: none
+   }
+   .clearfix:before,
+   .clearfix:after,
+   ul:before,
+   ul:after{
+       display: table;
+       content: " ";
+   }
+   .clearfix:after,
+   ul:after{
+       clear:both;
+   }
+   ul li{
+       display: inline-block;
+       margin-left: 10px;
+   }

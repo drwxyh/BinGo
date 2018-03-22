@@ -15,9 +15,5 @@ namespace BinGo.Controllers
             return View();
         }
 
-        public ActionResult MovieManage()
-        {
-            return View();
-        }
     }
 }
