@@ -8,6 +8,752 @@ function config($httpProvider) {
 
 
 app.controller('MovieCtrl', function ($scope, $http) {
+    $scope.ActionCurOrderType = "";
+    $scope.ActionCurPage = 1;
+    $scope.WarCurOrderType = "";
+    $scope.WarCurPage = 1;
+    $scope.HistoryCurOrderType = "";
+    $scope.HistoryCurPage = 1;
+    $scope.ComedyCurOrderType = "";
+    $scope.ComedyCurPage = 1;
+    $scope.MysteryCurOrderType = "";
+    $scope.MysteryCurPage = 1;
+    $scope.MusicalCurOrderType = "";
+    $scope.MusicalCurPage = 1;
+    $scope.RomanceCurOrderType = "";
+    $scope.RomanceCurPage = 1;
+    $scope.SciFiCurOrderType = "";
+    $scope.SciFiCurPage = 1;
+    $scope.AllCurOrderType = "";
+    $scope.AllCurPage = 1;
+    $scope.Next = function (page, category) {
+        switch (category) {
+            case "Action":
+                if (page < $scope.ActionTotalPages) $scope.ActionCurPage++ ,
+                    $http({
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        withCredentials: true,
+                        data: $.param({
+                            pageSize: 12,
+                            pageNum: $scope.ActionCurPage,
+                            orderBy: $scope.ActionCurOrderType,
+                            movie_keyword: 'Action'
+                        })
+                    }).then(function successCallback(response) {
+                        if (response.data.status === 0) {
+                            $scope.ActionList = response.data.data.list;
+                        }
+                    }, function errorCallback(errorresponse) {
+                        alert(errorresponse.data.msg);
+                    });
+                break;
+            case "War":
+                if (page < $scope.WarTotalPages) $scope.WarCurPage-- ,
+                    $http({
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        withCredentials: true,
+                        data: $.param({
+                            pageSize: 12,
+                            pageNum: $scope.WarCurPage,
+                            orderBy: $scope.WarCurOrderType,
+                            movie_keyword: 'War'
+                        })
+                    }).then(function successCallback(response) {
+                        if (response.data.status === 0) {
+                            $scope.WarList = response.data.data.list;
+                        }
+                    }, function errorCallback(errorresponse) {
+                        alert(errorresponse.data.msg);
+                    });
+                break;
+            case "History":
+                if (page < $scope.HistoryTotalPages) $scope.HistoryCurPage-- ,
+                    $http({
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        withCredentials: true,
+                        data: $.param({
+                            pageSize: 12,
+                            pageNum: $scope.HistoryCurPage,
+                            orderBy: $scope.HistoryCurOrderType,
+                            movie_keyword: 'History'
+                        })
+                    }).then(function successCallback(response) {
+                        if (response.data.status === 0) {
+                            $scope.HistoryList = response.data.data.list;
+                        }
+                    }, function errorCallback(errorresponse) {
+                        alert(errorresponse.data.msg);
+                    });
+                break;
+            case "Comedy":
+                if (page < $scope.ComedyTotalPages) $scope.ComedyCurPage-- ,
+                    $http({
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        withCredentials: true,
+                        data: $.param({
+                            pageSize: 12,
+                            pageNum: $scope.ComedyCurPage,
+                            orderBy: $scope.ComedyCurOrderType,
+                            movie_keyword: 'Comedy'
+                        })
+                    }).then(function successCallback(response) {
+                        if (response.data.status === 0) {
+                            $scope.ComedyList = response.data.data.list;
+                        }
+                    }, function errorCallback(errorresponse) {
+                        alert(errorresponse.data.msg);
+                    });
+                break;
+            case "Mystery":
+                if (page < $scope.MysteryTotalPages) $scope.MysteryCurPage-- ,
+                    $http({
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        withCredentials: true,
+                        data: $.param({
+                            pageSize: 12,
+                            pageNum: $scope.MysteryCurPage,
+                            orderBy: $scope.MysteryCurOrderType,
+                            movie_keyword: 'Mystery'
+                        })
+                    }).then(function successCallback(response) {
+                        if (response.data.status === 0) {
+                            $scope.MysteryList = response.data.data.list;
+                        }
+                    }, function errorCallback(errorresponse) {
+                        alert(errorresponse.data.msg);
+                    });
+                break;
+            case "Musical":
+                if (page < $scope.MusicalTotalPages) $scope.MusicalCurPage-- ,
+                    $http({
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        withCredentials: true,
+                        data: $.param({
+                            pageSize: 12,
+                            pageNum: $scope.MusicalCurPage,
+                            orderBy: $scope.MiscalCurOrderType,
+                            movie_keyword: 'Miscal'
+                        })
+                    }).then(function successCallback(response) {
+                        if (response.data.status === 0) {
+                            $scope.MiscalList = response.data.data.list;
+                        }
+                    }, function errorCallback(errorresponse) {
+                        alert(errorresponse.data.msg);
+                    });
+                break;
+            case "Romance":
+                if (page < $scope.RomanceTotalPages) $scope.RomanceCurPage-- ,
+                    $http({
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        withCredentials: true,
+                        data: $.param({
+                            pageSize: 12,
+                            pageNum: $scope.RomanceCurPage,
+                            orderBy: $scope.RomanceCurOrderType,
+                            movie_keyword: 'Romance'
+                        })
+                    }).then(function successCallback(response) {
+                        if (response.data.status === 0) {
+                            $scope.RomanceList = response.data.data.list;
+                        }
+                    }, function errorCallback(errorresponse) {
+                        alert(errorresponse.data.msg);
+                    });
+                break;
+            case "Sci-Fi":
+                if (page < $scope.SciFiTotalPages) $scope.SciFiCurPage-- ,
+                    $http({
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        withCredentials: true,
+                        data: $.param({
+                            pageSize: 12,
+                            pageNum: $scope.SciFiCurPage,
+                            orderBy: $scope.SciFiCurOrderType,
+                            movie_keyword: 'Sci-Fi'
+                        })
+                    }).then(function successCallback(response) {
+                        if (response.data.status === 0) {
+                            $scope.SciFiList = response.data.data.list;
+                        }
+                    }, function errorCallback(errorresponse) {
+                        alert(errorresponse.data.msg);
+                    });
+                break;
+            case "All":
+                if (page < $scope.AllTotalPages) $scope.AllCurPage-- ,
+                    $http({
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8088//movie/showlist.do',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        withCredentials: true,
+                        data: $.param({
+                            pageSize: 12,
+                            pageNum: $scope.AllCurPage,
+                            orderBy: $scope.AllCurOrderType
+                        })
+                    }).then(function successCallback(response) {
+                        if (response.data.status === 0) {
+                            $scope.AllList = response.data.data.list;
+                        }
+                    }, function errorCallback(errorresponse) {
+                        alert(errorresponse.data.msg);
+                    });
+                break;
+        }
+    }
+    $scope.Previous = function (page, category) {
+        switch (category) {
+            case "Action":
+                if (page > 1) $scope.ActionCurPage-- ,
+                    $http({
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        withCredentials: true,
+                        data: $.param({
+                            pageSize: 12,
+                            pageNum: $scope.ActionCurPage,
+                            orderBy: $scope.ActionCurOrderType,
+                            movie_keyword: 'Action'
+                        })
+                    }).then(function successCallback(response) {
+                        if (response.data.status === 0) {
+                            $scope.ActionList = response.data.data.list;
+                        }
+                    }, function errorCallback(errorresponse) {
+                        alert(errorresponse.data.msg);
+                    });
+                break;
+            case "War":
+                if (page > 1) $scope.WarCurPage-- ,
+                    $http({
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        withCredentials: true,
+                        data: $.param({
+                            pageSize: 12,
+                            pageNum: $scope.WarCurPage,
+                            orderBy: $scope.WarCurOrderType,
+                            movie_keyword: 'War'
+                        })
+                    }).then(function successCallback(response) {
+                        if (response.data.status === 0) {
+                            $scope.WarList = response.data.data.list;
+                        }
+                    }, function errorCallback(errorresponse) {
+                        alert(errorresponse.data.msg);
+                    });
+                break;
+            case "History":
+                if (page > 1) $scope.HistoryCurPage-- ,
+                    $http({
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        withCredentials: true,
+                        data: $.param({
+                            pageSize: 12,
+                            pageNum: $scope.HistoryCurPage,
+                            orderBy: $scope.HistoryCurOrderType,
+                            movie_keyword: 'History'
+                        })
+                    }).then(function successCallback(response) {
+                        if (response.data.status === 0) {
+                            $scope.HistoryList = response.data.data.list;
+                        }
+                    }, function errorCallback(errorresponse) {
+                        alert(errorresponse.data.msg);
+                    });
+                break;
+            case "Comedy":
+                if (page > 1) $scope.ComedyCurPage-- ,
+                    $http({
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        withCredentials: true,
+                        data: $.param({
+                            pageSize: 12,
+                            pageNum: $scope.ComedyCurPage,
+                            orderBy: $scope.ComedyCurOrderType,
+                            movie_keyword: 'Comedy'
+                        })
+                    }).then(function successCallback(response) {
+                        if (response.data.status === 0) {
+                            $scope.ComedyList = response.data.data.list;
+                        }
+                    }, function errorCallback(errorresponse) {
+                        alert(errorresponse.data.msg);
+                    });
+                break;
+            case "Mystery":
+                if (page > 1) $scope.MysteryCurPage-- ,
+                    $http({
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        withCredentials: true,
+                        data: $.param({
+                            pageSize: 12,
+                            pageNum: $scope.MysteryCurPage,
+                            orderBy: $scope.MysteryCurOrderType,
+                            movie_keyword: 'Mystery'
+                        })
+                    }).then(function successCallback(response) {
+                        if (response.data.status === 0) {
+                            $scope.MysteryList = response.data.data.list;
+                        }
+                    }, function errorCallback(errorresponse) {
+                        alert(errorresponse.data.msg);
+                    });
+                break;
+            case "Musical":
+                if (page > 1) $scope.MusicalCurPage-- ,
+                    $http({
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        withCredentials: true,
+                        data: $.param({
+                            pageSize: 12,
+                            pageNum: $scope.MusicalCurPage,
+                            orderBy: $scope.MiscalCurOrderType,
+                            movie_keyword: 'Miscal'
+                        })
+                    }).then(function successCallback(response) {
+                        if (response.data.status === 0) {
+                            $scope.MiscalList = response.data.data.list;
+                        }
+                    }, function errorCallback(errorresponse) {
+                        alert(errorresponse.data.msg);
+                    });
+                break;
+            case "Romance":
+                if (page > 1) $scope.RomanceCurPage-- ,
+                    $http({
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        withCredentials: true,
+                        data: $.param({
+                            pageSize: 12,
+                            pageNum: $scope.RomanceCurPage,
+                            orderBy: $scope.RomanceCurOrderType,
+                            movie_keyword: 'Romance'
+                        })
+                    }).then(function successCallback(response) {
+                        if (response.data.status === 0) {
+                            $scope.RomanceList = response.data.data.list;
+                        }
+                    }, function errorCallback(errorresponse) {
+                        alert(errorresponse.data.msg);
+                    });
+                break;
+            case "Sci-Fi":
+                if (page > 1) $scope.SciFiCurPage-- ,
+                    $http({
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        withCredentials: true,
+                        data: $.param({
+                            pageSize: 12,
+                            pageNum: $scope.SciFiCurPage,
+                            orderBy: $scope.SciFiCurOrderType,
+                            movie_keyword: 'Sci-Fi'
+                        })
+                    }).then(function successCallback(response) {
+                        if (response.data.status === 0) {
+                            $scope.SciFiList = response.data.data.list;
+                        }
+                    }, function errorCallback(errorresponse) {
+                        alert(errorresponse.data.msg);
+                    });
+                break;
+            case "All":
+                if (page > 1) $scope.AllCurPage-- ,
+                    $http({
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8088//movie/showlist.do',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        withCredentials: true,
+                        data: $.param({
+                            pageSize: 12,
+                            pageNum: $scope.AllCurPage,
+                            orderBy: $scope.AllCurOrderType
+                        })
+                    }).then(function successCallback(response) {
+                        if (response.data.status === 0) {
+                            $scope.AllList = response.data.data.list;
+                        }
+                    }, function errorCallback(errorresponse) {
+                        alert(errorresponse.data.msg);
+                    });
+                break;
+        }
+    }
+    //更改页码时，刷新
+    $scope.Reload = function (page, category) {
+        switch (category) {
+            case "Action": $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                withCredentials: true,
+                data: $.param({
+                    pageSize: 12,
+                    pageNum: page,
+                    orderBy: $scope.ActionCurOrderType,
+                    movie_keyword: 'Action'
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.ActionList = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+                break;
+            case "War": $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                withCredentials: true,
+                data: $.param({
+                    pageSize: 12,
+                    pageNum: page,
+                    orderBy: $scope.WarCurOrderType,
+                    movie_keyword: 'War'
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.WarList = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+                break;
+            case "History": $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                withCredentials: true,
+                data: $.param({
+                    pageSize: 12,
+                    pageNum: page,
+                    orderBy: $scope.HistoryCurOrderType,
+                    movie_keyword: 'History'
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.HistoryList = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+                break;
+            case "Comedy": $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                withCredentials: true,
+                data: $.param({
+                    pageSize: 12,
+                    pageNum: page,
+                    orderBy: $scope.ComedyCurOrderType,
+                    movie_keyword: 'Comedy'
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.ComedyList = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+                break;
+            case "Mystery": $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                withCredentials: true,
+                data: $.param({
+                    pageSize: 12,
+                    pageNum: page,
+                    orderBy: $scope.MysteryCurOrderType,
+                    movie_keyword: 'Mystery'
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.MysteryList = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+                break;
+            case "Musical": $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                withCredentials: true,
+                data: $.param({
+                    pageSize: 12,
+                    pageNum: page,
+                    orderBy: $scope.MiscalCurOrderType,
+                    movie_keyword: 'Miscal'
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.MiscalList = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+                break;
+            case "Romance": $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                withCredentials: true,
+                data: $.param({
+                    pageSize: 12,
+                    pageNum: page,
+                    orderBy: $scope.RomanceCurOrderType,
+                    movie_keyword: 'Romance'
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.RomanceList = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+                break;
+            case "Sci-Fi": $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                withCredentials: true,
+                data: $.param({
+                    pageSize: 12,
+                    pageNum: page,
+                    orderBy: $scope.SciFiCurOrderType,
+                    movie_keyword: 'Sci-Fi'
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.SciFiList = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+                break;
+            case "All": $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088//movie/showlist.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                withCredentials: true,
+                data: $.param({
+                    pageSize: 12,
+                    pageNum: page,
+                    orderBy: $scope.AllCurOrderType
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.AllList = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+                break;
+        }
+    }
+    //更改排序方式时，触发
+    $scope.Resort = function (orderType, category) {
+        switch (category) {
+            case "Action": $scope.ActionCurOrderType = orderType, $scope.ActionCurPage = 1, $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                withCredentials: true,
+                data: $.param({
+                    pageSize: 12,
+                    pageNum: 1,
+                    orderBy: orderType,
+                    movie_keyword: 'Action'
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    alert($scope.ActionCurOrderType);
+                    $scope.ActionList = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+                break;
+            case "War": $scope.WarCurOrderType = orderType, $scope.WarCurPage = 1, $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                withCredentials: true,
+                data: $.param({
+                    pageSize: 12,
+                    pageNum: 1,
+                    orderBy: orderType,
+                    movie_keyword: 'War'
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.WarList = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+                break;
+            case "History": $scope.HistoryCurOrderType = orderType, $scope.HistoryCurPage = 1, $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                withCredentials: true,
+                data: $.param({
+                    pageSize: 12,
+                    pageNum: 1,
+                    movie_keyword: 'History'
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.HistoryList = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+                break;
+            case "Comedy": $scope.ComedyCurOrderType = orderType, $scope.ComedyCurPage = 1, $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                withCredentials: true,
+                data: $.param({
+                    pageSize: 12,
+                    pageNum: 1,
+                    movie_keyword: 'Comedy'
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.ComedyList = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+                break;
+            case "Mystery": $scope.MysteryCurOrderType = orderType, $scope.MysteryCurPage = 1, $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                withCredentials: true,
+                data: $.param({
+                    pageSize: 12,
+                    pageNum: 1,
+                    movie_keyword: 'Mystery'
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.MysteryList = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+                break;
+            case "Musical": $scope.MusicalCurOrderType = orderType, $scope.MusicalCurPage = 1, $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                withCredentials: true,
+                data: $.param({
+                    pageSize: 12,
+                    pageNum: 1,
+                    movie_keyword: 'Musical'
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.MusicalList = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+                break;
+            case "Romance": $scope.RomanceCurOrderType = orderType, $scope.RomanceCurPage = 1, $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                withCredentials: true,
+                data: $.param({
+                    pageSize: 12,
+                    pageNum: 1,
+                    movie_keyword: 'Romance'
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.RomanceList = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+                break;
+            case "Sci-Fi": $scope.SciFiCurOrderType = orderType, $scope.SciFiCurPage = 1, $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                withCredentials: true,
+                data: $.param({
+                    pageSize: 12,
+                    pageNum: 1,
+                    movie_keyword: 'Sci-Fi'
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.SciFiList = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+                break;
+            case "All": $scope.AllCurOrderType = orderType, $scope.AllCurPage = 1, $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088//movie/showlist.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                withCredentials: true,
+                data: $.param({
+                    pageSize: 12,
+                    pageNum: 1
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.AllList = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+                break;
+        }
+    }
     // 根据关键字，获取各个类别的电影列表
     $http({
         method: 'POST',
@@ -15,11 +761,14 @@ app.controller('MovieCtrl', function ($scope, $http) {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         withCredentials: true,
         data: $.param({
+            pageSize: 12,
+            pageNum: 1,
             movie_keyword: 'Action'
         })
     }).then(function successCallback(response) {
         if (response.data.status === 0) {
             $scope.ActionList = response.data.data.list;
+            $scope.ActionTotalPages = response.data.data.pages;
         }
     }, function errorCallback(errorresponse) {
         alert(errorresponse.data.msg);
@@ -30,11 +779,14 @@ app.controller('MovieCtrl', function ($scope, $http) {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         withCredentials: true,
         data: $.param({
+            pageSize: 12,
+            pageNum: 1,
             movie_keyword: 'War'
         })
     }).then(function successCallback(response) {
         if (response.data.status === 0) {
             $scope.WarList = response.data.data.list;
+            $scope.WarTotalPages = response.data.data.pages;
         }
     }, function errorCallback(errorresponse) {
         alert(errorresponse.data.msg);
@@ -45,11 +797,14 @@ app.controller('MovieCtrl', function ($scope, $http) {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         withCredentials: true,
         data: $.param({
+            pageSize: 12,
+            pageNum: 1,
             movie_keyword: 'History'
         })
     }).then(function successCallback(response) {
         if (response.data.status === 0) {
             $scope.HistoryList = response.data.data.list;
+            $scope.HistoryTotalPages = response.data.data.pages;
         }
     }, function errorCallback(errorresponse) {
         alert(errorresponse.data.msg);
@@ -60,11 +815,14 @@ app.controller('MovieCtrl', function ($scope, $http) {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         withCredentials: true,
         data: $.param({
+            pageSize: 12,
+            pageNum: 1,
             movie_keyword: "Comedy"
         })
     }).then(function successCallback(response) {
         if (response.data.status === 0) {
             $scope.ComedyList = response.data.data.list;
+            $scope.ComedyTotalPages = response.data.data.pages;
         }
     }, function errorCallback(errorresponse) {
         alert(errorresponse.data.msg);
@@ -75,11 +833,14 @@ app.controller('MovieCtrl', function ($scope, $http) {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         withCredentials: true,
         data: $.param({
+            pageSize: 12,
+            pageNum: 1,
             movie_keyword: "Mystery"
         })
     }).then(function successCallback(response) {
         if (response.data.status === 0) {
             $scope.MysteryList = response.data.data.list;
+            $scope.MysteryTotalPages = response.data.data.pages;
         }
     }, function errorCallback(errorresponse) {
         alert(errorresponse.data.msg);
@@ -90,11 +851,14 @@ app.controller('MovieCtrl', function ($scope, $http) {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         withCredentials: true,
         data: $.param({
+            pageSize: 12,
+            pageNum: 1,
             movie_keyword: "Musical"
         })
     }).then(function successCallback(response) {
         if (response.data.status === 0) {
             $scope.MusicalList = response.data.data.list;
+            $scope.MusicalTotalPages = response.data.data.pages;
         }
     }, function errorCallback(errorresponse) {
         alert(errorresponse.data.msg);
@@ -105,11 +869,14 @@ app.controller('MovieCtrl', function ($scope, $http) {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         withCredentials: true,
         data: $.param({
+            pageSize: 12,
+            pageNum: 1,
             movie_keyword: "Romance"
         })
     }).then(function successCallback(response) {
         if (response.data.status === 0) {
             $scope.RomanceList = response.data.data.list;
+            $scope.RomanceTotalPages = response.data.data.pages;
         }
     }, function errorCallback(errorresponse) {
         alert(errorresponse.data.msg);
@@ -120,11 +887,31 @@ app.controller('MovieCtrl', function ($scope, $http) {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         withCredentials: true,
         data: $.param({
+            pageSize: 12,
+            pageNum: 1,
             movie_keyword: "Sci-Fi"
         })
     }).then(function successCallback(response) {
         if (response.data.status === 0) {
             $scope.SciFiList = response.data.data.list;
+            $scope.SciFiTotalPages = response.data.data.pages;
+        }
+    }, function errorCallback(errorresponse) {
+        alert(errorresponse.data.msg);
+    });
+    $http({
+        method: 'POST',
+        url: 'http://127.0.0.1:8088//movie/showlist.do',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        withCredentials: true,
+        data: $.param({
+            pageSize: 12,
+            pageNum: 1
+        })
+    }).then(function successCallback(response) {
+        if (response.data.status === 0) {
+            $scope.AllList = response.data.data.list;
+            $scope.AllTotalPages = response.data.data.pages;
         }
     }, function errorCallback(errorresponse) {
         alert(errorresponse.data.msg);
@@ -133,7 +920,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
 
 app.controller('LoginCtrl', function ($scope, $http) {
     if (sessionStorage.getItem('loginStatus') === null) {
-        $scope.submit = function() {
+        $scope.submit = function () {
             $http({
                 method: 'POST',
                 url: 'http://127.0.0.1:8088/user/login.do',
@@ -144,14 +931,14 @@ app.controller('LoginCtrl', function ($scope, $http) {
                     password: $scope.password
                 })
             }).then(function successCallback(response) {
-                    alert(response.data.msg);
-                    if (response.data.status === 0) {
-                        sessionStorage.setItem('loginStatus', 1);
-                        sessionStorage.setItem('role', response.data.data.role);
-                        sessionStorage.setItem('username', $scope.username);
-                        window.location.href = '/Home/User';
-                    }
-                },
+                alert(response.data.msg);
+                if (response.data.status === 0) {
+                    sessionStorage.setItem('loginStatus', 1);
+                    sessionStorage.setItem('role', response.data.data.role);
+                    sessionStorage.setItem('username', $scope.username);
+                    window.location.href = '/Home/User';
+                }
+            },
                 function errorCallback(errorresponse) {
                     alert(errorresponse.data.msg);
                 });
@@ -458,7 +1245,7 @@ app.controller('SearchCtrl', function ($scope, $http) {
             url: 'http://127.0.0.1:8088//movie/showlistByName.do',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: $.param({
-                pageSize: 20,
+                pageSize: 36,
                 pageNum: 1,
                 movie_name: $scope.searchText
             })

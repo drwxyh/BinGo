@@ -15,17 +15,23 @@
             <li role="presentation"><a href="#Musical" aria-controls="settings" role="tab" data-toggle="tab">音乐</a></li>
             <li role="presentation"><a href="#Romance" aria-controls="messages" role="tab" data-toggle="tab">爱情</a></li>
             <li role="presentation"><a href="#Sci-Fi" aria-controls="settings" role="tab" data-toggle="tab">科幻</a></li>
+            <li role="presentation"><a href="#All" aria-controls="settings" role="tab" data-toggle="tab">全部</a></li>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane container active" id="Action">
+                <form style="margin-top: 20px;">
+                    <label><input name="Sort" type="radio" ng-click="Resort('movie_date desc','Action')" value="movie_date desc"/>按时间</label>
+                    <label><input name="Sort" type="radio" ng-click="Resort('movie_rating desc','Action')" value="movie_rating desc"/>按评分</label>
+                    <label><input name="Sort" type="radio" ng-click="Resort('movie_numVotes desc','Action')"value="movie_numVotes desc"/>按热度</label>
+                </form> 
                 <div class="box">
                     <div class="movie" ng-repeat="mov in ActionList" onFinishRenderFilters>
                         <ul class="list-unstyled">
                             <li>
                                 <div class="movie-image">
-                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie" /></a>
+                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie"/></a>
                                 </div>
                             </li>
                             <li class="text-center">
@@ -38,147 +44,342 @@
                         </ul>
                     </div>
                 </div>
+                <nav>
+                    <ul class="pagination pull-right">
+                        <li>
+                            <a ng-click="Previous(ActionCurPage,'Action')">
+                                <span>上一页</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a ng-click="Next(ActionCurPage,'Action')">
+                                <span>下一页</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div style="text-align:center ">第<input type="number" min="1" max="{{ActionTotalPages}}" ng-model=ActionCurPage ng-change="Reload(ActionCurPage,'Action')"/>页{{' 共'+ActionTotalPages+'页'}}</div>
+                </nav>
             </div>
-            <div role="tabpanel" class="tab-pane" id="War">
-                <div class="box">
-                    <div class="movie" ng-repeat="mov in WarList">
-                        <ul class="list-unstyled">
-                            <li>
-                                <div class="movie-image">
-                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie" /></a>
-                                </div>
-                            </li>
-                            <li class="text-center">
-                                <span class="name">{{mov.movie_name}}</span>
-                                <div class="subject-rate">
-                                    <jk-rating-stars max-rating="5" rating="mov.movie_rating/2" ng-model="mov.movie_rating" read-only="readOnly"></jk-rating-stars>
-                                    <span>{{mov.movie_rating+'分'}}</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+        <div role="tabpanel" class="tab-pane" id="War">
+            <form style="margin-top: 20px;">
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_date desc','War')" value="movie_date desc"/>按时间</label>
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_rating desc','War')" value="movie_rating desc"/>按评分</label>
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_numVotes desc','War')"value="movie_numVotes desc"/>按热度</label>
+            </form> 
+            <div class="box">
+                <div class="movie" ng-repeat="mov in WarList">
+                    <ul class="list-unstyled">
+                        <li>
+                            <div class="movie-image">
+                                <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie"/></a>
+                            </div>
+                        </li>
+                        <li class="text-center">
+                            <span class="name">{{mov.movie_name}}</span>
+                            <div class="subject-rate">
+                                <jk-rating-stars max-rating="5" rating="mov.movie_rating/2" ng-model="mov.movie_rating" read-only="readOnly"></jk-rating-stars>
+                                <span>{{mov.movie_rating+'分'}}</span>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="History">
-                <div class="box">
-                    <div class="movie" ng-repeat="mov in HistoryList">
-                        <ul class="list-unstyled">
-                            <li>
-                                <div class="movie-image">
-                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie" /></a>
-                                </div>
-                            </li>
-                            <li class="text-center">
-                                <span class="name">{{mov.movie_name}}</span>
-                                <div class="subject-rate">
-                                    <jk-rating-stars max-rating="5" rating="mov.movie_rating/2" ng-model="mov.movie_rating" read-only="readOnly"></jk-rating-stars>
-                                    <span>{{mov.movie_rating+'分'}}</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+            <nav>
+                <ul class="pagination pull-right">
+                    <li>
+                        <a ng-click="Previous(ActionCurPage,'War')">
+                            <span>上一页</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="Next(ActionCurPage,'War')">
+                            <span>下一页</span>
+                        </a>
+                    </li>
+                </ul>
+                <div style="text-align: center">第<input type="number" min="1" max="{{WarTotalPages}}" ng-model=WarCurPage ng-change="Reload(WarCurPage,'War')"/>页{{' 共'+WarTotalPages+'页'}}</div>
+            </nav>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="History">
+            <form style="margin-top: 20px;">
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_date desc','History')" value="movie_date desc"/>按时间</label>
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_rating desc','History')" value="movie_rating desc"/>按评分</label>
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_numVotes desc','History')"value="movie_numVotes desc"/>按热度</label>
+            </form> 
+            <div class="box">
+                <div class="movie" ng-repeat="mov in HistoryList">
+                    <ul class="list-unstyled">
+                        <li>
+                            <div class="movie-image">
+                                <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie"/></a>
+                            </div>
+                        </li>
+                        <li class="text-center">
+                            <span class="name">{{mov.movie_name}}</span>
+                            <div class="subject-rate">
+                                <jk-rating-stars max-rating="5" rating="mov.movie_rating/2" ng-model="mov.movie_rating" read-only="readOnly"></jk-rating-stars>
+                                <span>{{mov.movie_rating+'分'}}</span>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="Comedy">
-                <div class="box">
-                    <div class="movie" ng-repeat="mov in ComedyList">
-                        <ul class="list-unstyled">
-                            <li>
-                                <div class="movie-image">
-                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie" /></a>
-                                </div>
-                            </li>
-                            <li class="text-center">
-                                <span class="name">{{mov.movie_name}}</span>
-                                <div class="subject-rate">
-                                    <jk-rating-stars max-rating="5" rating="mov.movie_rating/2" ng-model="mov.movie_rating" read-only="readOnly"></jk-rating-stars>
-                                    <span>{{mov.movie_rating+'分'}}</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+            <nav>
+                <ul class="pagination pull-right">
+                    <li>
+                        <a ng-click="Previous(ActionCurPage,'History')">
+                            <span>上一页</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="Next(ActionCurPage,'History')">
+                            <span>下一页</span>
+                        </a>
+                    </li>
+                </ul>
+                <div style="text-align: center">第<input type="number" min="1" max="{{HistoryTotalPages}}" ng-model=HistoryCurPage ng-change="Reload(HistoryCurPage,'History')"/>页{{' 共'+HistoryTotalPages+'页'}}</div>
+            </nav>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="Comedy">
+            <form style="margin-top: 20px;">
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_date desc','Comedy')" value="movie_date desc"/>按时间</label>
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_rating desc','Comedy')" value="movie_rating desc"/>按评分</label>
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_numVotes desc','Comedy')"value="movie_numVotes desc"/>按热度</label>
+            </form> 
+            <div class="box">
+                <div class="movie" ng-repeat="mov in ComedyList">
+                    <ul class="list-unstyled">
+                        <li>
+                            <div class="movie-image">
+                                <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie"/></a>
+                            </div>
+                        </li>
+                        <li class="text-center">
+                            <span class="name">{{mov.movie_name}}</span>
+                            <div class="subject-rate">
+                                <jk-rating-stars max-rating="5" rating="mov.movie_rating/2" ng-model="mov.movie_rating" read-only="readOnly"></jk-rating-stars>
+                                <span>{{mov.movie_rating+'分'}}</span>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="Mystery">
-                <div class="box">
-                    <div class="movie" ng-repeat="mov in MysteryList">
-                        <ul class="list-unstyled">
-                            <li>
-                                <div class="movie-image">
-                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie" /></a>
-                                </div>
-                            </li>
-                            <li class="text-center">
-                                <span class="name">{{mov.movie_name}}</span>
-                                <div class="subject-rate">
-                                    <jk-rating-stars max-rating="5" rating="mov.movie_rating/2" ng-model="mov.movie_rating" read-only="readOnly"></jk-rating-stars>
-                                    <span>{{mov.movie_rating+'分'}}</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+            <nav>
+                <ul class="pagination pull-right">
+                    <li>
+                        <a ng-click="Previous(ComedyCurPage,'Comedy')">
+                            <span>上一页</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="Next(ComedyCurPage,'Comedy')">
+                            <span>下一页</span>
+                        </a>
+                    </li>
+                </ul>
+                <div style="text-align: center">第<input type="number" min="1" max="{{ComedyTotalPages}}" ng-model=ComedyCurPage ng-change="Reload(ComedyCurPage,'Comedy')"/>页{{' 共'+ComedyTotalPages+'页'}}</div>
+            </nav>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="Mystery">
+            <form style="margin-top: 20px;">
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_date desc','Mystery')" value="movie_date desc"/>按时间</label>
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_rating desc','Mystery')" value="movie_rating desc"/>按评分</label>
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_numVotes desc','Mystery')"value="movie_numVotes desc"/>按热度</label>
+            </form> 
+            <div class="box">
+                <div class="movie" ng-repeat="mov in MysteryList">
+                    <ul class="list-unstyled">
+                        <li>
+                            <div class="movie-image">
+                                <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie"/></a>
+                            </div>
+                        </li>
+                        <li class="text-center">
+                            <span class="name">{{mov.movie_name}}</span>
+                            <div class="subject-rate">
+                                <jk-rating-stars max-rating="5" rating="mov.movie_rating/2" ng-model="mov.movie_rating" read-only="readOnly"></jk-rating-stars>
+                                <span>{{mov.movie_rating+'分'}}</span>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="Musical">
-                <div class="box">
-                    <div class="movie" ng-repeat="mov in MusicalList">
-                        <ul class="list-unstyled">
-                            <li>
-                                <div class="movie-image">
-                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie" /></a>
-                                </div>
-                            </li>
-                            <li class="text-center">
-                                <span class="name">{{mov.movie_name}}</span>
-                                <div class="subject-rate">
-                                    <jk-rating-stars max-rating="5" rating="mov.movie_rating/2" ng-model="mov.movie_rating" read-only="readOnly"></jk-rating-stars>
-                                    <span>{{mov.movie_rating+'分'}}</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+            <nav>
+                <ul class="pagination pull-right">
+                    <li>
+                        <a ng-click="Previous(MysteryCurPage,'Mystery')">
+                            <span>上一页</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="Next(MysteryCurPage,'Mystery')">
+                            <span>下一页</span>
+                        </a>
+                    </li>
+                </ul>
+                <div style="text-align: center">第<input type="number" min="1" max="{{MysteryTotalPages}}" ng-model=MysteryCurPage ng-change="Reload(MysteryCurPage,'Mystery')"/>页{{' 共'+MysteryTotalPages+'页'}}</div>
+            </nav>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="Musical">
+            <form style="margin-top: 20px;">
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_date desc','Musical')" value="movie_date desc"/>按时间</label>
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_rating desc','Musical')" value="movie_rating desc"/>按评分</label>
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_numVotes desc','Musical')"value="movie_numVotes desc"/>按热度</label>
+            </form> 
+            <div class="box">
+                <div class="movie" ng-repeat="mov in MusicalList">
+                    <ul class="list-unstyled">
+                        <li>
+                            <div class="movie-image">
+                                <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie"/></a>
+                            </div>
+                        </li>
+                        <li class="text-center">
+                            <span class="name">{{mov.movie_name}}</span>
+                            <div class="subject-rate">
+                                <jk-rating-stars max-rating="5" rating="mov.movie_rating/2" ng-model="mov.movie_rating" read-only="readOnly"></jk-rating-stars>
+                                <span>{{mov.movie_rating+'分'}}</span>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="Romance">
-                <div class="box">
-                    <div class="movie" ng-repeat="mov in RomanceList">
-                        <ul class="list-unstyled">
-                            <li>
-                                <div class="movie-image">
-                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie" /></a>
-                                </div>
-                            </li>
-                            <li class="text-center">
-                                <span class="name">{{mov.movie_name}}</span>
-                                <div class="subject-rate">
-                                    <jk-rating-stars max-rating="5" rating="mov.movie_rating/2" ng-model="mov.movie_rating" read-only="readOnly"></jk-rating-stars>
-                                    <span>{{mov.movie_rating+'分'}}</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+            <nav>
+                <ul class="pagination pull-right">
+                    <li>
+                        <a ng-click="Previous(MusicalCurPage,'Musical')">
+                            <span>上一页</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="Next(MusicalCurPage,'Musical')">
+                            <span>下一页</span>
+                        </a>
+                    </li>
+                </ul>
+                <div style="text-align: center">第<input type="number" min="1" max="{{MusicalTotalPages}}" ng-model=MusicalCurPage ng-change="Reload(MusicalCurPage,'Musical')"/>页{{' 共'+MusicalTotalPages+'页'}}</div>
+            </nav>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="Romance">
+            <form style="margin-top: 20px;">
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_date desc','Romance')" value="movie_date desc"/>按时间</label>
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_rating desc','Romance')" value="movie_rating desc"/>按评分</label>
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_numVotes desc','Romance')"value="movie_numVotes desc"/>按热度</label>
+            </form> 
+            <div class="box">
+                <div class="movie" ng-repeat="mov in RomanceList">
+                    <ul class="list-unstyled">
+                        <li>
+                            <div class="movie-image">
+                                <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie"/></a>
+                            </div>
+                        </li>
+                        <li class="text-center">
+                            <span class="name">{{mov.movie_name}}</span>
+                            <div class="subject-rate">
+                                <jk-rating-stars max-rating="5" rating="mov.movie_rating/2" ng-model="mov.movie_rating" read-only="readOnly"></jk-rating-stars>
+                                <span>{{mov.movie_rating+'分'}}</span>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="Sci-Fi">
-                <div class="box">
-                    <div class="movie" ng-repeat="mov in SciFiList">
-                        <ul class="list-unstyled">
-                            <li>
-                                <div class="movie-image">
-                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie" /></a>
-                                </div>
-                            </li>
-                            <li class="text-center">
-                                <span class="name">{{mov.movie_name}}</span>
-                                <div class="subject-rate">
-                                    <jk-rating-stars max-rating="5" rating="mov.movie_rating/2" ng-model="mov.movie_rating" read-only="readOnly"></jk-rating-stars>
-                                    <span>{{mov.movie_rating+'分'}}</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+            <nav>
+                <ul class="pagination pull-right">
+                    <li>
+                        <a ng-click="Previous(RomanceCurPage,'Romance')">
+                            <span>上一页</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="Next(RomanceCurPage,'Romance')">
+                            <span>下一页</span>
+                        </a>
+                    </li>
+                </ul>
+                <div style="text-align: center">第<input type="number" min="1" max="{{RomanceTotalPages}}" ng-model=RomanceCurPage ng-change="Reload(RomanceCurPage,'Romance')"/>页{{' 共'+RomanceTotalPages+'页'}}</div>
+            </nav>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="Sci-Fi">
+            <form style="margin-top: 20px;">
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_date desc','Sci-Fi')" value="movie_date desc"/>按时间</label>
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_rating desc','Sci-Fi')" value="movie_rating desc"/>按评分</label>
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_numVotes desc','Sci-Fi')"value="movie_numVotes desc"/>按热度</label>
+            </form> 
+            <div class="box">
+                <div class="movie" ng-repeat="mov in SciFiList">
+                    <ul class="list-unstyled">
+                        <li>
+                            <div class="movie-image">
+                                <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie"/></a>
+                            </div>
+                        </li>
+                        <li class="text-center">
+                            <span class="name">{{mov.movie_name}}</span>
+                            <div class="subject-rate">
+                                <jk-rating-stars max-rating="5" rating="mov.movie_rating/2" ng-model="mov.movie_rating" read-only="readOnly"></jk-rating-stars>
+                                <span>{{mov.movie_rating+'分'}}</span>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
+            <nav>
+                <ul class="pagination pull-right">
+                    <li>
+                        <a ng-click="Previous(SciFiCurPage,'Sci-Fi')">
+                            <span>上一页</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="Next(SciFiCurPage,'Sci-Fi')">
+                            <span>下一页</span>
+                        </a>
+                    </li>
+                </ul>
+                <div style="text-align: center">第<input type="number" min="1" max="{{SciFiTotalPages}}" ng-model=SciFiCurPage ng-change="Reload(SciFiCurPage,'Sci-Fi')" />页{{' 共'+SciFiTotalPages+'页'}}</div>
+            </nav>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="All">
+            <form style="margin-top: 20px;">
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_date desc','All')" value="movie_date desc"/>按时间</label>
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_rating desc','All')" value="movie_rating desc"/>按评分</label>
+                <label><input name="Sort" type="radio" ng-click="Resort('movie_numVotes desc','All')"value="movie_numVotes desc"/>按热度</label>
+            </form> 
+            <div class="box">
+                <div class="movie" ng-repeat="mov in AllList">
+                    <ul class="list-unstyled">
+                        <li>
+                            <div class="movie-image">
+                                <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt="movie"/></a>
+                            </div>
+                        </li>
+                        <li class="text-center">
+                            <span class="name">{{mov.movie_name}}</span>
+                            <div class="subject-rate">
+                                <jk-rating-stars max-rating="5" rating="mov.movie_rating/2" ng-model="mov.movie_rating" read-only="readOnly"></jk-rating-stars>
+                                <span>{{mov.movie_rating+'分'}}</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <nav>
+                <ul class="pagination pull-right">
+                    <li>
+                        <a ng-click="Previous(AllCurPage,'All')">
+                            <span>上一页</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="Next(AllCurPage,'All')">
+                            <span>下一页</span>
+                        </a>
+                    </li>
+                </ul>
+                <div style="text-align: center">第<input type="number" min="1" max="{{AllTotalPages}}" ng-model=AllCurPage ng-change="Reload(AllCurPage,'All')" />页{{' 共'+AllTotalPages+'页'}}</div>
+            </nav>
+        </div>
         </div>
     </div>
 </div>
