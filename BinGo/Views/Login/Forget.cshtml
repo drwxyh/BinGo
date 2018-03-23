@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Forget";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/forgetStyle.css" rel="stylesheet" />
+<script src="~/Scripts/sliding.form.js"></script>
+<div id="wrapper" class="container" ng-app="BinGoApp" ng-controller="ForgetCtrl" style="margin-top: 15%;">
+    <div id="steps">
+        <div class="step">
+            <h3>账号</h3>
+            <p>
+                <label for="username">用户名</label>
+                <input id="username" name="username" ng-model="username" />
+            </p>
+        </div>
+        <div class="step">
+            <h3>密保问题</h3>
+            <p>
+                <label for="question">问题</label>
+                <input id="question" name="question" type="text" ng-model="question" />
+            </p>
+            <p>
+                <label for="answer">答案</label>
+                <input id="answer" name="answer" type="tel" ng-model="answer" />
+            </p>
+        </div>
+        <div class="step">
+            <h3>修改密码</h3>
+            <p>
+                <label for="password">密码</label>
+                <input id="password" name="password" type="password" ng-model="password" />
+            </p>
+            <p class="submit">
+                <button id="registerButton" type="submit" ng-click="ResetPassword()">完成修改</button>
+            </p>
+        </div>
+    </div>
+    <div id="navigation" style="display:none;">
+        <ul>
+            <li class="selected">
+                <a href="#">账号</a>
+            </li>
+            <li>
+                <a href="#" ng-click="SearchName()">密保问题</a>
+            </li>
+            <li>
+                <a href="#" ng-click="SearchAnswer()">修改密码</a>
+            </li>
+        </ul>
+    </div>
+</div>
+

@@ -13,5 +13,10 @@ namespace BinGo.Controllers
         {
             return View();
         }
+
+        public ActionResult Forget()
+        {
+            return View();
+        }
     }
 }

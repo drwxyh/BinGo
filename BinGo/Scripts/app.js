@@ -1164,7 +1164,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
                 id: $scope.cur.id,
                 email: $scope.cur.email,
                 phone: $scope.cur.phone,
-                question:$scope.cur.question,
+                question: $scope.cur.question,
                 answer: $scope.cur.answer,
                 age: $scope.cur.age,
                 sex: sex
@@ -1311,8 +1311,8 @@ app.controller('ManageCtrl', function ($scope, $http) {
                 movie_imdblid: $scope.movieimdblid,
                 movie_time: $scope.movietime,
                 movie_rating: 0,
-                movie_numVotes:0
-    })
+                movie_numVotes: 0
+            })
         }).then(function successCallback(response) {
             if (response.data.status === 0) {
                 alert("电影添加成功！");
@@ -1536,4 +1536,84 @@ app.controller('MovieInfoCtrl', function ($scope, $http) {
                 });
         });
 
+});
+
+app.controller('ForgetCtrl', function ($scope, $http) {
+    $scope.SearchName = function () {
+        $http({
+            method: 'POST',
+            url: 'http://127.0.0.1:8088/user/forget_get_question.do',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            data: $.param({
+                username: $scope.username
+            })
+        }).then(function successCallback(response) {
+            if (response.data.status === 1) {
+                alert(JSON.stringify(response.data.msg));
+            }
+        }, function errorCallback(errorresponse) {
+            alert(errorresponse.data.msg);
+        });
+    }
+    $scope.SearchAnswer = function () {
+        $http({
+            method: 'POST',
+            url: 'http://127.0.0.1:8088/user/forget_check_answer.do',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            data: $.param({
+                username: $scope.username,
+                question: $scope.question,
+                answer: $scope.answer
+            })
+        }).then(function successCallback(response) {
+            if (response.data.status === 1) {
+                alert(JSON.stringify(response.data.msg));
+            }
+            if (response.data.status === 0) {
+                $scope.token = response.data.data;
+            }
+        }, function errorCallback(errorresponse) {
+            alert(errorresponse.data.msg);
+        });
+    }
+    $scope.SearchAnswer = function () {
+        $http({
+            method: 'POST',
+            url: 'http://127.0.0.1:8088/user/forget_check_answer.do',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            data: $.param({
+                username: $scope.username,
+                question: $scope.question,
+                answer: $scope.answer
+            })
+        }).then(function successCallback(response) {
+            if (response.data.status === 1) {
+                alert(JSON.stringify(response.data.msg));
+            }
+            if (response.data.status === 0) {
+                $scope.forgetToken = response.data.data;
+            }
+        }, function errorCallback(errorresponse) {
+            alert(errorresponse.data.msg);
+        });
+    }
+    $scope.ResetPassword = function () {
+        $http({
+            method: 'POST',
+            url: 'http://127.0.0.1:8088/user/forget_reset_password.do',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            data: $.param({
+                username: $scope.username,
+                passwordNew: $scope.password,
+                forgetToken: $scope.forgetToken
+            })
+        }).then(function successCallback(response) {
+            alert(JSON.stringify(response.data.msg));
+            if (response.data.status === 0) {
+                window.location.href = '/Login/Login';
+            }
+        }, function errorCallback(errorresponse) {
+            alert(errorresponse.data.msg);
+        });
+    }
 });

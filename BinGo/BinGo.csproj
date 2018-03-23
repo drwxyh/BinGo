@@ -169,12 +169,16 @@
     <Content Include="Content\contactStyle.css" />
     <Content Include="Content\default.css" />
     <Content Include="Content\extend.css" />
+    <Content Include="Content\forgetStyle.css" />
     <Content Include="Content\htmleaf-demo.css" />
     <Content Include="Content\indexStyle.css" />
     <Content Include="Content\jk-rating-stars.min.css" />
     <Content Include="Content\movieStyle.css" />
     <Content Include="Content\normalize.css" />
     <Content Include="Content\Questionnaire\styles.css" />
+    <Content Include="Images\Other\checked.png" />
+    <Content Include="Images\Other\error.png" />
+    <Content Include="Scripts\sliding.form.js" />
     <Content Include="Content\style.css" />
     <Content Include="Content\tabStyle.css" />
     <Content Include="favicon.ico" />
@@ -255,6 +259,7 @@
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="fonts\PWYummyDonuts.ttf" />
     <Content Include="fonts\IDAHO_Conrad_Garner.ttf" />
+    <Content Include="Images\Other\Thumbs.db" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\i18n\angular-locale_af-za.js" />
@@ -1042,6 +1047,7 @@
     <Content Include="Views\Register\Questionnaire.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Login\Forget.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
