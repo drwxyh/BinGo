@@ -188,8 +188,8 @@
                                         </div>
 
                                         <div class="modal-footer">
-                                            <button class="btn btn-default" data-dismiss="modal">关闭</button>
                                             <button class="btn btn-success" ng-click="UUpdateCommit()">确定</button>
+                                            <button class="btn btn-default" data-dismiss="modal">关闭</button>
                                         </div>
 
                                     </div>
@@ -209,8 +209,8 @@
                                             <p class="text-danger center">您确认要删除用户：“{{uname}}”吗？</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button class="btn btn-default" data-dismiss="modal">关闭</button>
                                             <button class="btn btn-danger" ng-click="UDeleteCommit()">确定</button>
+                                            <button class="btn btn-default" data-dismiss="modal">关闭</button>
                                         </div>
                                     </div>
                                 </div>
@@ -234,7 +234,7 @@
                                         <td class="col-md-1">序号</td>
                                         <td class="col-md-3">片名</td>
                                         <td class="col-md-3">导演</td>
-                                        <td class="col-md-3">主演</td>
+                                        <td class="col-md-3">演员</td>
                                         <td class="col-md-2">操作</td>
                                     </tr>
                                 </thead>
@@ -242,8 +242,8 @@
                                     <tr ng-repeat="x in movies | filter:msearchText">
                                         <td>{{$index + 1}}</td>
                                         <td>{{x.movie_name}}</td>
+                                        <td>{{x.movie_director}}</td>
                                         <td>{{x.movie_actor}}</td>
-                                        <td>{{x.movie_keyword}}</td>
                                         <td>
                                             <button class="btn btn-info btn-sm" ng-click="MDetail(x.movie_id)">详情</button>
                                             <button class="btn btn-warning btn-sm" ng-click="MUpdate(x.movie_id)">修改</button>
@@ -512,8 +512,8 @@
                                         </div>
 
                                         <div class="modal-footer">
-                                            <button class="btn btn-default" data-dismiss="modal">关闭</button>
                                             <button class="btn btn-success" ng-click="MUpdateCommit()">确定</button>
+                                            <button class="btn btn-default" data-dismiss="modal">关闭</button>
                                         </div>
                                     </div>
                                 </div>
@@ -530,8 +530,8 @@
                                             <p class="text-danger center">您确认要删除电影：“{{mname}}” 吗？</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button class="btn btn-default" data-dismiss="modal">关闭</button>
                                             <button class="btn btn-danger" ng-click="MDeleteCommit()">确定</button>
+                                            <button class="btn btn-default" data-dismiss="modal">关闭</button>
                                         </div>
                                     </div>
                                 </div>

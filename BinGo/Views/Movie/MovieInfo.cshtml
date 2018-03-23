@@ -36,14 +36,14 @@
                     </div>
                     <h2 style="text-align: center">我的评分</h2>
                     <div style="text-align: center">
-                        <jk-rating-stars max-rating="10" rating="Rate"></jk-rating-stars>
-                        <span style="font-size: 20px; color: darkorange;">{{Rate+'分'}}</span>
+                        <jk-rating-stars max-rating="10" rating="rate"></jk-rating-stars>
+                        <span style="font-size: 20px; color: darkorange;">{{rate+'分'}}</span>
                         <form role="form">
                             <div class="form-group">
-                                <textarea class="form-control" rows="3" placeholder="请简短评论……"></textarea>
+                                <textarea class="form-control" rows="3" ng-model="comment" placeholder="请简短评论……"></textarea>
                             </div>
                         </form>
-                        <button class="btn btn-success" ng-click="Comment()">畅言一下</button>
+                        <button class="btn btn-success" ng-click="Comment()" ng-keydown="$event.keyCode === 13 && Comment()">畅言一下</button>
                     </div>
                 </div>
             </div>

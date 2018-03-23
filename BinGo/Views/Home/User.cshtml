@@ -18,7 +18,7 @@
 <div ng-app="BinGoApp" ng-controller="UserInfoCtrl" style="color:#fdf5e6 ">
     <div id="info" class="jumbotron row">
         <div class="col-xs-4">
-            <img class="img-thumbnail" src={{img}} width="90%"/>
+            <img class="img-thumbnail" src={{img}} width="90%" />
         </div>
         <div class="col-xs-7">
             <h3>{{user.username}}</h3>
@@ -35,7 +35,10 @@
                     <div class="col-md-12"><span>邮箱：</span><span>{{user.email}}</span></div>
                 </div>
             </div>
-            <button class="btn btn-primary btn-sm" ng-click="Modify()">修改信息</button>
+            <div class="btn-group">
+                <button class="btn btn-default btn-sm" ng-click="InfoModify()">修改信息</button>
+                <button class="btn btn-default btn-sm" ng-click="PasswordModify()">修改密码</button>
+            </div>
         </div>
     </div>
     <div id="recommend" class="container" style="color: #fdf5e6">
@@ -45,33 +48,55 @@
         <hr />
         <table class="table table-bordered" style="text-align: center">
             <thead>
-            <tr>
-                <td>序号</td>
-                <td>片名</td>
-                <td>导演</td>
-                <td>主演</td>
-                <td>评分</td>
-            </tr>
+                <tr>
+                    <td class="col-xs-1">序号</td>
+                    <td class="col-xs-3">片名</td>
+                    <td class="col-xs-3">导演</td>
+                    <td class="col-xs-4">主演</td>
+                    <td class="col-xs-1">评分</td>
+                </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="mov in movies">
-                <td>{{$index + 1}}</td>
-                <td><a href="/Movie/MovieInfo/{{mov.movie_id}}">{{mov.movie_name}}</a></td>
-                <td>{{mov.movie_director}}</td>
-                <td>{{mov.movie_actor}}</td>
-                <td>{{mov.movie_rating*2}}</td>
-            </tr>
+                <tr ng-repeat="mov in movies">
+                    <td>{{$index + 1}}</td>
+                    <td><a href="/Movie/MovieInfo/{{mov.movie_id}}">{{mov.movie_name}}</a></td>
+                    <td>{{mov.movie_director}}</td>
+                    <td>{{mov.movie_actor.join(', ')}}</td>
+                    <td>{{mov.movie_rating*2}}</td>
+                </tr>
             </tbody>
         </table>
     </div>
-
+    <div id="history" class="container" style="color: #fdf5e6">
+        <div>
+            <h4>最近评论</h4>
+        </div>
+        <hr />
+        <table class="table table-bordered" style="text-align: center">
+            <thead>
+                <tr>
+                    <td class="col-xs-1">序号</td>
+                    <td class="col-xs-3">片名</td>
+                    <td class="col-xs-3">时间</td>
+                    <td class="col-xs-4">评论</td>
+                    <td class="col-xs-1">评分</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="mov in rating_movies">
+                    <td>{{$index + 1}}</td>
+                    <td><a href="/Movie/MovieInfo/{{mov.movie_id}}">{{mov.movie_name}}</a></td>
+                    <td>{{mov.movie_rating_time}}</td>
+                    <td>{{mov.movie_comment}}</td>
+                    <td>{{mov.movie_rating}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <!--修改信息模态框-->
-    <div class="modal" id="modify" style="color: black;">
-
+    <div class="modal" id="imodify" style="color: black;">
         <div class="modal-dialog">
-
             <div class="modal-content">
-
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal">
                         <span class="glyphicon glyphicon-remove"></span>
@@ -101,11 +126,55 @@
                             <input type="text" class="form-control" ng-model="newuser.answer" required>
                             <div class="help-block with-errors"></div>
                         </div>
+                        <div class="form-inline row">
+                            <div class="form-group col-md-6">
+                                <select ng-model="gender" ng-options="x for x in genderOptions" id="txtGender" class="form-control" data-error="请选择您的性别！" required></select>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <select ng-model="newuser.age" ng-options="x for x in ageOptions" id="txtAge" class="form-control" data-error="请选择您的年龄！" required></select>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
                     </form>
 
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-success" ng-click="ensure()">确定</button>
+                    <button class="btn btn-success" ng-click="InfoModifyCommit()">确定</button>
+                    <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!--修改密码模态框-->
+    <div class="modal" id="pmodify" style="color: black;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                    <h3 class="modal-title">修改密码</h3>
+                </div>
+
+                <div class="modal-body">
+                    <form data-toggle="validator" role="form">
+                        <div class="form-group">
+                            <label class="control-label">旧密码</label>
+                            <input type="password" class="form-control" ng-model="passwordOld" data-error="旧密码不能为空！" required>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">新密码</label>
+                            <input type="password" class="form-control" ng-model="passwordNew" data-error="新密码不能为空！" required>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" ng-click="PasswordModifyCommit()">确定</button>
                     <button class="btn btn-default" data-dismiss="modal">关闭</button>
                 </div>
             </div>

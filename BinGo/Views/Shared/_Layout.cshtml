@@ -78,6 +78,21 @@
                 sessionStorage.removeItem('loginStatus');
                 sessionStorage.removeItem('username');
                 sessionStorage.removeItem('role');
+                $.ajax({
+                    type: "POST",
+                    url: "http://127.0.0.1:8088/user/logout.do",
+                    dataType: "json",
+                    xhrFields:{withCredentials:true},
+                    success: function(res){
+                        if (0 === res.status) {
+                            alert("退出成功！");
+                        }
+                    },
+                    error: function(jqXHR){
+                        alert("发生错误：" + jqXHR.status);
+                    },
+                });
+
             });
         })
     </script>

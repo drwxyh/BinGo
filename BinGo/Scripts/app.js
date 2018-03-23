@@ -938,6 +938,7 @@ app.controller('LoginCtrl', function ($scope, $http) {
                 alert(response.data.msg);
                 if (response.data.status === 0) {
                     sessionStorage.setItem('loginStatus', 1);
+                    sessionStorage.setItem('userId', response.data.data.id);
                     sessionStorage.setItem('role', response.data.data.role);
                     sessionStorage.setItem('username', $scope.username);
                     window.location.href = '/Home/User';
@@ -990,6 +991,8 @@ app.controller('RegisterCtrl', function ($scope, $http) {
 });
 
 app.controller('UserInfoCtrl', function ($scope, $http) {
+    $scope.genderOptions = ["男", "女"];
+    $scope.ageOptions = ["10后", "00后", "90后", "80后", "70后", "60后", "50后"];
     // 登录时在session中存储了登录状态
     $http({
         method: 'POST',
@@ -1000,8 +1003,10 @@ app.controller('UserInfoCtrl', function ($scope, $http) {
         if (response.data.status === 0) {
             $scope.user = response.data.data;
             if ($scope.user.sex === 1) {
+                $scope.gender = '男';
                 $scope.img = "http://localhost:6305/Images/Portrait/lebron-james.jpg";
             } else {
+                $scope.gender = '女';
                 $scope.img = "http://localhost:6305/Images/Portrait/girl.jpg";
             }
             $scope.newuser = response.data.data;
@@ -1024,12 +1029,38 @@ app.controller('UserInfoCtrl', function ($scope, $http) {
         function errorCallback(errorresponse) {
             alert(errorresponse.data.msg);
         });
+    // 获取用户最近评论电影
 
-    // 修改用户信息相关函数
-    $scope.Modify = function () {
-        $('#modify').modal('show');
+    // 修改用户密码相关函数
+    $scope.PasswordModify = function () {
+        $('#pmodify').modal('show');
     }
-    $scope.ensure = function () {
+    $scope.PasswordModifyCommit = function () {
+        $http({
+            method: 'POST',
+            url: 'http://127.0.0.1:8088/user/reset_password.do',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            data: $.param({
+                passwordOld: $scope.passwordOld,
+                passwordNew: $scope.passwordNew
+            })
+        }).then(function successCallback(response) {
+            if (response.data.status === 0) {
+                alert(response.data.msg);
+                $('#pmodify').modal('hide');
+            } else {
+                alert("对不起，密码修改失败！");
+            }
+        },
+            function (errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+    }
+    // 修改用户信息相关函数
+    $scope.InfoModify = function () {
+        $('#imodify').modal('show');
+    }
+    $scope.InfoModifyCommit = function () {
         $http({
             method: 'POST',
             url: 'http://127.0.0.1:8088/user/update_information.do',
@@ -1043,8 +1074,9 @@ app.controller('UserInfoCtrl', function ($scope, $http) {
         }).then(function successCallback(response) {
             if (response.data.status === 0) {
                 alert(response.data.msg);
+                $('#imodify').modal('hide');
             } else {
-                alert("对不起，修改失败！");
+                alert("对不起，信息修改失败！");
             }
         },
             function (errorresponse) {
@@ -1534,6 +1566,29 @@ app.controller('MovieInfoCtrl', function ($scope, $http) {
                 function errorCallback(errorresponse) {
                     alert(errorresponse.data.msg);
                 });
+
+            $scope.Comment = function () {
+                if (sessionStorage.getItem('loginStatus') == null) {
+                    alert("亲，评论需要登录的哦！");
+                } else {
+                    $http({
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8088/movie/setUserComment.do',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        data: $.param({
+                            movie_id: id,
+                            user_id: parseInt(sessionStorage.getItem('userId')),
+                            rating: $scope.rate,
+                            comment: $scope.comment
+                        })
+                    }).then(function successCallback(response) {
+                        alert(JSON.stringify(response.data.msg));
+                    },
+                        function errorCallback(errorresponse) {
+                            alert(errorresponse.data.msg);
+                        });
+                }
+            }
         });
 
 });
