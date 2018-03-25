@@ -208,7 +208,6 @@
     <Content Include="Images\Star\star-off.png" />
     <Content Include="Images\Star\star-on-big.png" />
     <Content Include="Images\Star\star-on.png" />
-    <Content Include="Register.html" />
     <Content Include="Scripts\alpha.js" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -1024,7 +1023,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\validator.min.js" />
-    <Content Include="Test.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1085,7 +1083,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>6305</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
