@@ -990,7 +990,7 @@ app.controller('RegisterCtrl', function ($scope, $http) {
     }
 });
 
-app.controller('UserInfoCtrl', function ($scope, $http) {
+app.controller('UserInfoCtrl', function ($scope, $http, $filter) {
     $scope.genderOptions = ["男", "女"];
     $scope.ageOptions = ["10后", "00后", "90后", "80后", "70后", "60后", "50后"];
     // 登录时在session中存储了登录状态
@@ -1030,7 +1030,27 @@ app.controller('UserInfoCtrl', function ($scope, $http) {
             alert(errorresponse.data.msg);
         });
     // 获取用户最近评论电影
-
+    $http({
+        method: 'POST',
+        url: 'http://wangj1106.imwork.net:26943/rating/userRatingList.do',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        data: $.param({
+            pageNum: 1,
+            pageSize: 5
+        })
+    }).then(function successCallback(response) {
+        if (response.data.status === 0) {
+            $scope.rating_movies = response.data.data.list;
+            angular.forEach($scope.rating_movies,
+                function (obj) {
+                    obj.creating_time = new Date();
+                    $filter("date")(obj.creating_time.valueOf(), "yyyy-MM-dd HH:mm:ss");
+                });
+        }
+    },
+        function errorCallback(errorresponse) {
+            alert(errorresponse.data.msg);
+        });
     // 修改用户密码相关函数
     $scope.PasswordModify = function () {
         $('#pmodify').modal('show');
@@ -1096,6 +1116,10 @@ app.controller('ManageCtrl', function ($scope, $http) {
     $scope.movies = [];
     $scope.MPage = 1;
     $scope.MTotal = 0;
+    // 存储评论信息
+    $scope.comments = [];
+    $scope.CPage = 1;
+    $scope.CTotal = 0;
     // 获取用户列表
     $http({
         method: 'POST',
@@ -1117,7 +1141,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
     // 获取电影列表
     $http({
         method: 'POST',
-        url: 'http://wangj1106.imwork.net:26943//movie/showlist.do',
+        url: 'http://wangj1106.imwork.net:26943/movie/showlist.do',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         data: $.param({
             pageSize: 8,
@@ -1127,12 +1151,27 @@ app.controller('ManageCtrl', function ($scope, $http) {
         if (response.data.status === 0) {
             $scope.movies = response.data.data.list;
             $scope.MTotal = response.data.data.pages;
-            //alert($scope.MTotal);
         }
     }, function errorCallback(errorresponse) {
         alert(errorresponse.data.msg);
     });
-
+    // 获取评论列表
+    $http({
+        method: 'POST',
+        url: 'http://wangj1106.imwork.net:26943//manage/rating/ratingList.do',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        data: $.param({
+            pageSize: 10,
+            pageNum: 1
+        })
+    }).then(function successCallback(response) {
+        if (response.data.status === 0) {
+            $scope.comments = response.data.data.list;
+            $scope.CTotal = response.data.data.pages;
+        }
+    }, function errorCallback(errorresponse) {
+        alert(errorresponse.data.msg);
+    });
     // 详情模态框
     $scope.UDetail = function (id) {
         $('#uinfo').modal('show');
@@ -1271,6 +1310,24 @@ app.controller('ManageCtrl', function ($scope, $http) {
                 if (response.data.status === 0) {
                     $scope.movies = response.data.data.list;
                     $scope.MTotal = response.data.data.pages;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+                break;
+
+            case "Comment": $scope.MPage = page, $http({
+                method: 'POST',
+                url: 'http://wangj1106.imwork.net:26943/manage/rating/ratingList.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                data: $.param({
+                    pageSize: 10,
+                    pageNum: $scope.CPage
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.comments = response.data.data.list;
+                    $scope.CTotal = response.data.data.pages;
                 }
             }, function errorCallback(errorresponse) {
                 alert(errorresponse.data.msg);
@@ -1424,7 +1481,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
             alert(errorresponse.data.msg);
         });
     }
-    // 删除
+    // 删除电影
     $scope.MDelete = function (id, name) {
         $('#mdelete').modal('show');
         $scope.mname = name;
@@ -1473,6 +1530,33 @@ app.controller('ManageCtrl', function ($scope, $http) {
             });
         }
     }
+    // 删除评论
+    $scope.CDelete = function (id) {
+        $('#cdelete').modal('show');
+        $scope.cdeleteId = id;
+    }
+    $scope.CDeleteCommit = function () {
+        $http({
+            method: 'POST',
+            url: 'http://wangj1106.imwork.net:26943/manage/rating/deleteRating.do',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            data: $.param({
+                ratingId: $scope.cdeleteId
+            })
+        }).then(function successCallback(response) {
+            if (response.data.status === 1) {
+                alert("删除评论成功！");
+                $('#cdelete').modal('hide');
+                $scope.Reload($scope.CPage, 'Comment');
+            } else {
+                alert(JSON.stringify(response.data.msg));
+                $('#cdelete').modal('hide');
+                $scope.Reload($scope.CPage, 'Comment');
+            }
+        }, function errorCallback(errorresponse) {
+            alert(errorresponse.data.msg);
+        });
+    }
     //下一页
     $scope.MNext = function () {
         if ($scope.MPage < $scope.MTotal) {
@@ -1488,6 +1572,49 @@ app.controller('ManageCtrl', function ($scope, $http) {
             }).then(function successCallback(response) {
                 if (response.data.status === 0) {
                     $scope.movies = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+        }
+    };
+
+    //上一页
+    $scope.CPrevious = function () {
+        if ($scope.CPage > 1) {
+            $scope.CPage--;
+            $http({
+                method: 'POST',
+                url: 'http://wangj1106.imwork.net:26943/manage/rating/ratingList.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                data: $.param({
+                    pageSize: 10,
+                    pageNum: $scope.MPage
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.comments = response.data.data.list;
+                }
+            }, function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
+        }
+    }
+    //下一页
+    $scope.CNext = function () {
+        if ($scope.CPage < $scope.CTotal) {
+            $scope.CPage++;
+            $http({
+                method: 'POST',
+                url: 'http://wangj1106.imwork.net:26943/manage/rating/ratingList.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                data: $.param({
+                    pageSize: 10,
+                    pageNum: $scope.CPage
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.comments = response.data.data.list;
                 }
             }, function errorCallback(errorresponse) {
                 alert(errorresponse.data.msg);
@@ -1526,8 +1653,8 @@ app.controller('SearchCtrl', function ($scope, $http) {
         });
     }
 });
-// 待添加评论
-app.controller('MovieInfoCtrl', function ($scope, $http) {
+
+app.controller('MovieInfoCtrl', function ($scope, $http, $filter) {
     $scope.$watch("movieId",
         function () {
             var id = parseInt($scope.movieId);
@@ -1566,29 +1693,65 @@ app.controller('MovieInfoCtrl', function ($scope, $http) {
                 function errorCallback(errorresponse) {
                     alert(errorresponse.data.msg);
                 });
-
-            $scope.Comment = function () {
-                if (sessionStorage.getItem('loginStatus') == null) {
-                    alert("亲，评论需要登录的哦！");
-                } else {
-                    $http({
-                        method: 'POST',
-                        url: 'http://wangj1106.imwork.net:26943/movie/setUserComment.do',
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        data: $.param({
-                            movie_id: id,
-                            user_id: parseInt(sessionStorage.getItem('userId')),
-                            rating: $scope.rate,
-                            comment: $scope.comment
-                        })
-                    }).then(function successCallback(response) {
-                        alert(JSON.stringify(response.data.msg));
-                    },
-                        function errorCallback(errorresponse) {
-                            alert(errorresponse.data.msg);
-                        });
+            // 获取用户历史评价
+            $http({
+                method: 'POST',
+                url: 'http://wangj1106.imwork.net:26943/rating/userRating.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                data: $.param({
+                    movieId: id
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.rate = response.data.data.rating;
+                    $scope.comment = response.data.data.comment;
                 }
+            },
+                function errorCallback(errorresponse) {
+                    alert(errorresponse.data.msg);
+                });
+            // 用户评价
+            $scope.Comment = function () {
+                $http({
+                    method: 'POST',
+                    url: 'http://wangj1106.imwork.net:26943/rating/add.do',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    data: $.param({
+                        movieId: id,
+                        rating: $scope.rate,
+                        comment: $scope.comment
+                    })
+                }).then(function successCallback(response) {
+                    alert(JSON.stringify(response.data.msg));
+                },
+                    function errorCallback(errorresponse) {
+                        alert(errorresponse.data.msg);
+                    });
             }
+
+            // 获取所有历史评价
+            $http({
+                method: 'POST',
+                url: 'http://wangj1106.imwork.net:26943/rating/movieRatingList.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                data: $.param({
+                    movieId: id,
+                    pageNum: 1,
+                    pageSize:10
+                })
+            }).then(function successCallback(response) {
+                    if (response.data.status === 0) {
+                        $scope.comments = response.data.data.list;
+                        angular.forEach($scope.comments,
+                            function (obj) {
+                                obj.creating_time = new Date();
+                                $filter("date")(obj.creating_time.valueOf(), "yyyy-MM-dd HH:mm:ss");
+                            });
+                    }
+                },
+                function errorCallback(errorresponse) {
+                    alert(errorresponse.data.msg);
+                });
         });
 
 });

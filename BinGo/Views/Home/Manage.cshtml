@@ -14,6 +14,7 @@
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">用户管理</a></li>
                     <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">电影管理</a></li>
+                    <li role="presentation"><a href="#Section3" aria-controls="profile" role="tab" data-toggle="tab">评论管理</a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
@@ -531,6 +532,73 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button class="btn btn-danger" ng-click="MDeleteCommit()">确定</button>
+                                            <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="Section3">
+                        <div class="row" style="margin-bottom: 20px">
+                            <div class="input-group input-group-sm col-xs-4">
+                                <span class="input-group-addon">搜索</span>
+                                <input type="text" class="form-control" ng-model="csearchText" placeholder="请输入关键字">
+                            </div>
+                        </div>
+                        <div class="container">
+                            <table class="table table-bordered  table-striped table-hover" style="text-align: center">
+                                <thead>
+                                    <tr>
+                                        <td class="col-md-1">序号</td>
+                                        <td class="col-md-3">片名</td>
+                                        <td class="col-md-2">用户名</td>
+                                        <td class="col-md-3">评价</td>
+                                        <td class="col-md-2">评分</td>
+                                        <td class="col-md-1">操作</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="x in comments | filter:csearchText">
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{x.movie_id}}</td>
+                                        <td>{{x.user_id}}</td>
+                                        <td>{{x.comment}}</td>
+                                        <td>{{x.rating}}</td>
+                                        <td>
+                                            <button class="btn btn-danger btn-sm" ng-click="CDelete(x.rating_id)">删除</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <nav>
+                                <ul class="pagination pull-right">
+                                    <li>
+                                        <a ng-click="CPrevious()">
+                                            <span>上一页</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-click="CNext()">
+                                            <span>下一页</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div style="text-align: center">第<input type="number" min="1" max="{{CTotal}}" ng-model=CPage ng-change="Reload(CPage,'Comment')" />页{{' 共'+CTotal+'页'}}</div>
+                            </nav>
+                            <!-- 评论删除 -->
+                            <div class="modal fade" id="cdelete">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            <h4 class="modal-title">删除警告</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-danger center">您确认要删除这条评价吗？</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-danger" ng-click="CDeleteCommit()">确定</button>
                                             <button class="btn btn-default" data-dismiss="modal">关闭</button>
                                         </div>
                                     </div>

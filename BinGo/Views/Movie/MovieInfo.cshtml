@@ -69,6 +69,30 @@
                     </div>
                 </div>
             </div>
+            
+            <h3>用户评论</h3><hr/>
+            <div class="container">
+                <table class="table table-bordered  table-striped table-hover" style="text-align: center">
+                    <thead>
+                        <tr>
+                            <td class="col-md-1">序号</td>
+                            <td class="col-md-2">用户名</td>
+                            <td class="col-md-2">时间</td>
+                            <td class="col-md-5">评论</td>
+                            <td class="col-md-2">评分</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="x in comments">
+                        <td>{{$index + 1}}</td>
+                        <td>{{x.user_id}}</td>
+                        <td>{{x.creating_time|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                        <td>{{x.comment}}</td>
+                        <td>{{x.rating}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

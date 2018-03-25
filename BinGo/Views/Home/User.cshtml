@@ -85,10 +85,10 @@
             <tbody>
                 <tr ng-repeat="mov in rating_movies">
                     <td>{{$index + 1}}</td>
-                    <td><a href="/Movie/MovieInfo/{{mov.movie_id}}">{{mov.movie_name}}</a></td>
-                    <td>{{mov.movie_rating_time}}</td>
-                    <td>{{mov.movie_comment}}</td>
-                    <td>{{mov.movie_rating}}</td>
+                    <td><a href="/Movie/MovieInfo/{{mov.movie_id}}">{{mov.movie_id}}</a></td>
+                    <td>{{mov.create_time|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                    <td>{{mov.comment}}</td>
+                    <td>{{mov.rating}}</td>
                 </tr>
             </tbody>
         </table>
