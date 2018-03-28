@@ -178,6 +178,8 @@
     <Content Include="Content\Questionnaire\styles.css" />
     <Content Include="Images\Other\checked.png" />
     <Content Include="Images\Other\error.png" />
+    <Content Include="Scripts\ng-file-upload-shim.min.js" />
+    <Content Include="Scripts\ng-file-upload.min.js" />
     <Content Include="Scripts\sliding.form.js" />
     <Content Include="Content\style.css" />
     <Content Include="Content\tabStyle.css" />
@@ -1042,7 +1044,7 @@
     <Content Include="Views\Movie\MovieInfo.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Home\Manage.cshtml" />
-    <Content Include="Views\Register\Questionnaire.cshtml" />
+    <Content Include="Views\Login\Questionnaire.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Login\Forget.cshtml" />

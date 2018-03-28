@@ -5,6 +5,7 @@
 <link href="~/Content/movieStyle.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-func.js"></script>
 <script src="~/Scripts/easyBackground-min.js"></script>
+
 <style>
     .jumbotron {
         background-image: url('../../Images/Portrait/leaf-wood-macro.jpg');
@@ -14,11 +15,31 @@
     .modal-backdrop {
         z-index: unset;
     }
+    .movie {
+        width: 18.5%;
+        float: left;
+        margin-right: 1.5%;
+        margin-bottom: 10px;
+    }
+    .movie-image {
+        float: left;
+        width: 100%;
+        height: 270px;
+        position: relative;
+    }
+    .movie-image img {
+        width: 100%;
+        height: 270px;
+    }
 </style>
 <div ng-app="BinGoApp" ng-controller="UserInfoCtrl" style="color:#fdf5e6 ">
     <div id="info" class="jumbotron row">
         <div class="col-xs-4">
-            <img class="img-thumbnail" src={{img}} width="90%" />
+            <img class="img-thumbnail" src="{{img}}" width="90%"/>   
+            <form id="uploadForm" class="hidden">
+                <input type="file" id="upload" name="file" accept="image/*"/>
+                <button class="btn btn-success" ng-click="Submit()">确认修改</button>
+            </form>
         </div>
         <div class="col-xs-7">
             <h3>{{user.username}}</h3>
@@ -36,6 +57,7 @@
                 </div>
             </div>
             <div class="btn-group">
+                <button class="btn btn-default btn-sm" ng-click="Portrait()">头像修改</button>
                 <button class="btn btn-default btn-sm" ng-click="InfoModify()">修改信息</button>
                 <button class="btn btn-default btn-sm" ng-click="PasswordModify()">修改密码</button>
             </div>
@@ -46,26 +68,49 @@
             <h4>推荐电影</h4>
         </div>
         <hr />
-        <table class="table table-bordered" style="text-align: center">
-            <thead>
-                <tr>
-                    <td class="col-xs-1">序号</td>
-                    <td class="col-xs-3">片名</td>
-                    <td class="col-xs-3">导演</td>
-                    <td class="col-xs-4">主演</td>
-                    <td class="col-xs-1">评分</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="mov in movies">
-                    <td>{{$index + 1}}</td>
-                    <td><a href="/Movie/MovieInfo/{{mov.movie_id}}">{{mov.movie_name}}</a></td>
-                    <td>{{mov.movie_director}}</td>
-                    <td>{{mov.movie_actor.join(', ')}}</td>
-                    <td>{{mov.movie_rating*2}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="container">
+            <div class="box">
+                <div class="movie" ng-repeat="mov in movies">
+                    <ul class="list-unstyled">
+                        <li>
+                            <div class="movie-image">
+                                <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt={{mov.movie_name}} /></a>
+                            </div>
+                        </li>
+                        <li class="text-center">
+                            <span class="name">{{mov.movie_name}}</span>
+                            <div class="subject-rate">
+                                <jk-rating-stars max-rating="5" rating="mov.movie_rating/2" ng-model="mov.movie_rating" read-only="readOnly"></jk-rating-stars>
+                                <span>{{mov.movie_rating+'分'}}</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h4>猜你喜欢</h4>
+        </div>
+        <hr />
+        <div class="container">
+            <div class="box">
+                <div class="movie" ng-repeat="mov in guess_movies">
+                    <ul class="list-unstyled">
+                        <li>
+                            <div class="movie-image">
+                                <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt={{mov.movie_name}} /></a>
+                            </div>
+                        </li>
+                        <li class="text-center">
+                            <span class="name">{{mov.movie_name}}</span>
+                            <div class="subject-rate">
+                                <span style="color:aliceblue">理由：您看过《{{mov.reason_name}}》</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="history" class="container" style="color: #fdf5e6">
         <div>
@@ -74,24 +119,27 @@
         <hr />
         <table class="table table-bordered" style="text-align: center">
             <thead>
-                <tr>
-                    <td class="col-xs-1">序号</td>
-                    <td class="col-xs-3">片名</td>
-                    <td class="col-xs-3">时间</td>
-                    <td class="col-xs-4">评论</td>
-                    <td class="col-xs-1">评分</td>
-                </tr>
+            <tr>
+                <td class="col-xs-1">序号</td>
+                <td class="col-xs-3">片名</td>
+                <td class="col-xs-3">时间</td>
+                <td class="col-xs-4">评论</td>
+                <td class="col-xs-1">评分</td>
+            </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="mov in rating_movies">
-                    <td>{{$index + 1}}</td>
-                    <td><a href="/Movie/MovieInfo/{{mov.movie_id}}">{{mov.movie_id}}</a></td>
-                    <td>{{mov.create_time|date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                    <td>{{mov.comment}}</td>
-                    <td>{{mov.rating}}</td>
-                </tr>
+            <tr ng-repeat="mov in rating_movies">
+                <td>{{$index + 1}}</td>
+                <td><a href="/Movie/MovieInfo/{{mov.movie_id}}">{{mov.movie_name}}</a></td>
+                <td>{{mov.create_time|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>{{mov.comment}}</td>
+                <td>{{mov.rating}}</td>
+            </tr>
             </tbody>
         </table>
+        <div class="text-center">
+            <label class="glyphicon glyphicon-chevron-down text-center" ng-click="ShowMore()"></label>
+        </div>
     </div>
     <!--修改信息模态框-->
     <div class="modal" id="imodify" style="color: black;">

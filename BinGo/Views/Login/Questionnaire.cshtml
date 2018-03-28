@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewBag.Title = "Questionnaire";
+}
+<link href="~/Content/Questionnaire/styles.css" rel="stylesheet" />
+<script src="~/Scripts/Questionnaire/modernizr.js"></script>
+<style>
+</style>
+
+<div ng-app="BinGoApp" ng-controller="QuestionniareCtrl" class="wrapper active-page1">
+    <div class="page page{{$index+1}}" ng-repeat="mov in movies">
+        <h2>电影爱好调查</h2>
+        <div class="container">
+            <div class="row" style="margin-top:20%">
+                <div class="col-md-5">
+                    <img src={{mov.pic_url}} class="img-rounded" style="margin-bottom: 20px;" />
+                    <div>
+                        <button class="btn btn-lg btn-danger" ng-click="Feedback(mov.movie_id,10);">好喜欢&nbsp;<span class="glyphicon glyphicon-hand-up"></span></button>
+                        <button class="btn btn-lg btn-success" ng-click="Feedback(mov.movie_id,0);" style="margin-left: 10%;">没兴趣&nbsp;<span class="glyphicon glyphicon-hand-down"></span></button>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <h3>{{mov.movie_name}}</h3>
+                    <div>
+                        <ul class="list-unstyled">
+                            <li>导演：<span>{{mov.movie_director}}</span></li>
+                            <li>主演：<span>{{mov.movie_actor}}</span></li>
+                            <li>类型：<span>{{mov.movie_keyword}}</span></li>
+                            <li>地区：<span>{{mov.movie_district}}</span></li>
+                            <li>时间：<span>{{mov.movie_year}}</span></li>
+                            <li>简介：<text>{{mov.movie_introduction}}</text></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page page9">
+        <div class="container">
+            <div class="text-center" style="margin-top: 35%">
+                <div class="text-center">
+                    <p style="color: aliceblue; font-size: 40px;">调查完成，请登录！</p>
+                    <button class="btn btn-lg btn-success" ng-click="MoveTo()">Go</button>
+                </div>           
+            </div>
+        </div>
+    </div>
+</div>
+<div class="nav-panel">
+    <div class="scroll-btn up"></div>
+    <div class="scroll-btn down"></div>
+    <nav>
+        <ul>
+            <li data-target="1" class="nav-btn nav-page1 active"></li>
+            <li data-target="2" class="nav-btn nav-page2"></li>
+            <li data-target="3" class="nav-btn nav-page3"></li>
+            <li data-target="4" class="nav-btn nav-page4"></li>
+            <li data-target="5" class="nav-btn nav-page5"></li>
+            <li data-target="6" class="nav-btn nav-page6"></li>
+            <li data-target="7" class="nav-btn nav-page7"></li>
+            <li data-target="8" class="nav-btn nav-page8"></li>
+            <li data-target="9" class="nav-btn nav-page9"></li>
+        </ul>
+    </nav>
+</div>
+<script>
+    'use strict';
+    var $wrap = $('.wrapper'), pages = 9, scrolling = false, currentPage = 1, $navPanel = $('.nav-panel'), $scrollBtn = $('.scroll-btn'), $navBtn = $('.nav-btn');
+    function manageClasses() {
+        $wrap.removeClass(function (index, css) {
+            return (css.match(/(^|\s)active-page\S+/g) || []).join(' ');
+        });
+        $wrap.addClass('active-page' + currentPage);
+        $navBtn.removeClass('active');
+        $('.nav-btn.nav-page' + currentPage).addClass('active');
+        $navPanel.addClass('invisible');
+        scrolling = true;
+        setTimeout(function () {
+            $navPanel.removeClass('invisible');
+            scrolling = false;
+        }, 1000);
+    }
+    function navigateUp() {
+        if (currentPage > 1) {
+            currentPage--;
+            if (Modernizr.csstransforms) {
+                manageClasses();
+            } else {
+                $wrap.animate({ 'top': '-' + (currentPage - 1) * 100 + '%' }, 1000);
+            }
+        }
+    }
+    function navigateDown() {
+        if (currentPage < pages) {
+            currentPage++;
+            if (Modernizr.csstransforms) {
+                manageClasses();
+            } else {
+                $wrap.animate({ 'top': '-' + (currentPage - 1) * 100 + '%' }, 1000);
+            }
+        }
+    }
+    $(document).on('mousewheel DOMMouseScroll', function (e) {
+        if (!scrolling) {
+            if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
+                navigateUp();
+            } else {
+                navigateDown();
+            }
+        }
+    });
+    $(document).on('click', '.scroll-btn', function () {
+        if ($(this).hasClass('up')) {
+            navigateUp();
+        } else {
+            navigateDown();
+        }
+    });
+    $(document).on('click', '.nav-btn:not(.active)', function () {
+        if (!scrolling) {
+            var target = $(this).attr('data-target');
+            if (Modernizr.csstransforms) {
+                $wrap.removeClass(function (index, css) {
+                    return (css.match(/(^|\s)active-page\S+/g) || []).join(' ');
+                });
+                $wrap.addClass('active-page' + target);
+                $navBtn.removeClass('active');
+                $(this).addClass('active');
+                $navPanel.addClass('invisible');
+                currentPage = target;
+                scrolling = true;
+                setTimeout(function () {
+                    $navPanel.removeClass('invisible');
+                    scrolling = false;
+                }, 1000);
+            } else {
+                $wrap.animate({ 'top': '-' + (target - 1) * 100 + '%' }, 1000);
+            }
+        }
+    });
+</script>

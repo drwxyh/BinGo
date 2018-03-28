@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row" style="display: flex">
                 <div class="col-xs-3">
-                    <img src={{movie.pic_url}}  alt={{movie.movie_name}}/>
+                    <img src={{movie.pic_url}} alt={{movie.movie_name}} height="360px" width="260px"/>
                 </div>
                 <div class="info col-xs-4">
                     <ul class="list-unstyled" style="font-size: 16px; font-weight: bold">
@@ -26,7 +26,7 @@
                     </ul>
                 </div>
                 <div>
-                    <img src="~/Images/Other/part-line.png" height="100%"/>
+                    <img src="~/Images/Other/part-line.png" height="100%" />
                 </div>
                 <div id="remark" class="col-xs-4">
                     <h2 style="text-align: center">总体评分</h2>
@@ -48,14 +48,14 @@
                 </div>
             </div>
 
-            <h3>类似电影</h3><hr/>
+            <h3>类似电影</h3><hr />
             <div class="container">
                 <div class="box">
                     <div class="movie" ng-repeat="mov in movieList">
                         <ul class="list-unstyled">
                             <li>
                                 <div class="movie-image">
-                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt={{mov.movie_name}}/></a>
+                                    <a href="/Movie/MovieInfo/{{mov.movie_id}}"><span class="play"><span class="name">{{mov.movie_name}}</span></span><img src={{mov.pic_url}} alt={{mov.movie_name}} /></a>
                                 </div>
                             </li>
                             <li class="text-center">
@@ -69,29 +69,45 @@
                     </div>
                 </div>
             </div>
-            
-            <h3>用户评论</h3><hr/>
+
+            <h3>用户评论</h3><hr />
             <div class="container">
-                <table class="table table-bordered  table-striped table-hover" style="text-align: center">
+                <div ng-repeat="x in comments" style="margin: 10px 0 10px 0;">
+                    <div class="container row">
+                        <div class="col-xs-2">
+                            <img src="~/Images/Portrait/liuxiaohan.png" class="img-circle"width="80px" height="80px"/>
+                        </div>
+                        <div class="col-xs-10">
+                            <p><strong>{{x.username}}</strong></p>
+                            <p>{{x.comment}}</p>
+                            <span class="pull-left">评分：{{x.rating}}</span><span class="pull-right">时间：{{x.creating_time|date:'yyyy-MM-dd HH:mm:ss'}}</span>
+                        </div>
+                    </div>
+                    <hr/>
+                </div>
+                @*<table class="table table-bordered  table-striped table-hover" style="text-align: center">
                     <thead>
-                        <tr>
-                            <td class="col-md-1">序号</td>
-                            <td class="col-md-2">用户名</td>
-                            <td class="col-md-2">时间</td>
-                            <td class="col-md-5">评论</td>
-                            <td class="col-md-2">评分</td>
-                        </tr>
+                    <tr>
+                        <td class="col-md-1">序号</td>
+                        <td class="col-md-2">用户名</td>
+                        <td class="col-md-2">时间</td>
+                        <td class="col-md-5">评论</td>
+                        <td class="col-md-2">评分</td>
+                    </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="x in comments">
                         <td>{{$index + 1}}</td>
-                        <td>{{x.user_id}}</td>
+                        <td>{{x.username}}</td>
                         <td>{{x.creating_time|date:'yyyy-MM-dd HH:mm:ss'}}</td>
                         <td>{{x.comment}}</td>
                         <td>{{x.rating}}</td>
                     </tr>
                     </tbody>
-                </table>
+                </table>*@
+                <div class="text-center">
+                    <label class="glyphicon glyphicon-chevron-down text-center" ng-click="ShowMore()"></label>
+                </div>
             </div>
         </div>
     </div>

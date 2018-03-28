@@ -18,5 +18,10 @@ namespace BinGo.Controllers
         {
             return View();
         }
+
+        public ActionResult Questionnaire()
+        {
+            return View();
+        }
     }
 }

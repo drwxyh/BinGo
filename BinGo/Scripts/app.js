@@ -1,4 +1,4 @@
-﻿var app = angular.module('BinGoApp', ['jkAngularRatingStars']);
+﻿var app = angular.module('BinGoApp', ['jkAngularRatingStars', 'ngFileUpload']);
 // 防止session跨域丢失
 app.config(['$httpProvider', config]);
 function config($httpProvider) {
@@ -30,7 +30,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 if (page < $scope.ActionTotalPages) $scope.ActionCurPage++ ,
                     $http({
                         method: 'POST',
-                        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         withCredentials: true,
                         data: $.param({
@@ -51,7 +51,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 if (page < $scope.WarTotalPages) $scope.WarCurPage++ ,
                     $http({
                         method: 'POST',
-                        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         withCredentials: true,
                         data: $.param({
@@ -72,7 +72,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 if (page < $scope.HistoryTotalPages) $scope.HistoryCurPage++ ,
                     $http({
                         method: 'POST',
-                        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         withCredentials: true,
                         data: $.param({
@@ -93,7 +93,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 if (page < $scope.ComedyTotalPages) $scope.ComedyCurPage++ ,
                     $http({
                         method: 'POST',
-                        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         withCredentials: true,
                         data: $.param({
@@ -114,7 +114,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 if (page < $scope.MysteryTotalPages) $scope.MysteryCurPage++ ,
                     $http({
                         method: 'POST',
-                        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         withCredentials: true,
                         data: $.param({
@@ -135,7 +135,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 if (page < $scope.MusicalTotalPages) $scope.MusicalCurPage++ ,
                     $http({
                         method: 'POST',
-                        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         withCredentials: true,
                         data: $.param({
@@ -156,7 +156,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 if (page < $scope.RomanceTotalPages) $scope.RomanceCurPage++ ,
                     $http({
                         method: 'POST',
-                        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         withCredentials: true,
                         data: $.param({
@@ -177,7 +177,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 if (page < $scope.SciFiTotalPages) $scope.SciFiCurPage++ ,
                     $http({
                         method: 'POST',
-                        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         withCredentials: true,
                         data: $.param({
@@ -198,7 +198,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 if (page < $scope.AllTotalPages) $scope.AllCurPage++ ,
                     $http({
                         method: 'POST',
-                        url: 'http://wangj1106.imwork.net:26943/movie/showlist.do',
+                        url: 'http://127.0.0.1:8088/movie/showlist.do',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         withCredentials: true,
                         data: $.param({
@@ -222,7 +222,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 if (page > 1) $scope.ActionCurPage-- ,
                     $http({
                         method: 'POST',
-                        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         withCredentials: true,
                         data: $.param({
@@ -243,7 +243,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 if (page > 1) $scope.WarCurPage-- ,
                     $http({
                         method: 'POST',
-                        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         withCredentials: true,
                         data: $.param({
@@ -264,7 +264,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 if (page > 1) $scope.HistoryCurPage-- ,
                     $http({
                         method: 'POST',
-                        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         withCredentials: true,
                         data: $.param({
@@ -285,7 +285,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 if (page > 1) $scope.ComedyCurPage-- ,
                     $http({
                         method: 'POST',
-                        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         withCredentials: true,
                         data: $.param({
@@ -306,7 +306,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 if (page > 1) $scope.MysteryCurPage-- ,
                     $http({
                         method: 'POST',
-                        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         withCredentials: true,
                         data: $.param({
@@ -327,7 +327,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 if (page > 1) $scope.MusicalCurPage-- ,
                     $http({
                         method: 'POST',
-                        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         withCredentials: true,
                         data: $.param({
@@ -348,7 +348,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 if (page > 1) $scope.RomanceCurPage-- ,
                     $http({
                         method: 'POST',
-                        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         withCredentials: true,
                         data: $.param({
@@ -369,7 +369,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 if (page > 1) $scope.SciFiCurPage-- ,
                     $http({
                         method: 'POST',
-                        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         withCredentials: true,
                         data: $.param({
@@ -390,7 +390,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 if (page > 1) $scope.AllCurPage-- ,
                     $http({
                         method: 'POST',
-                        url: 'http://wangj1106.imwork.net:26943/movie/showlist.do',
+                        url: 'http://127.0.0.1:8088/movie/showlist.do',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         withCredentials: true,
                         data: $.param({
@@ -413,7 +413,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
         switch (category) {
             case "Action": $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true,
                 data: $.param({
@@ -432,7 +432,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 break;
             case "War": $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true,
                 data: $.param({
@@ -451,7 +451,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 break;
             case "History": $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true,
                 data: $.param({
@@ -470,7 +470,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 break;
             case "Comedy": $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true,
                 data: $.param({
@@ -489,7 +489,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 break;
             case "Mystery": $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true,
                 data: $.param({
@@ -508,7 +508,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 break;
             case "Musical": $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true,
                 data: $.param({
@@ -527,7 +527,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 break;
             case "Romance": $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true,
                 data: $.param({
@@ -546,7 +546,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 break;
             case "Sci-Fi": $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true,
                 data: $.param({
@@ -565,7 +565,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 break;
             case "All": $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showlist.do',
+                url: 'http://127.0.0.1:8088/movie/showlist.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true,
                 data: $.param({
@@ -588,7 +588,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
         switch (category) {
             case "Action": $scope.ActionCurOrderType = orderType, $scope.ActionCurPage = 1, $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true,
                 data: $.param({
@@ -607,7 +607,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 break;
             case "War": $scope.WarCurOrderType = orderType, $scope.WarCurPage = 1, $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true,
                 data: $.param({
@@ -626,7 +626,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 break;
             case "History": $scope.HistoryCurOrderType = orderType, $scope.HistoryCurPage = 1, $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true,
                 data: $.param({
@@ -645,7 +645,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 break;
             case "Comedy": $scope.ComedyCurOrderType = orderType, $scope.ComedyCurPage = 1, $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true,
                 data: $.param({
@@ -664,7 +664,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 break;
             case "Mystery": $scope.MysteryCurOrderType = orderType, $scope.MysteryCurPage = 1, $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true,
                 data: $.param({
@@ -683,7 +683,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 break;
             case "Musical": $scope.MusicalCurOrderType = orderType, $scope.MusicalCurPage = 1, $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true,
                 data: $.param({
@@ -702,7 +702,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 break;
             case "Romance": $scope.RomanceCurOrderType = orderType, $scope.RomanceCurPage = 1, $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true,
                 data: $.param({
@@ -721,7 +721,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 break;
             case "Sci-Fi": $scope.SciFiCurOrderType = orderType, $scope.SciFiCurPage = 1, $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+                url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true,
                 data: $.param({
@@ -740,7 +740,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
                 break;
             case "All": $scope.AllCurOrderType = orderType, $scope.AllCurPage = 1, $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showlist.do',
+                url: 'http://127.0.0.1:8088/movie/showlist.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true,
                 data: $.param({
@@ -761,7 +761,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
     // 根据关键字，获取各个类别的电影列表
     $http({
         method: 'POST',
-        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         withCredentials: true,
         data: $.param({
@@ -779,7 +779,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
     });
     $http({
         method: 'POST',
-        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         withCredentials: true,
         data: $.param({
@@ -797,7 +797,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
     });
     $http({
         method: 'POST',
-        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         withCredentials: true,
         data: $.param({
@@ -815,7 +815,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
     });
     $http({
         method: 'POST',
-        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         withCredentials: true,
         data: $.param({
@@ -833,7 +833,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
     });
     $http({
         method: 'POST',
-        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         withCredentials: true,
         data: $.param({
@@ -851,7 +851,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
     });
     $http({
         method: 'POST',
-        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         withCredentials: true,
         data: $.param({
@@ -869,7 +869,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
     });
     $http({
         method: 'POST',
-        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         withCredentials: true,
         data: $.param({
@@ -887,7 +887,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
     });
     $http({
         method: 'POST',
-        url: 'http://wangj1106.imwork.net:26943/movie/showlistByCategory.do',
+        url: 'http://127.0.0.1:8088/movie/showlistByCategory.do',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         withCredentials: true,
         data: $.param({
@@ -905,7 +905,7 @@ app.controller('MovieCtrl', function ($scope, $http) {
     });
     $http({
         method: 'POST',
-        url: 'http://wangj1106.imwork.net:26943/movie/showlist.do',
+        url: 'http://127.0.0.1:8088/movie/showlist.do',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         withCredentials: true,
         data: $.param({
@@ -927,7 +927,7 @@ app.controller('LoginCtrl', function ($scope, $http) {
         $scope.submit = function () {
             $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/user/login.do',
+                url: 'http://127.0.0.1:8088/user/login.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 withCredentials: true,
                 data: $.param({
@@ -942,6 +942,9 @@ app.controller('LoginCtrl', function ($scope, $http) {
                     sessionStorage.setItem('role', response.data.data.role);
                     sessionStorage.setItem('username', $scope.username);
                     window.location.href = '/Home/User';
+                }
+                if (response.data.status === 3) {
+                    window.location.href = '/Login/Questionnaire';
                 }
             },
                 function errorCallback(errorresponse) {
@@ -966,7 +969,7 @@ app.controller('RegisterCtrl', function ($scope, $http) {
         }
         $http({
             method: 'POST',
-            url: 'http://wangj1106.imwork.net:26943/user/regist.do',
+            url: 'http://127.0.0.1:8088/user/regist.do',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: $.param({
                 username: $scope.username,
@@ -981,7 +984,6 @@ app.controller('RegisterCtrl', function ($scope, $http) {
         }).then(function successCallback(response) {
             alert(response.data.msg);
             if (response.data.status === 0) {
-                // window.location.href = '/Register/Questionnaire';
                 window.location.href = '/Login/Login';
             }
         }, function errorCallback(errorresponse) {
@@ -991,23 +993,62 @@ app.controller('RegisterCtrl', function ($scope, $http) {
 });
 
 app.controller('UserInfoCtrl', function ($scope, $http, $filter) {
+    $scope.Portrait = function () {
+        if ($('#uploadForm').hasClass('hidden')) {
+            $('#uploadForm').removeClass('hidden');
+        } else {
+            $('#uploadForm').addClass('hidden');
+        }
+    }
+    //提交  
+    $scope.Submit = function () {
+        var formData = new FormData($("#uploadForm")[0]);
+        $.ajax({
+            method: 'POST',
+            url: 'http://20t445759t.imwork.net:14108/upload',
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (res) {
+                $scope.img = res;
+                $('#uploadForm').addClass('hidden');
+                // 把头像信息回传给数据库
+                $http({
+                    method: 'POST',
+                    url: 'http://127.0.0.1:8088/user/update_information.do',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    data: $.param({
+                        portrait: $scope.img
+                    })
+                }).then(function successCallback(response) { alert(1); });
+            },
+            error: function (res) { }
+        });
+    };
+
     $scope.genderOptions = ["男", "女"];
     $scope.ageOptions = ["10后", "00后", "90后", "80后", "70后", "60后", "50后"];
     // 登录时在session中存储了登录状态
     $http({
         method: 'POST',
-        url: 'http://wangj1106.imwork.net:26943/user/get_user_info.do',
+        url: 'http://127.0.0.1:8088/user/get_user_info.do',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         data: $.param({})
     }).then(function successCallback(response) {
         if (response.data.status === 0) {
             $scope.user = response.data.data;
-            if ($scope.user.sex === 1) {
-                $scope.gender = '男';
-                $scope.img = "http://10.6.12.98:6305/Images/Portrait/lebron-james.jpg";
+            if ($scope.user.portrait === null) {
+                if ($scope.user.sex === 1) {
+                    $scope.gender = '男';
+                    $scope.img = "http://10.6.12.27:6305/Images/Portrait/lebron-james.jpg";
+                } else {
+                    $scope.gender = '女';
+                    $scope.img = "http://10.6.12.27:6305/Images/Portrait/girl.jpg";
+                }
             } else {
-                $scope.gender = '女';
-                $scope.img = "http://10.6.12.98:6305/Images/Portrait/girl.jpg";
+                $scope.img = $scope.user.portrait;
             }
             $scope.newuser = response.data.data;
         }
@@ -1019,7 +1060,7 @@ app.controller('UserInfoCtrl', function ($scope, $http, $filter) {
     // 获取用户推荐列表
     $http({
         method: 'POST',
-        url: 'http://wangj1106.imwork.net:26943/user/get_recommend.do',
+        url: 'http://127.0.0.1:8088/user/get_recommend.do',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     }).then(function successCallback(response) {
         if (response.data.status === 0) {
@@ -1029,20 +1070,38 @@ app.controller('UserInfoCtrl', function ($scope, $http, $filter) {
         function errorCallback(errorresponse) {
             alert(errorresponse.data.msg);
         });
-    // 获取用户最近评论电影
+
     $http({
         method: 'POST',
-        url: 'http://wangj1106.imwork.net:26943/rating/userRatingList.do',
+        url: 'http://127.0.0.1:8088/user/get_recommend2.do',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    }).then(function successCallback(response) {
+        if (response.data.status === 0) {
+            $scope.guess_movies = response.data.data;
+        }
+    },
+        function errorCallback(errorresponse) {
+            alert(errorresponse.data.msg);
+        });
+
+    // 获取用户最近评论电影
+    $scope.curPage = 1;
+    $http({
+        method: 'POST',
+        url: 'http://127.0.0.1:8088/rating/userRatingList.do',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         data: $.param({
-            pageNum: 1,
+            pageNum: $scope.curPage,
             pageSize: 5
         })
     }).then(function successCallback(response) {
         if (response.data.status === 0) {
             $scope.rating_movies = response.data.data.list;
+            $scope.totalPage = response.data.data.pages;
             angular.forEach($scope.rating_movies,
                 function (obj) {
+                    if (obj.username === null)
+                        obj.username = "匿名用户";
                     obj.creating_time = new Date();
                     $filter("date")(obj.creating_time.valueOf(), "yyyy-MM-dd HH:mm:ss");
                 });
@@ -1051,6 +1110,35 @@ app.controller('UserInfoCtrl', function ($scope, $http, $filter) {
         function errorCallback(errorresponse) {
             alert(errorresponse.data.msg);
         });
+
+    $scope.ShowMore = function () {
+        $scope.curPage++;
+        if ($scope.curPage <= $scope.totalPage) {
+            $http({
+                method: 'POST',
+                url: 'http://127.0.0.1:8088/rating/userRatingList.do',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                data: $.param({
+                    pageNum: $scope.curPage,
+                    pageSize: 5
+                })
+            }).then(function successCallback(response) {
+                if (response.data.status === 0) {
+                    $scope.new_movies = response.data.data.list;
+                    angular.forEach($scope.new_movies,
+                        function (obj) {
+                            if (obj.username === null)
+                                obj.username = "匿名用户";
+                            obj.creating_time = new Date();
+                            $filter("date")(obj.creating_time.valueOf(), "yyyy-MM-dd HH:mm:ss");
+                            $scope.rating_movies.push(obj);
+                        });
+                }
+            });
+        } else {
+            alert("没有更多评价了！");
+        }
+    }
     // 修改用户密码相关函数
     $scope.PasswordModify = function () {
         $('#pmodify').modal('show');
@@ -1058,7 +1146,7 @@ app.controller('UserInfoCtrl', function ($scope, $http, $filter) {
     $scope.PasswordModifyCommit = function () {
         $http({
             method: 'POST',
-            url: 'http://wangj1106.imwork.net:26943/user/reset_password.do',
+            url: 'http://127.0.0.1:8088/user/reset_password.do',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: $.param({
                 passwordOld: $scope.passwordOld,
@@ -1083,7 +1171,7 @@ app.controller('UserInfoCtrl', function ($scope, $http, $filter) {
     $scope.InfoModifyCommit = function () {
         $http({
             method: 'POST',
-            url: 'http://wangj1106.imwork.net:26943/user/update_information.do',
+            url: 'http://127.0.0.1:8088/user/update_information.do',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: $.param({
                 email: $scope.newuser.email,
@@ -1123,7 +1211,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
     // 获取用户列表
     $http({
         method: 'POST',
-        url: 'http://wangj1106.imwork.net:26943/manage/user/list.do',
+        url: 'http://127.0.0.1:8088/manage/user/list.do',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         data: $.param({
             pageSize: 15,
@@ -1141,7 +1229,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
     // 获取电影列表
     $http({
         method: 'POST',
-        url: 'http://wangj1106.imwork.net:26943/movie/showlist.do',
+        url: 'http://127.0.0.1:8088/movie/showlist.do',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         data: $.param({
             pageSize: 8,
@@ -1158,7 +1246,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
     // 获取评论列表
     $http({
         method: 'POST',
-        url: 'http://wangj1106.imwork.net:26943//manage/rating/ratingList.do',
+        url: 'http://127.0.0.1:8088//manage/rating/ratingList.do',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         data: $.param({
             pageSize: 10,
@@ -1177,7 +1265,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
         $('#uinfo').modal('show');
         $http({
             method: 'POST',
-            url: 'http://wangj1106.imwork.net:26943/manage/user/get_information.do',
+            url: 'http://127.0.0.1:8088/manage/user/get_information.do',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: $.param({
                 userId: id
@@ -1201,7 +1289,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
         // 显示用户信息
         $http({
             method: 'POST',
-            url: 'http://wangj1106.imwork.net:26943/manage/user/get_information.do',
+            url: 'http://127.0.0.1:8088/manage/user/get_information.do',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: $.param({
                 userId: id
@@ -1229,7 +1317,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
         }
         $http({
             method: 'POST',
-            url: 'http://wangj1106.imwork.net:26943/manage/user/update_information.do',
+            url: 'http://127.0.0.1:8088/manage/user/update_information.do',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: $.param({
                 id: $scope.cur.id,
@@ -1259,7 +1347,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
     $scope.UDeleteCommit = function () {
         $http({
             method: 'POST',
-            url: 'http://wangj1106.imwork.net:26943/manage/user/delete.do',
+            url: 'http://127.0.0.1:8088/manage/user/delete.do',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: $.param({
                 userId: $scope.udeleteId
@@ -1283,7 +1371,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
         switch (type) {
             case "User": $scope.UPage = page, $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/manage/user/list.do',
+                url: 'http://127.0.0.1:8088/manage/user/list.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 data: $.param({
                     pageSize: 15,
@@ -1300,7 +1388,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
                 break;
             case "Movie": $scope.MPage = page, $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showlist.do',
+                url: 'http://127.0.0.1:8088/movie/showlist.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 data: $.param({
                     pageSize: 8,
@@ -1318,7 +1406,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
 
             case "Comment": $scope.MPage = page, $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/manage/rating/ratingList.do',
+                url: 'http://127.0.0.1:8088/manage/rating/ratingList.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 data: $.param({
                     pageSize: 10,
@@ -1341,7 +1429,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
             $scope.UPage--;
             $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/manage/user/list.do',
+                url: 'http://127.0.0.1:8088/manage/user/list.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 data: $.param({
                     pageSize: 15,
@@ -1362,7 +1450,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
             $scope.UPage++;
             $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/manage/user/list.do',
+                url: 'http://127.0.0.1:8088/manage/user/list.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 data: $.param({
                     pageSize: 15,
@@ -1385,7 +1473,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
     $scope.MUpload = function () {
         $http({
             method: 'POST',
-            url: 'http://wangj1106.imwork.net:26943/manage/movie/add.do',
+            url: 'http://127.0.0.1:8088/manage/movie/add.do',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: $.param({
                 movie_name: $scope.moviename,
@@ -1417,7 +1505,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
         $('#minfo').modal('show');
         $http({
             method: 'POST',
-            url: 'http://wangj1106.imwork.net:26943/manage/movie/get_information.do',
+            url: 'http://127.0.0.1:8088/manage/movie/get_information.do',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: $.param({
                 movie_id: id
@@ -1437,7 +1525,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
         // 显示用户信息
         $http({
             method: 'POST',
-            url: 'http://wangj1106.imwork.net:26943/manage/movie/get_information.do',
+            url: 'http://127.0.0.1:8088/manage/movie/get_information.do',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: $.param({
                 movie_id: id
@@ -1455,7 +1543,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
         // 将用户信息传回数据库
         $http({
             method: 'POST',
-            url: 'http://wangj1106.imwork.net:26943/manage/movie/update_information.do',
+            url: 'http://127.0.0.1:8088/manage/movie/update_information.do',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: $.param({
                 movie_id: $scope.movie.movie_id,
@@ -1490,7 +1578,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
     $scope.MDeleteCommit = function () {
         $http({
             method: 'POST',
-            url: 'http://wangj1106.imwork.net:26943/manage/movie/delete.do',
+            url: 'http://127.0.0.1:8088/manage/movie/delete.do',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: $.param({
                 movie_id: $scope.mdeleteId
@@ -1515,7 +1603,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
             $scope.MPage--;
             $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showlist.do',
+                url: 'http://127.0.0.1:8088/movie/showlist.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 data: $.param({
                     pageSize: 8,
@@ -1538,7 +1626,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
     $scope.CDeleteCommit = function () {
         $http({
             method: 'POST',
-            url: 'http://wangj1106.imwork.net:26943/manage/rating/deleteRating.do',
+            url: 'http://127.0.0.1:8088/manage/rating/deleteRating.do',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: $.param({
                 ratingId: $scope.cdeleteId
@@ -1563,7 +1651,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
             $scope.MPage++;
             $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showlist.do',
+                url: 'http://127.0.0.1:8088/movie/showlist.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 data: $.param({
                     pageSize: 8,
@@ -1585,7 +1673,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
             $scope.CPage--;
             $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/manage/rating/ratingList.do',
+                url: 'http://127.0.0.1:8088/manage/rating/ratingList.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 data: $.param({
                     pageSize: 10,
@@ -1606,7 +1694,7 @@ app.controller('ManageCtrl', function ($scope, $http) {
             $scope.CPage++;
             $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/manage/rating/ratingList.do',
+                url: 'http://127.0.0.1:8088/manage/rating/ratingList.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 data: $.param({
                     pageSize: 10,
@@ -1624,8 +1712,41 @@ app.controller('ManageCtrl', function ($scope, $http) {
 });
 
 app.controller('QuestionniareCtrl', function ($scope, $http) {
+    // 获取调查用电影
+    $http({
+        method: 'POST',
+        url: 'http://127.0.0.1:8088/movie/getQuestionnaire.do',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        data: $.param({})
+    }).then(function successCallback(response) {
+        if (response.data.status === 0) {
+            $scope.movies = response.data.data;
+        }
+    }, function errorCallback(errorresponse) {
+        alert(errorresponse.data.msg);
+    });
+    // 返回用户评价
+
     $scope.MoveTo = function () {
-        window.location.href = '/Login/Login';
+        window.location.href = '/Home/User';
+    }
+
+    $scope.Feedback = function (id, score) {
+        alert(1);
+        $http({
+            method: 'POST',
+            url: 'http://127.0.0.1:8088/rating/add.do',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            data: $.param({
+                movieId: id,
+                rating: score
+            })
+        }).then(function successCallback(response) {
+            alert(JSON.stringify(response.data.msg));
+        },
+            function errorCallback(errorresponse) {
+                alert(errorresponse.data.msg);
+            });
     }
 });
 
@@ -1634,7 +1755,7 @@ app.controller('SearchCtrl', function ($scope, $http) {
     $scope.Search = function () {
         $http({
             method: 'POST',
-            url: 'http://wangj1106.imwork.net:26943//movie/showlistByName.do',
+            url: 'http://127.0.0.1:8088//movie/showlistByName.do',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: $.param({
                 pageSize: 36,
@@ -1661,7 +1782,7 @@ app.controller('MovieInfoCtrl', function ($scope, $http, $filter) {
             // 根据电影Id获取电影详情
             $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/manage/movie/get_information.do',
+                url: 'http://127.0.0.1:8088/manage/movie/get_information.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 data: $.param({
                     movie_id: id
@@ -1679,7 +1800,7 @@ app.controller('MovieInfoCtrl', function ($scope, $http, $filter) {
             // 获取电影类似的5部电影
             $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/movie/showsimilarmovie.do',
+                url: 'http://127.0.0.1:8088/movie/showsimilarmovie.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 data: $.param({
                     movieId: id
@@ -1696,7 +1817,7 @@ app.controller('MovieInfoCtrl', function ($scope, $http, $filter) {
             // 获取用户历史评价
             $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/rating/userRating.do',
+                url: 'http://127.0.0.1:8088/rating/userRating.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 data: $.param({
                     movieId: id
@@ -1712,46 +1833,87 @@ app.controller('MovieInfoCtrl', function ($scope, $http, $filter) {
                 });
             // 用户评价
             $scope.Comment = function () {
-                $http({
-                    method: 'POST',
-                    url: 'http://wangj1106.imwork.net:26943/rating/add.do',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    data: $.param({
-                        movieId: id,
-                        rating: $scope.rate,
-                        comment: $scope.comment
-                    })
-                }).then(function successCallback(response) {
-                    alert(JSON.stringify(response.data.msg));
-                },
-                    function errorCallback(errorresponse) {
-                        alert(errorresponse.data.msg);
-                    });
+                if (angular.isUndefined($scope.rate)) {
+                    alert("亲，评分是必须的哦！");
+                } else {
+                    $http({
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8088/rating/add.do',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        data: $.param({
+                            movieId: id,
+                            rating: $scope.rate,
+                            comment: $scope.comment
+                        })
+                    }).then(function successCallback(response) {
+                        alert(JSON.stringify(response.data.msg));
+                    },
+                        function errorCallback(errorresponse) {
+                            alert(errorresponse.data.msg);
+                        });
+                }
             }
 
             // 获取所有历史评价
+            $scope.curPage = 1;
             $http({
                 method: 'POST',
-                url: 'http://wangj1106.imwork.net:26943/rating/movieRatingList.do',
+                url: 'http://127.0.0.1:8088/rating/movieRatingList.do',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 data: $.param({
                     movieId: id,
-                    pageNum: 1,
-                    pageSize:10
+                    pageNum: $scope.curPage,
+                    pageSize: 10
                 })
             }).then(function successCallback(response) {
-                    if (response.data.status === 0) {
-                        $scope.comments = response.data.data.list;
-                        angular.forEach($scope.comments,
-                            function (obj) {
-                                obj.creating_time = new Date();
-                                $filter("date")(obj.creating_time.valueOf(), "yyyy-MM-dd HH:mm:ss");
-                            });
-                    }
-                },
+                if (response.data.status === 0) {
+                    $scope.comments = response.data.data.list;
+                    $scope.totalPage = response.data.data.pages;
+                    angular.forEach($scope.comments,
+                        function (obj) {
+                            if (obj.username === null)
+                                obj.username = "匿名用户";
+                            obj.creating_time = new Date();
+                            $filter("date")(obj.creating_time.valueOf(), "yyyy-MM-dd HH:mm:ss");
+                        });
+                }
+            },
                 function errorCallback(errorresponse) {
                     alert(errorresponse.data.msg);
                 });
+
+            $scope.ShowMore = function () {
+                $scope.curPage++;
+                if ($scope.curPage <= $scope.totalPage) {
+                    $http({
+                        method: 'POST',
+                        url: 'http://127.0.0.1:8088/rating/movieRatingList.do',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        data: $.param({
+                            movieId: id,
+                            pageNum: $scope.curPage,
+                            pageSize: 10
+                        })
+                    }).then(function successCallback(response) {
+                        if (response.data.status === 0) {
+                            $scope.new_comments = response.data.data.list;
+                            angular.forEach($scope.comments,
+                                function (obj) {
+                                    if (obj.username === null)
+                                        obj.username = "匿名用户";
+                                    obj.creating_time = new Date();
+                                    $filter("date")(obj.creating_time.valueOf(), "yyyy-MM-dd HH:mm:ss");
+                                    $scope.comments.push(obj);
+                                });
+                        }
+                    },
+                        function errorCallback(errorresponse) {
+                            alert(errorresponse.data.msg);
+                        });
+                } else {
+                    alert("没有更多评价了！");
+                }
+            }
         });
 
 });
@@ -1760,7 +1922,7 @@ app.controller('ForgetCtrl', function ($scope, $http) {
     $scope.SearchName = function () {
         $http({
             method: 'POST',
-            url: 'http://wangj1106.imwork.net:26943/user/forget_get_question.do',
+            url: 'http://127.0.0.1:8088/user/forget_get_question.do',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: $.param({
                 username: $scope.username
@@ -1776,7 +1938,7 @@ app.controller('ForgetCtrl', function ($scope, $http) {
     $scope.SearchAnswer = function () {
         $http({
             method: 'POST',
-            url: 'http://wangj1106.imwork.net:26943/user/forget_check_answer.do',
+            url: 'http://127.0.0.1:8088/user/forget_check_answer.do',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: $.param({
                 username: $scope.username,
@@ -1797,7 +1959,7 @@ app.controller('ForgetCtrl', function ($scope, $http) {
     $scope.SearchAnswer = function () {
         $http({
             method: 'POST',
-            url: 'http://wangj1106.imwork.net:26943/user/forget_check_answer.do',
+            url: 'http://127.0.0.1:8088/user/forget_check_answer.do',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: $.param({
                 username: $scope.username,
@@ -1818,7 +1980,7 @@ app.controller('ForgetCtrl', function ($scope, $http) {
     $scope.ResetPassword = function () {
         $http({
             method: 'POST',
-            url: 'http://wangj1106.imwork.net:26943/user/forget_reset_password.do',
+            url: 'http://127.0.0.1:8088/user/forget_reset_password.do',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: $.param({
                 username: $scope.username,
