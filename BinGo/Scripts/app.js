@@ -944,6 +944,10 @@ app.controller('LoginCtrl', function ($scope, $http) {
                     window.location.href = '/Home/User';
                 }
                 if (response.data.status === 3) {
+                    sessionStorage.setItem('loginStatus', 1);
+                    sessionStorage.setItem('userId', response.data.data.id);
+                    sessionStorage.setItem('role', response.data.data.role);
+                    sessionStorage.setItem('username', $scope.username);
                     window.location.href = '/Login/Questionnaire';
                 }
             },
@@ -1729,7 +1733,7 @@ app.controller('QuestionniareCtrl', function ($scope, $http) {
             $scope.movies = response.data.data;
         }
     }, function errorCallback(errorresponse) {
-        alert(errorresponse.data.msg);
+        alert(JSON.stringify(errorresponse));
     });
     // 返回用户评价
 
@@ -1738,7 +1742,6 @@ app.controller('QuestionniareCtrl', function ($scope, $http) {
     }
 
     $scope.Feedback = function (id, score) {
-        alert(1);
         $http({
             method: 'POST',
             url: 'http://127.0.0.1:8088/rating/add.do',
@@ -1748,7 +1751,7 @@ app.controller('QuestionniareCtrl', function ($scope, $http) {
                 rating: score
             })
         }).then(function successCallback(response) {
-            alert(JSON.stringify(response.data.msg));
+            //alert(JSON.stringify(response.data.msg));
         },
             function errorCallback(errorresponse) {
                 alert(errorresponse.data.msg);
