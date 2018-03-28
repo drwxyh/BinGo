@@ -1013,16 +1013,22 @@ app.controller('UserInfoCtrl', function ($scope, $http, $filter) {
             processData: false,
             success: function (res) {
                 $scope.img = res;
+                var portrait = res;
                 $('#uploadForm').addClass('hidden');
                 // 把头像信息回传给数据库
-                $http({
-                    method: 'POST',
-                    url: 'http://127.0.0.1:8088/user/update_information.do',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                $.ajax({
+                    type: "POST",
+                    url: "http://127.0.0.1:8088/user/update_information.do",
+                    dataType: "json",
+                    xhrFields: { withCredentials: true },
                     data: $.param({
-                        portrait: $scope.img
-                    })
-                }).then(function successCallback(response) { alert(1); });
+                        portrait: portrait
+                    }),
+                    success: function(res) {},
+                    error: function(jqXHR) {
+                        alert("发生错误：" + jqXHR.status);
+                    }
+                });
             },
             error: function (res) { }
         });
