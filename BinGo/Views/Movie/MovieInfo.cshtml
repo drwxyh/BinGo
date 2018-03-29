@@ -75,36 +75,16 @@
                 <div ng-repeat="x in comments" style="margin: 10px 0 10px 0;">
                     <div class="container row">
                         <div class="col-xs-2">
-                            <img src="~/Images/Portrait/liuxiaohan.png" class="img-circle"width="80px" height="80px"/>
+                            <img src={{x.portrait}} class="img-circle"width="80px" height="80px"/>
                         </div>
                         <div class="col-xs-10">
                             <p><strong>{{x.username}}</strong></p>
                             <p>{{x.comment}}</p>
-                            <span class="pull-left">评分：{{x.rating}}</span><span class="pull-right">时间：{{x.creating_time|date:'yyyy-MM-dd HH:mm:ss'}}</span>
+                            <span class="pull-left">评分：{{x.rating}}</span><span class="pull-right">时间：{{x.create_time|date:'yyyy-MM-dd HH:mm:ss'}}</span>
                         </div>
                     </div>
                     <hr/>
                 </div>
-                @*<table class="table table-bordered  table-striped table-hover" style="text-align: center">
-                    <thead>
-                    <tr>
-                        <td class="col-md-1">序号</td>
-                        <td class="col-md-2">用户名</td>
-                        <td class="col-md-2">时间</td>
-                        <td class="col-md-5">评论</td>
-                        <td class="col-md-2">评分</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="x in comments">
-                        <td>{{$index + 1}}</td>
-                        <td>{{x.username}}</td>
-                        <td>{{x.creating_time|date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                        <td>{{x.comment}}</td>
-                        <td>{{x.rating}}</td>
-                    </tr>
-                    </tbody>
-                </table>*@
                 <div class="text-center">
                     <label class="glyphicon glyphicon-chevron-down text-center" ng-click="ShowMore()"></label>
                 </div>

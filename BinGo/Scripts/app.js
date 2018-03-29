@@ -1,4 +1,5 @@
 ﻿var app = angular.module('BinGoApp', ['jkAngularRatingStars', 'ngFileUpload']);
+
 // 防止session跨域丢失
 app.config(['$httpProvider', config]);
 function config($httpProvider) {
@@ -1019,6 +1020,7 @@ app.controller('UserInfoCtrl', function ($scope, $http, $filter) {
                 $scope.img = res;
                 var portrait = res;
                 $('#uploadForm').addClass('hidden');
+
                 // 把头像信息回传给数据库
                 $.ajax({
                     type: "POST",
@@ -1040,6 +1042,7 @@ app.controller('UserInfoCtrl', function ($scope, $http, $filter) {
 
     $scope.genderOptions = ["男", "女"];
     $scope.ageOptions = ["10后", "00后", "90后", "80后", "70后", "60后", "50后"];
+
     // 登录时在session中存储了登录状态
     $http({
         method: 'POST',
@@ -1112,8 +1115,8 @@ app.controller('UserInfoCtrl', function ($scope, $http, $filter) {
                 function (obj) {
                     if (obj.username === null)
                         obj.username = "匿名用户";
-                    obj.creating_time = new Date();
-                    $filter("date")(obj.creating_time.valueOf(), "yyyy-MM-dd HH:mm:ss");
+                    obj.create_time = new Date(obj.create_time);
+                    $filter("date")(obj.create_time.valueOf(), "yyyy-MM-dd HH:mm:ss");
                 });
         }
     },
@@ -1139,8 +1142,8 @@ app.controller('UserInfoCtrl', function ($scope, $http, $filter) {
                         function (obj) {
                             if (obj.username === null)
                                 obj.username = "匿名用户";
-                            obj.creating_time = new Date();
-                            $filter("date")(obj.creating_time.valueOf(), "yyyy-MM-dd HH:mm:ss");
+                            obj.create_time = new Date(obj.create_time);
+                            $filter("date")(obj.create_time.valueOf(), "yyyy-MM-dd HH:mm:ss");
                             $scope.rating_movies.push(obj);
                         });
                 }
@@ -1797,15 +1800,16 @@ app.controller('MovieInfoCtrl', function ($scope, $http, $filter) {
                     movie_id: id
                 })
             }).then(function successCallback(response) {
-                // alert(JSON.stringify(response));
-                if (response.data.status === 0) {
-                    $scope.movie = response.data.data;
-                    //alert($scope.movie.movie_star);
-                }
-            },
+                    // alert(JSON.stringify(response));
+                    if (response.data.status === 0) {
+                        $scope.movie = response.data.data;
+                        //alert($scope.movie.movie_star);
+                    }
+                },
                 function errorCallback(errorresponse) {
                     alert(errorresponse.data.msg);
                 });
+
             // 获取电影类似的5部电影
             $http({
                 method: 'POST',
@@ -1815,7 +1819,6 @@ app.controller('MovieInfoCtrl', function ($scope, $http, $filter) {
                     movieId: id
                 })
             }).then(function successCallback(response) {
-                // alert(JSON.stringify(response));
                 if (response.data.status === 0) {
                     $scope.movieList = response.data.data;
                 }
@@ -1823,6 +1826,7 @@ app.controller('MovieInfoCtrl', function ($scope, $http, $filter) {
                 function errorCallback(errorresponse) {
                     alert(errorresponse.data.msg);
                 });
+
             // 获取用户历史评价
             $http({
                 method: 'POST',
@@ -1840,6 +1844,7 @@ app.controller('MovieInfoCtrl', function ($scope, $http, $filter) {
                 function errorCallback(errorresponse) {
                     alert(errorresponse.data.msg);
                 });
+
             // 用户评价
             $scope.Comment = function () {
                 if (angular.isUndefined($scope.rate)) {
@@ -1882,8 +1887,10 @@ app.controller('MovieInfoCtrl', function ($scope, $http, $filter) {
                         function (obj) {
                             if (obj.username === null)
                                 obj.username = "匿名用户";
-                            obj.creating_time = new Date();
-                            $filter("date")(obj.creating_time.valueOf(), "yyyy-MM-dd HH:mm:ss");
+                            if (obj.portrait === null)
+                                obj.portrait = 'http://10.6.12.27:6305/Images/Portrait/lebron-james.jpg';
+                            obj.create_time = new Date(obj.create_time);
+                            $filter("date")(obj.create_time.valueOf(), "yyyy-MM-dd HH:mm:ss");
                         });
                 }
             },
@@ -1910,8 +1917,10 @@ app.controller('MovieInfoCtrl', function ($scope, $http, $filter) {
                                 function (obj) {
                                     if (obj.username === null)
                                         obj.username = "匿名用户";
-                                    obj.creating_time = new Date();
-                                    $filter("date")(obj.creating_time.valueOf(), "yyyy-MM-dd HH:mm:ss");
+                                    if (obj.portrait === null)
+                                        obj.portrait = 'http://10.6.12.27:6305/Images/Portrait/lebron-james.jpg';
+                                    obj.create_time = new Date(obj.create_time);
+                                    $filter("date")(obj.create_time.valueOf(), "yyyy-MM-dd HH:mm:ss");
                                     $scope.comments.push(obj);
                                 });
                         }
