@@ -82,7 +82,7 @@
                 sessionStorage.removeItem('role');
                 $.ajax({
                     type: "POST",
-                    url: "http://127.0.0.1:8088/user/logout.do",
+                    url: "http://wangj1106.imwork.net:26943/user/logout.do",
                     dataType: "json",
                     xhrFields:{withCredentials:true},
                     success: function(res){
@@ -91,8 +91,8 @@
                         }
                     },
                     error: function(jqXHR){
-                        alert("发生错误：" + jqXHR.status);
-                    },
+                        //alert("发生错误：" + jqXHR.status);
+                    }
                 });
 
             });
